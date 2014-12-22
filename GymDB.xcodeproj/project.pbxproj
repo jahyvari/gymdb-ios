@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA7E91A481B0D003D7C8E /* AppDelegate.swift */; };
+		F46BA7EC1A481B0D003D7C8E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */; };
+		F46BA7EE1A481B0D003D7C8E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA7ED1A481B0D003D7C8E /* DetailViewController.swift */; };
+		F46BA7F11A481B0D003D7C8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46BA7EF1A481B0D003D7C8E /* Main.storyboard */; };
+		F46BA7F31A481B0D003D7C8E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46BA7F21A481B0D003D7C8E /* Images.xcassets */; };
+		F46BA7F61A481B0D003D7C8E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F46BA7F41A481B0D003D7C8E /* LaunchScreen.xib */; };
+		F46BA8021A481B0D003D7C8E /* GymDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA8011A481B0D003D7C8E /* GymDBTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F46BA7FC1A481B0D003D7C8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F46BA7DC1A481B0D003D7C8E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F46BA7E31A481B0D003D7C8E;
+			remoteInfo = GymDB;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F46BA7E41A481B0D003D7C8E /* GymDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F46BA7E81A481B0D003D7C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F46BA7E91A481B0D003D7C8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		F46BA7ED1A481B0D003D7C8E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F46BA7F01A481B0D003D7C8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F46BA7F21A481B0D003D7C8E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F46BA7F51A481B0D003D7C8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F46BA7FB1A481B0D003D7C8E /* GymDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F46BA8001A481B0D003D7C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F46BA8011A481B0D003D7C8E /* GymDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymDBTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F46BA7E11A481B0D003D7C8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46BA7F81A481B0D003D7C8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F46BA7DB1A481B0D003D7C8E = {
+			isa = PBXGroup;
+			children = (
+				F46BA7E61A481B0D003D7C8E /* GymDB */,
+				F46BA7FE1A481B0D003D7C8E /* GymDBTests */,
+				F46BA7E51A481B0D003D7C8E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F46BA7E51A481B0D003D7C8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F46BA7E41A481B0D003D7C8E /* GymDB.app */,
+				F46BA7FB1A481B0D003D7C8E /* GymDBTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F46BA7E61A481B0D003D7C8E /* GymDB */ = {
+			isa = PBXGroup;
+			children = (
+				F46BA7E91A481B0D003D7C8E /* AppDelegate.swift */,
+				F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */,
+				F46BA7ED1A481B0D003D7C8E /* DetailViewController.swift */,
+				F46BA7EF1A481B0D003D7C8E /* Main.storyboard */,
+				F46BA7F21A481B0D003D7C8E /* Images.xcassets */,
+				F46BA7F41A481B0D003D7C8E /* LaunchScreen.xib */,
+				F46BA7E71A481B0D003D7C8E /* Supporting Files */,
+			);
+			path = GymDB;
+			sourceTree = "<group>";
+		};
+		F46BA7E71A481B0D003D7C8E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F46BA7E81A481B0D003D7C8E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F46BA7FE1A481B0D003D7C8E /* GymDBTests */ = {
+			isa = PBXGroup;
+			children = (
+				F46BA8011A481B0D003D7C8E /* GymDBTests.swift */,
+				F46BA7FF1A481B0D003D7C8E /* Supporting Files */,
+			);
+			path = GymDBTests;
+			sourceTree = "<group>";
+		};
+		F46BA7FF1A481B0D003D7C8E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F46BA8001A481B0D003D7C8E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F46BA7E31A481B0D003D7C8E /* GymDB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F46BA8051A481B0D003D7C8E /* Build configuration list for PBXNativeTarget "GymDB" */;
+			buildPhases = (
+				F46BA7E01A481B0D003D7C8E /* Sources */,
+				F46BA7E11A481B0D003D7C8E /* Frameworks */,
+				F46BA7E21A481B0D003D7C8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GymDB;
+			productName = GymDB;
+			productReference = F46BA7E41A481B0D003D7C8E /* GymDB.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F46BA7FA1A481B0D003D7C8E /* GymDBTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F46BA8081A481B0D003D7C8E /* Build configuration list for PBXNativeTarget "GymDBTests" */;
+			buildPhases = (
+				F46BA7F71A481B0D003D7C8E /* Sources */,
+				F46BA7F81A481B0D003D7C8E /* Frameworks */,
+				F46BA7F91A481B0D003D7C8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F46BA7FD1A481B0D003D7C8E /* PBXTargetDependency */,
+			);
+			name = GymDBTests;
+			productName = GymDBTests;
+			productReference = F46BA7FB1A481B0D003D7C8E /* GymDBTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F46BA7DC1A481B0D003D7C8E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Jarkko Hyvärinen";
+				TargetAttributes = {
+					F46BA7E31A481B0D003D7C8E = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					F46BA7FA1A481B0D003D7C8E = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = F46BA7E31A481B0D003D7C8E;
+					};
+				};
+			};
+			buildConfigurationList = F46BA7DF1A481B0D003D7C8E /* Build configuration list for PBXProject "GymDB" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F46BA7DB1A481B0D003D7C8E;
+			productRefGroup = F46BA7E51A481B0D003D7C8E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F46BA7E31A481B0D003D7C8E /* GymDB */,
+				F46BA7FA1A481B0D003D7C8E /* GymDBTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F46BA7E21A481B0D003D7C8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46BA7F11A481B0D003D7C8E /* Main.storyboard in Resources */,
+				F46BA7F61A481B0D003D7C8E /* LaunchScreen.xib in Resources */,
+				F46BA7F31A481B0D003D7C8E /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46BA7F91A481B0D003D7C8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F46BA7E01A481B0D003D7C8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46BA7EE1A481B0D003D7C8E /* DetailViewController.swift in Sources */,
+				F46BA7EC1A481B0D003D7C8E /* MasterViewController.swift in Sources */,
+				F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46BA7F71A481B0D003D7C8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46BA8021A481B0D003D7C8E /* GymDBTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F46BA7FD1A481B0D003D7C8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F46BA7E31A481B0D003D7C8E /* GymDB */;
+			targetProxy = F46BA7FC1A481B0D003D7C8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F46BA7EF1A481B0D003D7C8E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F46BA7F01A481B0D003D7C8E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F46BA7F41A481B0D003D7C8E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F46BA7F51A481B0D003D7C8E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F46BA8031A481B0D003D7C8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F46BA8041A481B0D003D7C8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F46BA8061A481B0D003D7C8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GymDB/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F46BA8071A481B0D003D7C8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GymDB/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F46BA8091A481B0D003D7C8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GymDBTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymDB.app/GymDB";
+			};
+			name = Debug;
+		};
+		F46BA80A1A481B0D003D7C8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GymDBTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymDB.app/GymDB";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F46BA7DF1A481B0D003D7C8E /* Build configuration list for PBXProject "GymDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46BA8031A481B0D003D7C8E /* Debug */,
+				F46BA8041A481B0D003D7C8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F46BA8051A481B0D003D7C8E /* Build configuration list for PBXNativeTarget "GymDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46BA8061A481B0D003D7C8E /* Debug */,
+				F46BA8071A481B0D003D7C8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F46BA8081A481B0D003D7C8E /* Build configuration list for PBXNativeTarget "GymDBTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46BA8091A481B0D003D7C8E /* Debug */,
+				F46BA80A1A481B0D003D7C8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F46BA7DC1A481B0D003D7C8E /* Project object */;
+}
