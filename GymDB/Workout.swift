@@ -40,12 +40,14 @@ class Workout: WorkoutProtocol {
         self.endTime                = data["endtime"] as String
         
         if let exercises = data["exercises"] as? [AnyObject] {
+            self.exercises = [WorkoutExercise]()
             for exercise in exercises {
                 self.exercises?.append(WorkoutExercise(data: exercise))
             }
         }
         
         if let records = data["records"] as? [AnyObject] {
+            self.records = [WorkoutRecord]()
             for record in records {
                 self.records?.append(WorkoutRecord(data: record))
             }

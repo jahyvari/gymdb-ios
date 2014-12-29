@@ -54,6 +54,7 @@ class WorkoutExercise: WorkoutProtocol {
         self.gearWristWraps     = UInt8(data["gear_wrist_wraps"] as UInt)
         
         if let sets = data["sets"] as? [AnyObject] {
+            self.sets = [WorkoutExerciseSet]()
             for set in sets {
                 self.sets?.append(WorkoutExerciseSet(data: set))
             }
