@@ -7,13 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F44866401A515AD8007CF17A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F448663F1A515AD8007CF17A /* LoginViewController.swift */; };
+		F44866421A515CA1007CF17A /* GymDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44866411A515CA1007CF17A /* GymDBAPI.swift */; };
+		F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */; };
+		F45D94241A48631700491760 /* WorkoutExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D94231A48631700491760 /* WorkoutExercise.swift */; };
+		F45F8B0C1A494CD8008C0A2B /* WorkoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */; };
+		F45F8B0E1A4958F1008C0A2B /* WorkoutRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */; };
 		F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA7E91A481B0D003D7C8E /* AppDelegate.swift */; };
 		F46BA7EC1A481B0D003D7C8E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */; };
-		F46BA7EE1A481B0D003D7C8E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA7ED1A481B0D003D7C8E /* DetailViewController.swift */; };
 		F46BA7F11A481B0D003D7C8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46BA7EF1A481B0D003D7C8E /* Main.storyboard */; };
 		F46BA7F31A481B0D003D7C8E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46BA7F21A481B0D003D7C8E /* Images.xcassets */; };
 		F46BA7F61A481B0D003D7C8E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F46BA7F41A481B0D003D7C8E /* LaunchScreen.xib */; };
 		F46BA8021A481B0D003D7C8E /* GymDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA8011A481B0D003D7C8E /* GymDBTests.swift */; };
+		F46BA80C1A481B4F003D7C8E /* WorkoutExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA80B1A481B4F003D7C8E /* WorkoutExerciseSet.swift */; };
+		F46BA80E1A481C07003D7C8E /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA80D1A481C07003D7C8E /* Enums.swift */; };
+		F4C7D5461A48752B0037510D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C7D5451A48752B0037510D /* Workout.swift */; };
+		F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +36,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F448663F1A515AD8007CF17A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F44866411A515CA1007CF17A /* GymDBAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymDBAPI.swift; sourceTree = "<group>"; };
+		F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymDBAPIResponse.swift; sourceTree = "<group>"; };
+		F45D94231A48631700491760 /* WorkoutExercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercise.swift; sourceTree = "<group>"; };
+		F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutProtocol.swift; sourceTree = "<group>"; };
+		F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutRecord.swift; sourceTree = "<group>"; };
 		F46BA7E41A481B0D003D7C8E /* GymDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46BA7E81A481B0D003D7C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46BA7E91A481B0D003D7C8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		F46BA7ED1A481B0D003D7C8E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F46BA7F01A481B0D003D7C8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F46BA7F21A481B0D003D7C8E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F46BA7F51A481B0D003D7C8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F46BA7FB1A481B0D003D7C8E /* GymDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46BA8001A481B0D003D7C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46BA8011A481B0D003D7C8E /* GymDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymDBTests.swift; sourceTree = "<group>"; };
+		F46BA80B1A481B4F003D7C8E /* WorkoutExerciseSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseSet.swift; sourceTree = "<group>"; };
+		F46BA80D1A481C07003D7C8E /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		F4C7D5451A48752B0037510D /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +98,20 @@
 			isa = PBXGroup;
 			children = (
 				F46BA7E91A481B0D003D7C8E /* AppDelegate.swift */,
+				F46BA80D1A481C07003D7C8E /* Enums.swift */,
+				F44866411A515CA1007CF17A /* GymDBAPI.swift */,
+				F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */,
+				F448663F1A515AD8007CF17A /* LoginViewController.swift */,
 				F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */,
-				F46BA7ED1A481B0D003D7C8E /* DetailViewController.swift */,
-				F46BA7EF1A481B0D003D7C8E /* Main.storyboard */,
+				F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */,
+				F4C7D5451A48752B0037510D /* Workout.swift */,
+				F45D94231A48631700491760 /* WorkoutExercise.swift */,
+				F46BA80B1A481B4F003D7C8E /* WorkoutExerciseSet.swift */,
+				F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */,
+				F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */,
 				F46BA7F21A481B0D003D7C8E /* Images.xcassets */,
 				F46BA7F41A481B0D003D7C8E /* LaunchScreen.xib */,
+				F46BA7EF1A481B0D003D7C8E /* Main.storyboard */,
 				F46BA7E71A481B0D003D7C8E /* Supporting Files */,
 			);
 			path = GymDB;
@@ -215,9 +242,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F46BA7EE1A481B0D003D7C8E /* DetailViewController.swift in Sources */,
+				F44866421A515CA1007CF17A /* GymDBAPI.swift in Sources */,
 				F46BA7EC1A481B0D003D7C8E /* MasterViewController.swift in Sources */,
+				F4C7D5461A48752B0037510D /* Workout.swift in Sources */,
+				F45D94241A48631700491760 /* WorkoutExercise.swift in Sources */,
+				F45F8B0C1A494CD8008C0A2B /* WorkoutProtocol.swift in Sources */,
+				F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */,
+				F46BA80E1A481C07003D7C8E /* Enums.swift in Sources */,
+				F46BA80C1A481B4F003D7C8E /* WorkoutExerciseSet.swift in Sources */,
+				F45F8B0E1A4958F1008C0A2B /* WorkoutRecord.swift in Sources */,
+				F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */,
 				F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */,
+				F44866401A515AD8007CF17A /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +379,7 @@
 				INFOPLIST_FILE = GymDB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -353,6 +390,7 @@
 				INFOPLIST_FILE = GymDB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -409,6 +447,7 @@
 				F46BA8071A481B0D003D7C8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F46BA8081A481B0D003D7C8E /* Build configuration list for PBXNativeTarget "GymDBTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +456,7 @@
 				F46BA80A1A481B0D003D7C8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
