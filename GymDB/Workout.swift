@@ -68,32 +68,23 @@ class Workout: WorkoutProtocol {
         }
         
         var json: [String: AnyObject] = [
-            "hashid":                   "",
-            "locationhashid":           "",
-            "training_program_hashid":  "",
-            "extratext":                self.extratext,
-            "starttime":                self.startTime,
-            "endtime":                  self.endTime,
-            "exercises":                exercises,
-            "records":                  records
+            "extratext":    self.extratext,
+            "starttime":    self.startTime,
+            "endtime":      self.endTime,
+            "exercises":    exercises,
+            "records":      records
         ]
         
         if let hashId = self.hashId {
             json["hashid"] = hashId
-        } else {
-            json.removeValueForKey("hashid")
         }
         
         if let locationHashId = self.locationHashId {
             json["locationhashid"] = locationHashId
-        } else {
-            json.removeValueForKey("locationhashid")
         }
         
         if let trainingProgramHashId = self.trainingProgramHashId {
             json["training_program_hashid"] = trainingProgramHashId
-        } else {
-            json.removeValueForKey("training_program_hashid")
         }
         
         if exercises.count == 0 {

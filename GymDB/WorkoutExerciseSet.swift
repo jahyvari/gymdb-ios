@@ -54,21 +54,15 @@ class WorkoutExerciseSet: WorkoutProtocol {
             "repetitions":          String(self.repetitions),
             "weight_kg":            NSString(format: "%.2f", self.weightKG),
             "weight_lb":            NSString(format: "%.2f", self.weightLB),
-            "repetitions_type":     self.repetitionsType.rawValue,
-            "barbell_type":         "",
-            "rest_interval_sec":    ""
+            "repetitions_type":     self.repetitionsType.rawValue
         ]
         
         if let barbellType = self.barbellType {
             json["barbell_type"] = barbellType.rawValue
-        } else {
-            json.removeValueForKey("barbell_type")
         }
         
         if let restIntervalSec = self.restIntervalSec {
             json["rest_interval_sec"] = String(restIntervalSec)
-        } else {
-            json.removeValueForKey("rest_interval_sec")
         }
         
         return json

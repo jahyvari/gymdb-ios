@@ -70,27 +70,21 @@ class WorkoutExercise: WorkoutProtocol {
         
         var json: [String: AnyObject] = [
             "unit":                 self.unit.rawValue,
-            "extratext":            "",
-            "special":              "",
             "gear_belt":            String(self.gearBelt),
             "gear_knee_wraps":      String(self.gearKneeWraps),
             "gear_shirt":           String(self.gearShirt),
             "gear_suit":            String(self.gearSuit),
             "gear_wrist_straps":    String(self.gearWristStraps),
             "gear_wrist_wraps":     String(self.gearWristWraps),
-            "sets":                 sets
+            "sets":                 [[String: AnyObject]]()
         ]
         
         if let extratext = self.extratext {
             json["extratext"] = extratext
-        } else {
-            json.removeValueForKey("extratext")
         }
         
         if let special = self.special {
             json["special"] = special.rawValue
-        } else {
-            json.removeValueForKey("special")
         }
         
         if sets.count == 0 {
