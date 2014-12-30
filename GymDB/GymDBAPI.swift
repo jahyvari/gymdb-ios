@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class GymDBAPI {
     private struct _data {
@@ -180,7 +179,7 @@ class GymDBAPI {
         var result = true
         
         if let refresh = self.lastRefresh {
-            if (round(Float(NSDate().timeIntervalSince1970)*1000) - refresh) > 3300 {
+            if (round(Float(NSDate().timeIntervalSince1970)*1000) - refresh) > 1500 {
                 self.postRequest("Login", functionName: "refreshLogin", data: nil)
                 
                 if self.lastAPIResponse!.code == 0 {
