@@ -198,4 +198,34 @@ class GymDBAPI {
         
         return result
     }
+    
+    class func timeZoneGetList() -> [UInt: String]? {
+        var result: [UInt: String]?
+        
+        self.postRequest("TimeZone", functionName: "getList", data: nil)
+        
+        if self.lastAPIResponse!.code == 0 {
+            if let data = self.lastAPIResponse!.data as? [String: String] {
+                result = [UInt: String]()
+                
+                for (key,value) in data {
+                    result?.updateValue(value, forKey: UInt(key.toInt()!))
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    class func userLoad() -> User? {
+        var result: User?
+        
+        self.postRequest("User", functionName: "load", data: nil)
+        
+        if self.lastAPIResponse!.code == 0 {
+            result = User(data: self.lastAPIResponse!.data!)
+        }
+        
+        return result
+    }
 }
