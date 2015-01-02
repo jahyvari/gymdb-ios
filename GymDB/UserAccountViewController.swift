@@ -109,6 +109,48 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
     }
     
     @IBAction func save() {
-    
+        let alert = UIAlertController(title: "Saving data...", message: nil, preferredStyle: .Alert)
+        self.presentViewController(alert, animated: false, completion: nil)
+        
+        if (self.user != nil) {
+            self.user!.email        = self.emailText.text
+            self.user!.firstname    = self.firstnameText.text
+            self.user!.lastname     = self.lastnameText.text
+            
+            var i = 0
+            for (key,value) in self.timezones {
+                if i++ == self.timeoutSegmented.selectedSegmentIndex {
+                    self.user!.timezoneid = key
+                    break
+                }
+            }
+            
+            self.user!.timeout_min  = UInt(timeoutSegmented.titleForSegmentAtIndex(timeoutSegmented.selectedSegmentIndex)!.toInt()!)
+            
+            self.user!.default_unit = Unit.fromString(unitSegmented.titleForSegmentAtIndex(unitSegmented.selectedSegmentIndex)!.lowercaseString)!
+            
+            var password:   String?
+            var password2:  String?
+            
+            if self.passwordText.text != "" {
+                password = self.passwordText.text
+            }
+            if self.password2Text.text != "" {
+                password2 = self.password2Text.text
+            }
+            
+            var apiResponse: GymDBAPIResponse?
+            if self.user!.save(&apiResponse, password: password, password2: password2) {
+                alert.title = "User account data saved!"
+            } else {
+                alert.view.tintColor = UIColor.redColor()
+                alert.title = apiResponse!.text
+            }
+        } else {
+            alert.view.tintColor = UIColor.redColor()
+            alert.title = "Unknown user!"
+        }
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
     }
 }

@@ -11,5 +11,7 @@ import Foundation
 protocol UserProtocol {
     init(data: AnyObject)
     
+    func save(inout apiResponse: GymDBAPIResponse?, password: String?, password2: String?) -> Bool
+    
     func toJSONObject() -> [String: AnyObject]
 }

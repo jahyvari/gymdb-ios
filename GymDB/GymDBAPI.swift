@@ -124,7 +124,7 @@ class GymDBAPI {
         
     class func postRequest(className: String, functionName: String, data: AnyObject?) -> Bool {
         var result = false
-        var response = GymDBAPIResponse(code: 9999, text: "Unknown error occured!")
+        var response = GymDBAPIResponse()
         
         let apiURL = "http://localhost/gymdb/trunk/API/request/"
         if let url = NSURL(string: apiURL+className+"/"+functionName) {

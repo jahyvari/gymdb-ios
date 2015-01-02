@@ -19,7 +19,7 @@ struct GymDBAPIResponse {
     var text:           String
     var data:           AnyObject?
     
-    init(code: Int, text: String) {
+    init(code: Int = 9999, text: String = "Unknown error occured!") {
         self.code = code
         self.text = text
     }

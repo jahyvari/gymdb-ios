@@ -11,5 +11,7 @@ import Foundation
 protocol WorkoutProtocol {
     init(data: AnyObject)
     
+    func save(inout apiResponse: GymDBAPIResponse?) -> Bool
+    
     func toJSONObject() -> [String: AnyObject]
 }

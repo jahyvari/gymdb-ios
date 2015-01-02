@@ -61,6 +61,10 @@ class WorkoutExercise: WorkoutProtocol {
         }
     }
     
+    func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
+        return false
+    }
+    
     func toJSONObject() -> [String: AnyObject] {
         var sets: [[String: AnyObject]] = []
         if self.sets != nil {

@@ -213,7 +213,11 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="Ehx-fV-XKo">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="uQV-B0-lb6"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="uQV-B0-lb6">
+                            <connections>
+                                <action selector="save" destination="EA6-hP-SX0" id="EQW-0m-50n"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="670"/>

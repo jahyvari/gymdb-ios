@@ -37,7 +37,30 @@ class User: UserProtocol {
         self.timeout_min    = UInt((data["timeout_min"] as String).toInt()!)
     }
     
-    func toJSONObject() -> [String : AnyObject] {
+    func save(inout apiResponse: GymDBAPIResponse?, password: String?, password2: String?) -> Bool {
+        var result = false
+        
+        var json = self.toJSONObject()
+        
+        if password != nil {
+            json["password"] = password
+        }
+        if password2 != nil {
+            json["password2"] = password2
+        }
+        
+        GymDBAPI.postRequest("User", functionName: "save", data: json)
+        
+        apiResponse = GymDBAPI.lastAPIResponse!
+        
+        if (apiResponse!.code == 0) {
+            result = true
+        }
+        
+        return result
+    }
+    
+    func toJSONObject() -> [String: AnyObject] {
         var json: [String: AnyObject] = [
             "hashid":       self.hashid,
             "email":        self.email,

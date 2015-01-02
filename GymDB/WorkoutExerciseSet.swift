@@ -48,6 +48,10 @@ class WorkoutExerciseSet: WorkoutProtocol {
         }
     }
     
+    func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
+        return false
+    }
+    
     func toJSONObject() -> [String: AnyObject] {
         var json: [String: AnyObject] = [
             "exerciseid":           String(self.exerciseId),

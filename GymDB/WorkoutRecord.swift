@@ -19,6 +19,10 @@ class WorkoutRecord: WorkoutProtocol {
         self.record = data["record"] as String
     }
     
+    func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
+        return false
+    }
+    
     func toJSONObject() -> [String : AnyObject] {
         var json: [String: AnyObject] = [
             "record": self.record
