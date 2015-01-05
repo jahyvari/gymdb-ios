@@ -1,22 +1,22 @@
 //
-//  WorkoutViewController.swift
+//  WorkoutRecordViewController.swift
 //  GymDB
 //
-//  Created by Jarkko Hyvärinen on 2.1.2015.
+//  Created by Jarkko Hyvärinen on 5.1.2015.
 //  Copyright (c) 2015 Jarkko Hyvärinen. All rights reserved.
 //
 
 import UIKit
 
-class WorkoutViewController: UIViewController {
-    @IBOutlet weak var extratextText:       UITextField!
-    @IBOutlet weak var locationPickerView:  UIPickerView!
-    @IBOutlet weak var newLocationText:     UITextField!
-    @IBOutlet weak var startTimeDatePicker: UIDatePicker!
-    @IBOutlet weak var endTimeDatePicker:   UIDatePicker!
+class WorkoutRecordViewController: UIViewController {
+    @IBOutlet weak var recordTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.recordTextView.layer.borderColor   = UIColor.blackColor().colorWithAlphaComponent(0.1).CGColor
+        self.recordTextView.layer.borderWidth   = 0.5
+        self.recordTextView.layer.cornerRadius  = 8
     }
 
     override func didReceiveMemoryWarning() {
