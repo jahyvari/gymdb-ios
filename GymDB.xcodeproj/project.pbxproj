@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5121A5C0A43003FE376 /* WorkoutCache.swift */; };
+		F437B5171A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */; };
+		F437B5191A5C138D003FE376 /* WorkoutExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */; };
 		F44866401A515AD8007CF17A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F448663F1A515AD8007CF17A /* LoginViewController.swift */; };
 		F44866421A515CA1007CF17A /* GymDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44866411A515CA1007CF17A /* GymDBAPI.swift */; };
 		F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F437B5121A5C0A43003FE376 /* WorkoutCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutCache.swift; sourceTree = "<group>"; };
+		F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
+		F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesViewController.swift; sourceTree = "<group>"; };
 		F448663F1A515AD8007CF17A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F44866411A515CA1007CF17A /* GymDBAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymDBAPI.swift; sourceTree = "<group>"; };
 		F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymDBAPIResponse.swift; sourceTree = "<group>"; };
@@ -115,8 +121,11 @@
 				F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */,
 				F46AB9DF1A540EAC001EF14B /* UserProtocol.swift */,
 				F4C7D5451A48752B0037510D /* Workout.swift */,
+				F437B5121A5C0A43003FE376 /* WorkoutCache.swift */,
 				F45D94231A48631700491760 /* WorkoutExercise.swift */,
 				F46BA80B1A481B4F003D7C8E /* WorkoutExerciseSet.swift */,
+				F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */,
+				F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */,
 				F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */,
 				F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */,
 				F4FF5BFD1A5A9EBD00A59967 /* WorkoutRecordViewController.swift */,
@@ -259,13 +268,16 @@
 				F4C7D5461A48752B0037510D /* Workout.swift in Sources */,
 				F45D94241A48631700491760 /* WorkoutExercise.swift in Sources */,
 				F45F8B0C1A494CD8008C0A2B /* WorkoutProtocol.swift in Sources */,
+				F437B5171A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift in Sources */,
 				F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */,
 				F46AB9E21A540ED2001EF14B /* User.swift in Sources */,
 				F46BA80E1A481C07003D7C8E /* Enums.swift in Sources */,
 				F46BA80C1A481B4F003D7C8E /* WorkoutExerciseSet.swift in Sources */,
 				F46AB9E01A540EAC001EF14B /* UserProtocol.swift in Sources */,
+				F437B5191A5C138D003FE376 /* WorkoutExercisesViewController.swift in Sources */,
 				F45F8B0E1A4958F1008C0A2B /* WorkoutRecord.swift in Sources */,
 				F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */,
+				F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */,
 				F44F1A2E1A56A656005501EC /* WorkoutViewController.swift in Sources */,
 				F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */,
 				F44866401A515AD8007CF17A /* LoginViewController.swift in Sources */,

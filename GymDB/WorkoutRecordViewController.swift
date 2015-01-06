@@ -18,6 +18,10 @@ class WorkoutRecordViewController: UIViewController {
         self.recordTextView.layer.borderWidth   = 0.5
         self.recordTextView.layer.cornerRadius  = 8
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
