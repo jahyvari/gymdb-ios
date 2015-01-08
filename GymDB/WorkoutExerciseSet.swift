@@ -28,10 +28,10 @@ class WorkoutExerciseSet: WorkoutProtocol {
     }
     
     required init(data: AnyObject) {
-        self.exerciseId         = data["exerciseid"] as UInt
-        self.repetitions        = UInt16(data["repetitions"] as UInt)
-        self.weightKG           = data["weight_kg"] as Float
-        self.weightLB           = data["weight_lb"] as Float
+        self.exerciseId         = UInt((data["exerciseid"] as String).toInt()!)
+        self.repetitions        = UInt16((data["repetitions"] as String).toInt()!)
+        self.weightKG           = NSNumberFormatter().numberFromString(data["weight_kg"] as String)!.floatValue
+        self.weightLB           = NSNumberFormatter().numberFromString(data["weight_lb"] as String)!.floatValue
         
         if let repetitionsType = RepetionsType.fromString(data["repetitions_type"] as String) {
             self.repetitionsType = repetitionsType
@@ -43,8 +43,8 @@ class WorkoutExerciseSet: WorkoutProtocol {
            self.barbellType = BarbellType.fromString(barbellType)
         }
         
-        if let restIntervalSec = data["rest_interval_sec"] as? UInt {
-            self.restIntervalSec = UInt16(restIntervalSec)
+        if let restIntervalSec = data["rest_interval_sec"] as? String {
+            self.restIntervalSec = UInt16(restIntervalSec.toInt()!)
         }
     }
     

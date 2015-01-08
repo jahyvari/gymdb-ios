@@ -22,6 +22,16 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // For test use only!
+        var hashId = ""
+        
+        if hashId != "" && segue.identifier == "showWorkoutViewController" {
+            let tabBarController = segue.destinationViewController as UITabBarController
+            (tabBarController.viewControllers![0] as WorkoutViewController).hashId = hashId
+        }
+    }
+    
     @IBAction func logout() {
         let alert = UIAlertController(title: "Logging out...", message: nil, preferredStyle: .Alert)
         self.presentViewController(alert, animated: false, completion: nil)

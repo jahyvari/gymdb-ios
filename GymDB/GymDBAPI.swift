@@ -121,6 +121,20 @@ class GymDBAPI {
         
         return result
     }
+    
+    class func locationGetList() -> [String: String]? {
+        var result: [String: String]?
+        
+        self.postRequest("Location", functionName: "getList", data: nil)
+        
+        if self.lastAPIResponse!.code == 0 {
+            if let data = self.lastAPIResponse!.data as? [String: String] {
+                result = data
+            }
+        }
+        
+        return result
+    }
         
     class func postRequest(className: String, functionName: String, data: AnyObject?) -> Bool {
         var result = false
@@ -224,6 +238,18 @@ class GymDBAPI {
         
         if self.lastAPIResponse!.code == 0 {
             result = User(data: self.lastAPIResponse!.data!)
+        }
+        
+        return result
+    }
+    
+    class func workoutLoad(hashId: String) -> Workout? {
+        var result: Workout?
+        
+        self.postRequest("Workout", functionName: "load", data: ["hashid": hashId])
+        
+        if self.lastAPIResponse!.code == 0 {
+            result = Workout(data: self.lastAPIResponse!.data!)
         }
         
         return result

@@ -46,17 +46,21 @@ class WorkoutExercise: WorkoutProtocol {
             self.special = Special.fromString(special)
         }
         
-        self.gearBelt           = UInt8(data["gear_belt"] as UInt)
-        self.gearKneeWraps      = UInt8(data["gear_knee_wraps"] as UInt)
-        self.gearShirt          = UInt8(data["gear_shirt"] as UInt)
-        self.gearSuit           = UInt8(data["gear_suit"] as UInt)
-        self.gearWristStraps    = UInt8(data["gear_wrist_straps"] as UInt)
-        self.gearWristWraps     = UInt8(data["gear_wrist_wraps"] as UInt)
+        self.gearBelt           = UInt8((data["gear_belt"] as String).toInt()!)
+        self.gearKneeWraps      = UInt8((data["gear_knee_wraps"] as String).toInt()!)
+        self.gearShirt          = UInt8((data["gear_shirt"] as String).toInt()!)
+        self.gearSuit           = UInt8((data["gear_suit"] as String).toInt()!)
+        self.gearWristStraps    = UInt8((data["gear_wrist_straps"] as String).toInt()!)
+        self.gearWristWraps     = UInt8((data["gear_wrist_wraps"] as String).toInt()!)
         
         if let sets = data["sets"] as? [AnyObject] {
-            self.sets = [WorkoutExerciseSet]()
+            var i = 0
             for set in sets {
+                if i == 0 {
+                    self.sets = [WorkoutExerciseSet]()
+                }
                 self.sets?.append(WorkoutExerciseSet(data: set))
+                i++
             }
         }
     }

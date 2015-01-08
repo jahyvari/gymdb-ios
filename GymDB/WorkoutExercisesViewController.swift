@@ -12,14 +12,8 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet weak var editBarButton:       UIBarButtonItem!
     @IBOutlet weak var exercisesTableView:  UITableView!
     
-    var isEditing: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,30 +22,45 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
         
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        var result = 0
+        
+        if let workout = WorkoutCache.workout {
+            if let exercises = workout.exercises {
+                result = exercises.count
+                
+                if result > 1 {
+                    self.editBarButton.enabled = true
+                } else {
+                    self.editBarButton.enabled = false
+                }
+            }
+        }
+        
+        return result
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExercisesCell", forIndexPath: indexPath) as WorkoutExercisesTableViewCell
+        var exercise = WorkoutCache.workout!.exercises![indexPath.row]
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExerciseCell", forIndexPath: indexPath) as WorkoutExercisesTableViewCell
         
         let index = indexPath.row+1
         
         cell.noLabel.text           = String("\(index).")
-        cell.extratextLabel.text    = ""
-        cell.setsLabel.text         = "0"
+        cell.extratextLabel.text    = exercise.extratext
+        cell.setsLabel.text         = exercise.sets != nil ? String(exercise.sets!.count) : "0"
         
         return cell
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        return self.canEditTable()
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            // FIXME
-            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-            println("Delete row!")
+            WorkoutCache.workout!.exercises!.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
         })
         
         deleteAction.backgroundColor = UIColor.redColor()
@@ -64,11 +73,28 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        return self.canEditTable()
     }
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let exercise = WorkoutCache.workout!.exercises![sourceIndexPath.row]
         
+        WorkoutCache.workout!.exercises!.removeAtIndex(sourceIndexPath.row)
+        WorkoutCache.workout!.exercises!.insert(exercise, atIndex: destinationIndexPath.row)
+    }
+    
+    func canEditTable() -> Bool {
+        var result = false
+        
+        if let workout = WorkoutCache.workout {
+            if let exercises = workout.exercises {
+                if exercises.count > 1 {
+                    result = true
+                }
+            }
+        }
+        
+        return result
     }
     
     @IBAction func close() {
@@ -76,17 +102,13 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
     
     @IBAction func edit() {
-        if self.isEditing {
-            self.isEditing = false
-
+        if self.exercisesTableView.editing {
             self.editBarButton.title = "Edit"
             
             self.exercisesTableView.setEditing(false, animated: false)
             self.exercisesTableView.reloadData()
         } else {
-            self.isEditing = true
-            
-            self.editBarButton.title = "Commit"
+            self.editBarButton.title = "Done"
             
             self.exercisesTableView.setEditing(true, animated: false)
         }

@@ -39,17 +39,26 @@ class Workout: WorkoutProtocol {
         self.startTime              = data["starttime"] as String
         self.endTime                = data["endtime"] as String
         
+        var i = 0
+        
         if let exercises = data["exercises"] as? [AnyObject] {
-            self.exercises = [WorkoutExercise]()
             for exercise in exercises {
+                if i == 0 {
+                    self.exercises = [WorkoutExercise]()
+                }
                 self.exercises?.append(WorkoutExercise(data: exercise))
+                i++
             }
         }
         
         if let records = data["records"] as? [AnyObject] {
-            self.records = [WorkoutRecord]()
+            i = 0
             for record in records {
+                if i == 0 {
+                    self.records = [WorkoutRecord]()
+                }
                 self.records?.append(WorkoutRecord(data: record))
+                i++
             }
         }
     }

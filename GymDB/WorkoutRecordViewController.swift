@@ -21,6 +21,14 @@ class WorkoutRecordViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if let workout = WorkoutCache.workout {
+            if let records = workout.records {
+                if records.count > 0 {
+                    self.recordTextView.text = records[0].record
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

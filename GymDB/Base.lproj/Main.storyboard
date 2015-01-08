@@ -134,17 +134,20 @@
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrT-Ff-Fsf">
                                                         <rect key="frame" x="-8" y="-78" width="320" height="216"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="1xv-Lc-pQA" id="0hD-we-7yi"/>
+                                                        </connections>
                                                     </pickerView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="XUm-CS-wIA">
+                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="XUm-CS-wIA">
                                                 <rect key="frame" x="0.0" y="268" width="320" height="162"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="441885580.89254302">
                                                     <!--2015-01-02 09:59:40 +0000-->
                                                 </date>
                                             </datePicker>
-                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rj7-4c-alu">
+                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="rj7-4c-alu">
                                                 <rect key="frame" x="0.0" y="467" width="320" height="162"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="441885580.89254302">
                                                     <!--2015-01-02 09:59:40 +0000-->
@@ -579,7 +582,7 @@
                                                 <action selector="close" destination="K4N-Xn-d43" id="UYY-Oi-cJg"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="bkL-HP-hsc">
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Edit" id="bkL-HP-hsc">
                                             <connections>
                                                 <action selector="edit" destination="K4N-Xn-d43" id="o9P-Kh-nDT"/>
                                             </connections>
@@ -591,7 +594,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="workoutExercisesCell" rowHeight="60" id="OvF-lh-FFU" customClass="WorkoutExercisesTableViewCell" customModule="GymDB" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="workoutExerciseCell" rowHeight="60" id="OvF-lh-FFU" customClass="WorkoutExercisesTableViewCell" customModule="GymDB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OvF-lh-FFU" id="Jjg-sq-hgJ">
