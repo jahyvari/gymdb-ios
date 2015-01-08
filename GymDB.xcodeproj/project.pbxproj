@@ -17,6 +17,7 @@
 		F45D94241A48631700491760 /* WorkoutExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D94231A48631700491760 /* WorkoutExercise.swift */; };
 		F45F8B0C1A494CD8008C0A2B /* WorkoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */; };
 		F45F8B0E1A4958F1008C0A2B /* WorkoutRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */; };
+		F46509841A5EBCCD0078C1DA /* WorkoutExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46509831A5EBCCD0078C1DA /* WorkoutExerciseTableViewCell.swift */; };
 		F4673B6D1A5E94BD002FB4E2 /* WorkoutExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4673B6C1A5E94BD002FB4E2 /* WorkoutExerciseViewController.swift */; };
 		F46AB9E01A540EAC001EF14B /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46AB9DF1A540EAC001EF14B /* UserProtocol.swift */; };
 		F46AB9E21A540ED2001EF14B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46AB9E11A540ED2001EF14B /* User.swift */; };
@@ -54,6 +55,7 @@
 		F45D94231A48631700491760 /* WorkoutExercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercise.swift; sourceTree = "<group>"; };
 		F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutProtocol.swift; sourceTree = "<group>"; };
 		F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutRecord.swift; sourceTree = "<group>"; };
+		F46509831A5EBCCD0078C1DA /* WorkoutExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		F4673B6C1A5E94BD002FB4E2 /* WorkoutExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseViewController.swift; sourceTree = "<group>"; };
 		F46AB9DF1A540EAC001EF14B /* UserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
 		F46AB9E11A540ED2001EF14B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				F46BA80B1A481B4F003D7C8E /* WorkoutExerciseSet.swift */,
 				F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */,
 				F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */,
+				F46509831A5EBCCD0078C1DA /* WorkoutExerciseTableViewCell.swift */,
 				F4673B6C1A5E94BD002FB4E2 /* WorkoutExerciseViewController.swift */,
 				F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */,
 				F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */,
@@ -281,6 +284,7 @@
 				F437B5191A5C138D003FE376 /* WorkoutExercisesViewController.swift in Sources */,
 				F45F8B0E1A4958F1008C0A2B /* WorkoutRecord.swift in Sources */,
 				F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */,
+				F46509841A5EBCCD0078C1DA /* WorkoutExerciseTableViewCell.swift in Sources */,
 				F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */,
 				F44F1A2E1A56A656005501EC /* WorkoutViewController.swift in Sources */,
 				F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */,

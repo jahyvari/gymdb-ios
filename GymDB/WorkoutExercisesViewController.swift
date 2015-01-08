@@ -86,6 +86,8 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseViewController") as WorkoutExerciseViewController
         
+        viewController.exerciseIndex = indexPath.row
+        
         self.presentViewController(viewController, animated: false, completion: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
