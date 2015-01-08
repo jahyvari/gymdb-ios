@@ -42,7 +42,7 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var exercise = WorkoutCache.workout!.exercises![indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExerciseCell", forIndexPath: indexPath) as WorkoutExercisesTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExercisesCell", forIndexPath: indexPath) as WorkoutExercisesTableViewCell
         
         let index = indexPath.row+1
         
@@ -83,6 +83,13 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         WorkoutCache.workout!.exercises!.insert(exercise, atIndex: destinationIndexPath.row)
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseViewController") as WorkoutExerciseViewController
+        
+        self.presentViewController(viewController, animated: false, completion: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
     func canEditTable() -> Bool {
         var result = false
         
@@ -96,7 +103,7 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         
         return result
     }
-    
+        
     @IBAction func close() {
         self.dismissViewControllerAnimated(false, completion: nil)
     }
