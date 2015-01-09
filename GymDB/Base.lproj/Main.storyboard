@@ -133,7 +133,7 @@
                                                 <rect key="frame" x="8" y="104" width="304" height="60"/>
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrT-Ff-Fsf">
-                                                        <rect key="frame" x="-8" y="-78" width="320" height="216"/>
+                                                        <rect key="frame" x="-8" y="-51" width="320" height="162"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="1xv-Lc-pQA" id="0hD-we-7yi"/>
                                                         </connections>
@@ -613,7 +613,10 @@
                                                 <rect key="frame" x="8" y="104" width="304" height="60"/>
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRP-s0-bGC">
-                                                        <rect key="frame" x="-8" y="-78" width="320" height="216"/>
+                                                        <rect key="frame" x="-8" y="-51" width="320" height="162"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BJF-LJ-8NH" id="0JP-5V-Woi"/>
+                                                        </connections>
                                                     </pickerView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -745,17 +748,20 @@
                                                     <outlet property="delegate" destination="BJF-LJ-8NH" id="Mya-1L-hEW"/>
                                                 </connections>
                                             </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUe-EY-HRz">
-                                                <rect key="frame" x="282" y="379" width="30" height="30"/>
-                                                <state key="normal" title="Edit">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-DK-vti">
                                                 <rect key="frame" x="8" y="379" width="54" height="30"/>
                                                 <state key="normal" title="Add set">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUe-EY-HRz">
+                                                <rect key="frame" x="263" y="379" width="49" height="30"/>
+                                                <state key="normal" title="Edit">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="edit" destination="BJF-LJ-8NH" eventType="touchUpInside" id="b6G-a4-x0v"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -788,6 +794,7 @@
                     <size key="freeformSize" width="320" height="750"/>
                     <connections>
                         <outlet property="beltSwitch" destination="ckz-ew-RZ4" id="cOc-0j-Sa2"/>
+                        <outlet property="editButton" destination="NUe-EY-HRz" id="Z6R-lb-gZY"/>
                         <outlet property="extratextText" destination="nA5-8D-lSQ" id="bVG-zp-2Pq"/>
                         <outlet property="kneeWrapsSwitch" destination="Vzx-mm-8FW" id="d5s-Vv-6DZ"/>
                         <outlet property="setsTableView" destination="XvQ-rL-okW" id="3iV-18-tGv"/>

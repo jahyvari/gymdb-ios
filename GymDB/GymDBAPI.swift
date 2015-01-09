@@ -122,6 +122,48 @@ class GymDBAPI {
         return result
     }
     
+    class func exerciseGetList() -> [ExerciseCategory]? {
+        var result: [ExerciseCategory]?
+        
+        self.postRequest("Exercise", functionName: "getList", data: nil)
+        
+        if self.lastAPIResponse!.code == 0 {
+            if let data = self.lastAPIResponse!.data as? [String: [String: [String: String]]] {
+                result = [ExerciseCategory]()
+                
+                for (category,musclegroups) in data {
+                    var currentCategory = ExerciseCategories.Other
+                    if let _currentCategory = ExerciseCategories.fromString(category) {
+                        currentCategory = _currentCategory
+                    }
+                    
+                    var groupDict: [Musclegroup: [Exercise]] = [:]
+                    
+                    for (musclegroup,exercises) in musclegroups {
+                        var currentMusclegroup = Musclegroup.Other
+                        if let _currentMusclegroup = Musclegroup.fromString(musclegroup) {
+                            currentMusclegroup = _currentMusclegroup
+                        }
+                        
+                        var exerciseArr: [Exercise] = [Exercise]()
+                        
+                        for (exerciseId,exerciseName) in exercises {
+                            let exercise = Exercise(id: UInt(exerciseId.toInt()!), name: exerciseName, exerciseCategory: currentCategory, musclegroup: currentMusclegroup)
+                            
+                            exerciseArr.append(exercise)
+                        }
+                        
+                        groupDict[currentMusclegroup] = exerciseArr
+                    }
+                    
+                    result!.append(ExerciseCategory(category: currentCategory, exercises: groupDict))
+                }
+            }
+        }
+        
+        return result
+    }
+    
     class func locationGetList() -> [String: String]? {
         var result: [String: String]?
         

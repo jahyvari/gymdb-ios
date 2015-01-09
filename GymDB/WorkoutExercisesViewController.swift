@@ -15,6 +15,10 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.exercisesTableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -27,13 +31,13 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         if let workout = WorkoutCache.workout {
             if let exercises = workout.exercises {
                 result = exercises.count
-                
-                if result > 1 {
-                    self.editBarButton.enabled = true
-                } else {
-                    self.editBarButton.enabled = false
-                }
             }
+        }
+        
+        if result > 0 {
+            self.editBarButton.enabled = true
+        } else {
+            self.editBarButton.enabled = false
         }
         
         return result
@@ -54,13 +58,15 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return self.canEditTable()
+        return true
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             WorkoutCache.workout!.exercises!.removeAtIndex(indexPath.row)
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            tableView.reloadData()
         })
         
         deleteAction.backgroundColor = UIColor.redColor()
@@ -73,7 +79,7 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return self.canEditTable()
+        return true
     }
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
@@ -92,20 +98,6 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
-    func canEditTable() -> Bool {
-        var result = false
-        
-        if let workout = WorkoutCache.workout {
-            if let exercises = workout.exercises {
-                if exercises.count > 1 {
-                    result = true
-                }
-            }
-        }
-        
-        return result
-    }
-        
     @IBAction func close() {
         self.dismissViewControllerAnimated(false, completion: nil)
     }

@@ -15,69 +15,46 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     @IBOutlet weak var endTimeDatePicker:   UIDatePicker!
     
-    var hashId: String?
-    
-    private struct _data {
-        static var locationFetch:   Bool                = false
-        static var locations:       [String: String]    = ["": "Select..."]
-    }
-    
-    var locationFetch: Bool {
-        get {
-            return _data.locationFetch
-        }
-        set {
-            _data.locationFetch = newValue
-        }
-    }
-    
-    var locations: [String: String] {
-        get {
-            return _data.locations
-        }
-        set {
-            _data.locations = newValue
-        }
-    }
+    var hashId:         String?
+    var locationFetch:  Bool                = false
+    var locations:      [String: String]    = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.locationFetch = false
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !self.locationFetch || self.hashId != nil {
-            if !self.locationFetch {
-                self.locationFetch = true
-                
-                if let locations = GymDBAPI.locationGetList() {
-                    for (key,value) in locations {
-                        self.locations[key] = value
-                    }
-                    self.locationPickerView.reloadAllComponents()
+        if !self.locationFetch {
+            if let locations = GymDBAPI.locationGetList() {
+                for (key,value) in locations {
+                    self.locations[key] = value
                 }
+                self.locationPickerView.reloadAllComponents()
             }
             
-            if self.hashId != nil {
-                if let workout = GymDBAPI.workoutLoad(self.hashId!) {
-                    WorkoutCache.workout = workout
-                } else {
-                    let alert = UIAlertController(title: nil, message: "Cannot load workout", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    
-                    self.presentViewController(alert, animated: false, completion: nil)
-                }
-                
-                self.hashId = nil
-            }
-            
-            self.setViewUI()
-        } else {
-            self.setViewUI()
+            self.locationFetch = true
         }
+        
+        if self.hashId != nil {
+            if let workout = GymDBAPI.workoutLoad(self.hashId!) {
+                WorkoutCache.workout = workout
+            } else {
+                let alert = UIAlertController(title: nil, message: "Cannot load workout", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                
+                self.presentViewController(alert, animated: false, completion: nil)
+            }
+            
+            self.hashId = nil
+        }
+        
+        if ExerciseCache.exerciseCategories == nil {
+            ExerciseCache.exerciseCategories = GymDBAPI.exerciseGetList()
+        }
+        
+        self.setViewUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,17 +67,21 @@ class WorkoutViewController: UIViewController {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.locations.count
+        return self.locations.count+1
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         var result = ""
-        var i = 0
         
-        for (key,value) in self.locations {
-            if i++ == row {
-                result = value
-                break
+        if row == 0 {
+            result = "- Not selected -"
+        } else {
+            var i = 0
+            for (key,value) in self.locations {
+                if i++ == row-1 {
+                    result = value
+                    break
+                }
             }
         }
         

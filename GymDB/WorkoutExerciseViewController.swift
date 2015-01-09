@@ -18,33 +18,157 @@ class WorkoutExerciseViewController: UIViewController {
     @IBOutlet weak var suitSwitch:          UISwitch!
     @IBOutlet weak var wristStrapsSwitch:   UISwitch!
     @IBOutlet weak var wristWrapsSwitch:    UISwitch!
+    @IBOutlet weak var editButton:          UIButton!
     @IBOutlet weak var setsTableView:       UITableView!
     
     var exerciseIndex:  Int?
     var exercise:       WorkoutExercise?
+    var special:        [String: String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for value in Special.allValues {
+            self.special[value.rawValue] = value.description
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.exercise = WorkoutExercise(unit: .KG, extratext: nil, special: nil, gearBelt: 0, gearKneeWraps: 0, gearShirt: 0, gearSuit: 0, gearWristStraps: 0, gearWristWraps: 0, sets: nil)
+        
         if let exerciseIndex = self.exerciseIndex {
-            if let exercise = WorkoutCache.workout?.exercises?[exerciseIndex] {
-                self.exercise = exercise
-                
-                // FIXME: Rest of the UI elements...
-                self.extratextText.text = self.exercise!.extratext
-                
-                self.setsTableView.reloadData()
+            if let exercises = WorkoutCache.workout?.exercises {
+                if exercises.count > exerciseIndex {
+                    let tmp = exercises[exerciseIndex]
+                    
+                    // Clone exercise
+                    self.exercise!.unit             = tmp.unit
+                    self.exercise!.extratext        = tmp.extratext
+                    self.exercise!.special          = tmp.special
+                    self.exercise!.gearBelt         = tmp.gearBelt
+                    self.exercise!.gearKneeWraps    = tmp.gearKneeWraps
+                    self.exercise!.gearShirt        = tmp.gearShirt
+                    self.exercise!.gearSuit         = tmp.gearSuit
+                    self.exercise!.gearWristStraps  = tmp.gearWristStraps
+                    self.exercise!.gearWristWraps   = tmp.gearWristWraps
+                    
+                    // Clone sets
+                    if let sets = tmp.sets {
+                        self.exercise!.sets = [WorkoutExerciseSet]()
+                        for set in sets {
+                            self.exercise!.sets!.append(
+                                WorkoutExerciseSet(
+                                    exerciseId:         set.exerciseId,
+                                    repetitions:        set.repetitions,
+                                    weightKG:           set.weightKG,
+                                    weightLB:           set.weightLB,
+                                    repetitionsType:    set.repetitionsType,
+                                    barbellType:        set.barbellType,
+                                    restIntervalSec:    set.restIntervalSec
+                                )
+                            )
+                        }
+                    }
+                } else {
+                    self.exerciseIndex = nil
+                }
+            } else {
+                self.exerciseIndex = nil
             }
+        }
+        
+        self.extratextText.text = self.exercise!.extratext
+        
+        if let special = self.exercise!.special {
+            var i = 1
+            for (key,value) in self.special {
+                if key == special.rawValue {
+                    self.specialPickerView.selectRow(i, inComponent: 0, animated: false)
+                    break
+                }
+                i++
+            }
+        }
+        
+        for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
+            if self.exercise!.unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
+                self.unitSegmented.selectedSegmentIndex = i
+                break
+            }
+        }
+        
+        if self.exercise!.gearBelt == 1 {
+            self.beltSwitch.setOn(true, animated: false)
+        } else {
+            self.beltSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise!.gearKneeWraps == 1 {
+            self.kneeWrapsSwitch.setOn(true, animated: false)
+        } else {
+            self.kneeWrapsSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise!.gearShirt == 1 {
+            self.shirtSwitch.setOn(true, animated: false)
+        } else {
+            self.shirtSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise!.gearSuit == 1 {
+            self.suitSwitch.setOn(true, animated: false)
+        } else {
+            self.suitSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise!.gearWristStraps == 1 {
+            self.wristStrapsSwitch.setOn(true, animated: false)
+        } else {
+            self.wristStrapsSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise!.gearWristWraps == 1 {
+            self.wristWrapsSwitch.setOn(true, animated: false)
+        } else {
+            self.wristWrapsSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise!.sets != nil {
+            self.setsTableView.reloadData()
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.special.count+1
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {        
+        var result = ""
+        
+        if row == 0 {
+            result = "- Not selected -"
+        } else {
+            var i = 0
+            for (key,value) in self.special {
+                if i++ == row-1 {
+                    result = value
+                    break
+                }
+            }
+        }
+        
+        return result
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +178,12 @@ class WorkoutExerciseViewController: UIViewController {
             if self.exercise!.sets != nil {
                 result = self.exercise!.sets!.count
             }
+        }
+        
+        if result > 0 {
+            self.editButton.enabled = true
+        } else {
+            self.editButton.enabled = false
         }
         
         return result
@@ -68,7 +198,14 @@ class WorkoutExerciseViewController: UIViewController {
                 
                 cell.noLabel.text = ("\(no).")
                 cell.repsLabel.text = String(set.repetitions)
-                    
+                
+                var exerciseName = ""
+                if let exercise = ExerciseCache.findByExerciseId(set.exerciseId) {
+                    exerciseName = exercise.name
+                }
+                
+                cell.exerciseLabel.text = exerciseName
+                
                 var weight = set.weightKG
                 if self.exercise!.unit == .LB {
                     weight = set.weightLB
@@ -81,7 +218,56 @@ class WorkoutExerciseViewController: UIViewController {
         return cell
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            self.exercise!.sets!.removeAtIndex(indexPath.row)
+            
+            if self.exercise!.sets!.count == 0 {
+                self.exercise!.sets = nil
+            }
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            tableView.reloadData()
+        })
+        
+        deleteAction.backgroundColor = UIColor.redColor()
+        
+        return [deleteAction]
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let set = self.exercise!.sets![sourceIndexPath.row]
+        
+        self.exercise!.sets!.removeAtIndex(sourceIndexPath.row)
+        self.exercise!.sets!.insert(set, atIndex: destinationIndexPath.row)
+    }
+        
     @IBAction func close() {
         self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    @IBAction func edit() {
+        if self.setsTableView.editing {
+            self.editButton.setTitle("Edit", forState: .Normal)
+            
+            self.setsTableView.setEditing(false, animated: false)
+            self.setsTableView.reloadData()
+        } else {
+            self.editButton.setTitle("Done", forState: .Normal)
+            
+            self.setsTableView.setEditing(true, animated: false)
+        }
     }
 }
