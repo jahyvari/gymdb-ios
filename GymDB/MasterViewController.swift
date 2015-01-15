@@ -15,6 +15,8 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
         
     override func didReceiveMemoryWarning() {

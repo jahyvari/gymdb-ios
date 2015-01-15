@@ -9,6 +9,7 @@
 import UIKit
 
 class WorkoutExerciseSetViewController: UIViewController {
+    @IBOutlet weak var navigationBar:   UINavigationBar!
     @IBOutlet weak var exerciseText:    UITextField!
     @IBOutlet weak var repsText:        UITextField!
     @IBOutlet weak var weightUnitLabel: UILabel!
@@ -19,15 +20,11 @@ class WorkoutExerciseSetViewController: UIViewController {
     var exercise:       WorkoutExercise!
     var exerciseSet:    WorkoutExerciseSet!
     var setIndex:       Int?
-    var repType:        [String: String]    = [:]
+    var repType:        [RepetionsType]     = RepetionsType.allValues
     var restTime:       [UInt16]            = [UInt16]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for value in RepetionsType.allValues {
-            self.repType[value.rawValue] = value.description
-        }
         
         for var i: UInt16 = 0; i <= 600; i += 10 {
             self.restTime.append(i)
@@ -39,11 +36,12 @@ class WorkoutExerciseSetViewController: UIViewController {
         
         var exercise = ExerciseCache.getFirstExercise()
         if exercise == nil {
-            let alert = UIAlertController(title: "Error", message: "Cannot load exercise cache!", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Cannot load exercise cache!", message: nil, preferredStyle: .Alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action: UIAlertAction!) in
                 self.dismissViewControllerAnimated(false, completion: nil)
             }))
+            alert.view.tintColor = UIColor.redColor()
             
             self.presentViewController(alert, animated: false, completion: nil)
         } else {
@@ -66,46 +64,10 @@ class WorkoutExerciseSetViewController: UIViewController {
                     self.exerciseSet.repetitionsType   = tmp.repetitionsType
                     self.exerciseSet.barbellType       = tmp.barbellType
                     self.exerciseSet.restIntervalSec   = tmp.restIntervalSec
-                    
-                    exercise = ExerciseCache.findByExerciseId(tmp.exerciseId)
                 }
             }
             
-            // Set UI
-            
-            var weight = self.exerciseSet.weightKG
-            if self.exercise.unit == .LB {
-                var weight = self.exerciseSet.weightLB
-            }
-            
-            var exerciseName = exercise!.name
-            if self.exerciseSet.barbellType != nil {
-                exerciseName = exerciseName + " (" + self.exerciseSet.barbellType!.description + ")"
-            }
-            
-            self.exerciseText.text  = exerciseName
-            self.repsText.text      = String(self.exerciseSet.repetitions)
-            self.weightText.text    = NSString(format: "%.2f", weight)
-            
-            var i = 0
-            for (key,value) in self.repType {
-                if key == self.exerciseSet.repetitionsType.rawValue {
-                    self.repTypePicker.selectRow(i, inComponent: 0, animated: false)
-                    break
-                }
-                i++
-            }
-            
-            if let restIntervalSec = self.exerciseSet.restIntervalSec {
-                i = 1
-                for value in self.restTime {
-                    if value == restIntervalSec {
-                        self.restPicker.selectRow(i, inComponent: 0, animated: false)
-                        break
-                    }
-                    i++
-                }
-            }
+            self.setViewUI()
         }
     }
 
@@ -130,13 +92,7 @@ class WorkoutExerciseSetViewController: UIViewController {
         var result = ""
         
         if pickerView.tag == 100 {
-            var i = 0
-            for (key,value) in self.repType {
-                if i++ == row {
-                    result = value
-                    break
-                }
-            }
+            result = self.repType[row].description
         } else {
             if row == 0 {
                 result = "- Not selected -"
@@ -162,28 +118,132 @@ class WorkoutExerciseSetViewController: UIViewController {
         return result
     }
     
+    func setViewUI() {
+        var no = 1
+        if let index = self.setIndex {
+            no = index+1
+        } else if let index = self.exercise.sets?.count {
+            no = index+1
+        }
+        
+        self.navigationBar.topItem?.title = "\(no). Set"
+        
+        var exercise = ExerciseCache.findByExerciseId(self.exerciseSet.exerciseId)
+        
+        var weight = self.exerciseSet.weightKG
+        if self.exercise.unit == .LB {
+            var weight = self.exerciseSet.weightLB
+        }
+        
+        var exerciseName = exercise!.name
+        if self.exerciseSet.barbellType != nil {
+            exerciseName = exerciseName + " (" + self.exerciseSet.barbellType!.description + ")"
+        }
+        
+        self.exerciseText.text  = exerciseName
+        self.repsText.text      = String(self.exerciseSet.repetitions)
+        self.weightText.text    = NSString(format: "%.2f", weight)
+        
+        for (key,value) in enumerate(self.repType) {
+            if value == self.exerciseSet.repetitionsType {
+                self.repTypePicker.selectRow(key, inComponent: 0, animated: false)
+                break
+            }
+        }
+        
+        if let restIntervalSec = self.exerciseSet.restIntervalSec {
+            for (key,value) in enumerate(self.restTime) {
+                if value == restIntervalSec {
+                    self.restPicker.selectRow(key+1, inComponent: 0, animated: false)
+                    break
+                }
+            }
+        }
+    }
+    
+    func validateReps() -> Bool {
+        var result = false
+        
+        if let reps = NSNumberFormatter().numberFromString(self.repsText.text) {
+            if reps.integerValue >= 0 && reps.integerValue <= 65535 {
+                result = true
+            }
+        }
+        
+        return result
+    }
+    
+    func validateWeight() -> Bool {
+        var result = false
+        
+        if let reps = NSNumberFormatter().numberFromString(self.weightText.text) {
+            if reps.floatValue >= 0 {
+                result = true
+            }
+        }
+        
+        return result
+    }
+    
     @IBAction func close() {
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
-    @IBAction func save() {
-        var append = true
+    @IBAction func done() {
+        var save = true
         
-        if let index = self.setIndex {
-            if self.exercise.sets != nil && self.exercise.sets!.count > index {
-                self.exercise.sets![index] = self.exerciseSet
-                append = false
-            }
+        let alert = UIAlertController(title: "Error", message: nil, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        alert.view.tintColor = UIColor.redColor()
+        
+        if !self.validateReps() {
+            alert.title = "Reps value is invalid!"
+            self.presentViewController(alert, animated: false, completion: nil)
+            save = false
         }
         
-        if append {
-            if self.exercise.sets == nil {
-                self.exercise.sets = [WorkoutExerciseSet]()
-            }
-        
-            self.exercise.sets!.append(self.exerciseSet!)
+        if !self.validateWeight() {
+            alert.title = "Weight value is invalid!"
+            self.presentViewController(alert, animated: false, completion: nil)
+            save = false
         }
         
-        self.dismissViewControllerAnimated(false, completion: nil)
+        if save {
+            self.exerciseSet.repetitions        = NSNumberFormatter().numberFromString(self.repsText.text)!.unsignedShortValue
+            self.exerciseSet.weightKG           = NSNumberFormatter().numberFromString(self.weightText.text)!.floatValue
+            self.exerciseSet.weightLB           = self.exerciseSet.weightKG
+            self.exerciseSet.repetitionsType    = self.repType[self.repTypePicker.selectedRowInComponent(0)]
+            
+            var selected = self.restPicker.selectedRowInComponent(0)
+            if selected == 0 {
+                self.exerciseSet.restIntervalSec = nil
+            } else {
+                for (key,value) in enumerate(self.restTime) {
+                    if key+1 == selected {
+                        self.exerciseSet.restIntervalSec = value
+                        break
+                    }
+                }
+            }
+            
+            var append = true
+            
+            if let index = self.setIndex {
+                if self.exercise.sets != nil && self.exercise.sets!.count > index {
+                    self.exercise.sets![index] = self.exerciseSet
+                    append = false
+                }
+            }
+            
+            if append {
+                if self.exercise.sets == nil {
+                    self.exercise.sets = [WorkoutExerciseSet]()
+                }
+            
+                self.exercise.sets!.append(self.exerciseSet!)
+            }
+            
+            self.dismissViewControllerAnimated(false, completion: nil)
+        }
     }
 }

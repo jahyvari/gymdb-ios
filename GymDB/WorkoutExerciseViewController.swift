@@ -9,6 +9,7 @@
 import UIKit
 
 class WorkoutExerciseViewController: UIViewController {
+    @IBOutlet weak var navigationBar:       UINavigationBar!
     @IBOutlet weak var extratextText:       UITextField!
     @IBOutlet weak var specialPickerView:   UIPickerView!
     @IBOutlet weak var unitSegmented:       UISegmentedControl!
@@ -23,121 +24,63 @@ class WorkoutExerciseViewController: UIViewController {
     
     var exerciseIndex:  Int?
     var exercise:       WorkoutExercise!
-    var special:        [String: String] = [:]
+    var special:        [Special]           = Special.allValues
+    var uiInit:         Bool                = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for value in Special.allValues {
-            self.special[value.rawValue] = value.description
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.exercise = WorkoutExercise(unit: .KG, extratext: nil, special: nil, gearBelt: 0, gearKneeWraps: 0, gearShirt: 0, gearSuit: 0, gearWristStraps: 0, gearWristWraps: 0, sets: nil)
-        
-        if let exerciseIndex = self.exerciseIndex {
-            if let exercises = WorkoutCache.workout?.exercises {
-                if exercises.count > exerciseIndex {
-                    let tmp = exercises[exerciseIndex]
-                    
-                    // Clone exercise
-                    self.exercise.unit             = tmp.unit
-                    self.exercise.extratext        = tmp.extratext
-                    self.exercise.special          = tmp.special
-                    self.exercise.gearBelt         = tmp.gearBelt
-                    self.exercise.gearKneeWraps    = tmp.gearKneeWraps
-                    self.exercise.gearShirt        = tmp.gearShirt
-                    self.exercise.gearSuit         = tmp.gearSuit
-                    self.exercise.gearWristStraps  = tmp.gearWristStraps
-                    self.exercise.gearWristWraps   = tmp.gearWristWraps
-                    
-                    // Clone sets
-                    if let sets = tmp.sets {
-                        self.exercise.sets = [WorkoutExerciseSet]()
-                        for set in sets {
-                            self.exercise.sets!.append(
-                                WorkoutExerciseSet(
-                                    exerciseId:         set.exerciseId,
-                                    repetitions:        set.repetitions,
-                                    weightKG:           set.weightKG,
-                                    weightLB:           set.weightLB,
-                                    repetitionsType:    set.repetitionsType,
-                                    barbellType:        set.barbellType,
-                                    restIntervalSec:    set.restIntervalSec
+        if !self.uiInit {
+            self.exercise = WorkoutExercise(unit: .KG, extratext: nil, special: nil, gearBelt: 0, gearKneeWraps: 0, gearShirt: 0, gearSuit: 0, gearWristStraps: 0, gearWristWraps: 0, sets: nil)
+            
+            if let exerciseIndex = self.exerciseIndex {
+                if let exercises = WorkoutCache.workout?.exercises {
+                    if exercises.count > exerciseIndex {
+                        let tmp = exercises[exerciseIndex]
+                        
+                        // Clone exercise
+                        self.exercise.unit             = tmp.unit
+                        self.exercise.extratext        = tmp.extratext
+                        self.exercise.special          = tmp.special
+                        self.exercise.gearBelt         = tmp.gearBelt
+                        self.exercise.gearKneeWraps    = tmp.gearKneeWraps
+                        self.exercise.gearShirt        = tmp.gearShirt
+                        self.exercise.gearSuit         = tmp.gearSuit
+                        self.exercise.gearWristStraps  = tmp.gearWristStraps
+                        self.exercise.gearWristWraps   = tmp.gearWristWraps
+                        
+                        // Clone sets
+                        if let sets = tmp.sets {
+                            self.exercise.sets = [WorkoutExerciseSet]()
+                            for set in sets {
+                                self.exercise.sets!.append(
+                                    WorkoutExerciseSet(
+                                        exerciseId:         set.exerciseId,
+                                        repetitions:        set.repetitions,
+                                        weightKG:           set.weightKG,
+                                        weightLB:           set.weightLB,
+                                        repetitionsType:    set.repetitionsType,
+                                        barbellType:        set.barbellType,
+                                        restIntervalSec:    set.restIntervalSec
+                                    )
                                 )
-                            )
+                            }
                         }
+                    } else {
+                        self.exerciseIndex = nil
                     }
                 } else {
                     self.exerciseIndex = nil
                 }
-            } else {
-                self.exerciseIndex = nil
             }
-        }
-        
-        // Set UI
-        
-        self.extratextText.text = self.exercise.extratext
-        
-        if let special = self.exercise.special {
-            var i = 1
-            for (key,value) in self.special {
-                if key == special.rawValue {
-                    self.specialPickerView.selectRow(i, inComponent: 0, animated: false)
-                    break
-                }
-                i++
-            }
-        }
-        
-        for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
-            if self.exercise.unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
-                self.unitSegmented.selectedSegmentIndex = i
-                break
-            }
-        }
-        
-        if self.exercise.gearBelt == 1 {
-            self.beltSwitch.setOn(true, animated: false)
-        } else {
-            self.beltSwitch.setOn(false, animated: false)
-        }
-        
-        if self.exercise.gearKneeWraps == 1 {
-            self.kneeWrapsSwitch.setOn(true, animated: false)
-        } else {
-            self.kneeWrapsSwitch.setOn(false, animated: false)
-        }
-        
-        if self.exercise.gearShirt == 1 {
-            self.shirtSwitch.setOn(true, animated: false)
-        } else {
-            self.shirtSwitch.setOn(false, animated: false)
-        }
-        
-        if self.exercise.gearSuit == 1 {
-            self.suitSwitch.setOn(true, animated: false)
-        } else {
-            self.suitSwitch.setOn(false, animated: false)
-        }
-        
-        if self.exercise.gearWristStraps == 1 {
-            self.wristStrapsSwitch.setOn(true, animated: false)
-        } else {
-            self.wristStrapsSwitch.setOn(false, animated: false)
-        }
-        
-        if self.exercise.gearWristWraps == 1 {
-            self.wristWrapsSwitch.setOn(true, animated: false)
-        } else {
-            self.wristWrapsSwitch.setOn(false, animated: false)
-        }
-        
-        if self.exercise.sets != nil {
+            
+            self.setViewUI()
+            self.uiInit = true
+        } else if self.exercise.sets != nil {
             self.setsTableView.reloadData()
         }
     }
@@ -161,13 +104,7 @@ class WorkoutExerciseViewController: UIViewController {
         if row == 0 {
             result = "- Not selected -"
         } else {
-            var i = 0
-            for (key,value) in self.special {
-                if i++ == row-1 {
-                    result = value
-                    break
-                }
-            }
+            result = self.special[row-1].description
         }
         
         return result
@@ -260,6 +197,75 @@ class WorkoutExerciseViewController: UIViewController {
         self.showWorkoutExerciseSet(indexPath.row)
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    func setViewUI() {
+        var no = 1
+        if let index = self.exerciseIndex {
+            no = index+1
+        } else if let index = WorkoutCache.workout?.exercises?.count {
+            no = index+1
+        }
+        
+        self.navigationBar.topItem?.title = "\(no). Exercise"
+        
+        self.extratextText.text = self.exercise.extratext
+        
+        if let special = self.exercise.special {
+            for (key,value) in enumerate(self.special) {
+                if value == special {
+                    self.specialPickerView.selectRow(key+1, inComponent: 0, animated: false)
+                    break
+                }
+            }
+        }
+        
+        for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
+            if self.exercise.unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
+                self.unitSegmented.selectedSegmentIndex = i
+                break
+            }
+        }
+        
+        if self.exercise.gearBelt == 1 {
+            self.beltSwitch.setOn(true, animated: false)
+        } else {
+            self.beltSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise.gearKneeWraps == 1 {
+            self.kneeWrapsSwitch.setOn(true, animated: false)
+        } else {
+            self.kneeWrapsSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise.gearShirt == 1 {
+            self.shirtSwitch.setOn(true, animated: false)
+        } else {
+            self.shirtSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise.gearSuit == 1 {
+            self.suitSwitch.setOn(true, animated: false)
+        } else {
+            self.suitSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise.gearWristStraps == 1 {
+            self.wristStrapsSwitch.setOn(true, animated: false)
+        } else {
+            self.wristStrapsSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise.gearWristWraps == 1 {
+            self.wristWrapsSwitch.setOn(true, animated: false)
+        } else {
+            self.wristWrapsSwitch.setOn(false, animated: false)
+        }
+        
+        if self.exercise.sets != nil {
+            self.setsTableView.reloadData()
+        }
     }
     
     func showWorkoutExerciseSet(setIndex: Int?) {

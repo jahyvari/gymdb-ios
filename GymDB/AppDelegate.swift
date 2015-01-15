@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        UIPickerView.appearance().backgroundColor = UIColor.colorWithAlphaComponent(UIColor.blackColor())(0.03)
+        
         return true
     }
 

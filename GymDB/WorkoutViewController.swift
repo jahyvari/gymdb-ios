@@ -41,8 +41,12 @@ class WorkoutViewController: UIViewController {
             if let workout = GymDBAPI.workoutLoad(self.hashId!) {
                 WorkoutCache.workout = workout
             } else {
-                let alert = UIAlertController(title: "Error", message: "Cannot load workout!", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                let alert = UIAlertController(title: "Cannot load workout!", message: nil, preferredStyle: .Alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action: UIAlertAction!) in
+                    self.dismissViewControllerAnimated(false, completion: nil)
+                }))
+                alert.view.tintColor = UIColor.redColor()
                 
                 self.presentViewController(alert, animated: false, completion: nil)
             }

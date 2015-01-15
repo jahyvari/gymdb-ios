@@ -119,7 +119,7 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
             
             var i = 0
             for (key,value) in self.timezones {
-                if i++ == self.timeoutSegmented.selectedSegmentIndex {
+                if i++ == self.timeZonePickerView.selectedRowInComponent(0) {
                     self.user!.timezoneid = key
                     break
                 }
