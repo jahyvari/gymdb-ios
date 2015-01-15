@@ -58,6 +58,7 @@ class WorkoutExerciseSetViewController: UIViewController {
                 if self.exercise.sets != nil && self.exercise.sets!.count > index {
                     let tmp = self.exercise.sets![index]
                     
+                    // Close exercise set
                     self.exerciseSet.exerciseId        = tmp.exerciseId
                     self.exerciseSet.repetitions       = tmp.repetitions
                     self.exerciseSet.weightKG          = tmp.weightKG
@@ -69,6 +70,8 @@ class WorkoutExerciseSetViewController: UIViewController {
                     exercise = ExerciseCache.findByExerciseId(tmp.exerciseId)
                 }
             }
+            
+            // Set UI
             
             var weight = self.exerciseSet.weightKG
             if self.exercise.unit == .LB {

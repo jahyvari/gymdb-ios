@@ -79,6 +79,8 @@ class WorkoutExerciseViewController: UIViewController {
             }
         }
         
+        // Set UI
+        
         self.extratextText.text = self.exercise.extratext
         
         if let special = self.exercise.special {

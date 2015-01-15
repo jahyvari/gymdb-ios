@@ -22,6 +22,8 @@ class WorkoutRecordViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Set UI
+        
         if let workout = WorkoutCache.workout {
             if let records = workout.records {
                 if records.count > 0 {
