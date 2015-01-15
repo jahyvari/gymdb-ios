@@ -22,7 +22,7 @@ class WorkoutExerciseViewController: UIViewController {
     @IBOutlet weak var setsTableView:       UITableView!
     
     var exerciseIndex:  Int?
-    var exercise:       WorkoutExercise?
+    var exercise:       WorkoutExercise!
     var special:        [String: String] = [:]
     
     override func viewDidLoad() {
@@ -44,21 +44,21 @@ class WorkoutExerciseViewController: UIViewController {
                     let tmp = exercises[exerciseIndex]
                     
                     // Clone exercise
-                    self.exercise!.unit             = tmp.unit
-                    self.exercise!.extratext        = tmp.extratext
-                    self.exercise!.special          = tmp.special
-                    self.exercise!.gearBelt         = tmp.gearBelt
-                    self.exercise!.gearKneeWraps    = tmp.gearKneeWraps
-                    self.exercise!.gearShirt        = tmp.gearShirt
-                    self.exercise!.gearSuit         = tmp.gearSuit
-                    self.exercise!.gearWristStraps  = tmp.gearWristStraps
-                    self.exercise!.gearWristWraps   = tmp.gearWristWraps
+                    self.exercise.unit             = tmp.unit
+                    self.exercise.extratext        = tmp.extratext
+                    self.exercise.special          = tmp.special
+                    self.exercise.gearBelt         = tmp.gearBelt
+                    self.exercise.gearKneeWraps    = tmp.gearKneeWraps
+                    self.exercise.gearShirt        = tmp.gearShirt
+                    self.exercise.gearSuit         = tmp.gearSuit
+                    self.exercise.gearWristStraps  = tmp.gearWristStraps
+                    self.exercise.gearWristWraps   = tmp.gearWristWraps
                     
                     // Clone sets
                     if let sets = tmp.sets {
-                        self.exercise!.sets = [WorkoutExerciseSet]()
+                        self.exercise.sets = [WorkoutExerciseSet]()
                         for set in sets {
-                            self.exercise!.sets!.append(
+                            self.exercise.sets!.append(
                                 WorkoutExerciseSet(
                                     exerciseId:         set.exerciseId,
                                     repetitions:        set.repetitions,
@@ -79,9 +79,9 @@ class WorkoutExerciseViewController: UIViewController {
             }
         }
         
-        self.extratextText.text = self.exercise!.extratext
+        self.extratextText.text = self.exercise.extratext
         
-        if let special = self.exercise!.special {
+        if let special = self.exercise.special {
             var i = 1
             for (key,value) in self.special {
                 if key == special.rawValue {
@@ -93,49 +93,49 @@ class WorkoutExerciseViewController: UIViewController {
         }
         
         for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
-            if self.exercise!.unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
+            if self.exercise.unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
                 self.unitSegmented.selectedSegmentIndex = i
                 break
             }
         }
         
-        if self.exercise!.gearBelt == 1 {
+        if self.exercise.gearBelt == 1 {
             self.beltSwitch.setOn(true, animated: false)
         } else {
             self.beltSwitch.setOn(false, animated: false)
         }
         
-        if self.exercise!.gearKneeWraps == 1 {
+        if self.exercise.gearKneeWraps == 1 {
             self.kneeWrapsSwitch.setOn(true, animated: false)
         } else {
             self.kneeWrapsSwitch.setOn(false, animated: false)
         }
         
-        if self.exercise!.gearShirt == 1 {
+        if self.exercise.gearShirt == 1 {
             self.shirtSwitch.setOn(true, animated: false)
         } else {
             self.shirtSwitch.setOn(false, animated: false)
         }
         
-        if self.exercise!.gearSuit == 1 {
+        if self.exercise.gearSuit == 1 {
             self.suitSwitch.setOn(true, animated: false)
         } else {
             self.suitSwitch.setOn(false, animated: false)
         }
         
-        if self.exercise!.gearWristStraps == 1 {
+        if self.exercise.gearWristStraps == 1 {
             self.wristStrapsSwitch.setOn(true, animated: false)
         } else {
             self.wristStrapsSwitch.setOn(false, animated: false)
         }
         
-        if self.exercise!.gearWristWraps == 1 {
+        if self.exercise.gearWristWraps == 1 {
             self.wristWrapsSwitch.setOn(true, animated: false)
         } else {
             self.wristWrapsSwitch.setOn(false, animated: false)
         }
         
-        if self.exercise!.sets != nil {
+        if self.exercise.sets != nil {
             self.setsTableView.reloadData()
         }
     }
@@ -175,8 +175,8 @@ class WorkoutExerciseViewController: UIViewController {
         var result = 0
         
         if self.exercise != nil {
-            if self.exercise!.sets != nil {
-                result = self.exercise!.sets!.count
+            if self.exercise.sets != nil {
+                result = self.exercise.sets!.count
             }
         }
         
@@ -193,7 +193,7 @@ class WorkoutExerciseViewController: UIViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("workoutExerciseCell", forIndexPath: indexPath) as WorkoutExerciseTableViewCell
         
         if self.exercise != nil {
-            if let set = self.exercise!.sets?[indexPath.row] {
+            if let set = self.exercise.sets?[indexPath.row] {
                 var no = indexPath.row+1
                 
                 cell.noLabel.text = ("\(no).")
@@ -207,7 +207,7 @@ class WorkoutExerciseViewController: UIViewController {
                 cell.exerciseLabel.text = exerciseName
                 
                 var weight = set.weightKG
-                if self.exercise!.unit == .LB {
+                if self.exercise.unit == .LB {
                     weight = set.weightLB
                 }
                     
@@ -224,10 +224,10 @@ class WorkoutExerciseViewController: UIViewController {
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            self.exercise!.sets!.removeAtIndex(indexPath.row)
+            self.exercise.sets!.removeAtIndex(indexPath.row)
             
-            if self.exercise!.sets!.count == 0 {
-                self.exercise!.sets = nil
+            if self.exercise.sets!.count == 0 {
+                self.exercise.sets = nil
             }
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
@@ -248,14 +248,33 @@ class WorkoutExerciseViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let set = self.exercise!.sets![sourceIndexPath.row]
+        let set = self.exercise.sets![sourceIndexPath.row]
         
-        self.exercise!.sets!.removeAtIndex(sourceIndexPath.row)
-        self.exercise!.sets!.insert(set, atIndex: destinationIndexPath.row)
+        self.exercise.sets!.removeAtIndex(sourceIndexPath.row)
+        self.exercise.sets!.insert(set, atIndex: destinationIndexPath.row)
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.showWorkoutExerciseSet(indexPath.row)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    func showWorkoutExerciseSet(setIndex: Int?) {
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseSetViewController") as WorkoutExerciseSetViewController
+        
+        viewController.exercise = self.exercise
+        viewController.setIndex = setIndex
+        
+        self.presentViewController(viewController, animated: false, completion: nil)
     }
         
     @IBAction func close() {
         self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    @IBAction func addSet() {
+        self.showWorkoutExerciseSet(nil)
     }
     
     @IBAction func edit() {

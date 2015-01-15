@@ -40,6 +40,31 @@ enum BarbellType: String {
         
         return result
     }
+    
+    var description: String {
+        get {
+            switch self {
+                case .BuffaloBar:
+                    return "Buffalo bar"
+                case .CamberedBar:
+                    return "Cambered bar"
+                case .CurlBar:
+                    return "Curl bar"
+                case .OlympicBar:
+                    return "Olympic bar"
+                case .SafetyBar:
+                    return "Safety bar"
+                case .StandardBar:
+                    return "Standard bar"
+                case .SwissBar:
+                    return "Swiss bar"
+                case .ThickBar:
+                    return "Thick bar"
+                case .TrapBar:
+                    return "Trap bar"
+            }
+        }
+    }
 }
 
 enum ExerciseCategories: String {
@@ -71,6 +96,30 @@ enum ExerciseCategories: String {
         }
         
         return result
+    }
+    
+    var description: String {
+        get {
+            switch self {
+                case .Barbell:
+                    return "Barbell"
+                case .Bodyweight:
+                    return "Bodyweight"
+                case .Cable:
+                    return "Cable"
+                case .Dumbell:
+                    return "Dumbell"
+                case .Kettlebell:
+                    return "Kettlebell"
+                case .Machine:
+                    return "Machine"
+                case .Other:
+                    return "Other"
+                case .Ring:
+                    return "Ring"
+                
+            }
+        }
     }
 }
 
@@ -108,6 +157,33 @@ enum Musclegroup: String {
         
         return result
     }
+    
+    var description: String {
+        get {
+            switch self {
+                case .Abs:
+                    return "Abs"
+                case .Back:
+                    return "Back"
+                case .Biceps:
+                    return "Biceps"
+                case .Calfs:
+                    return "Calfs"
+                case .Chest:
+                    return "Chest"
+                case .Forearms:
+                    return "Forearms"
+                case .Legs:
+                    return "Legs"
+                case .Shoulders:
+                    return "Shoulders"
+                case .Triceps:
+                    return "Triceps"
+                case .Other:
+                    return "Other"
+            }
+        }
+    }
 }
 
 enum RepetionsType: String {
@@ -133,6 +209,23 @@ enum RepetionsType: String {
         }
         
         return result
+    }
+    
+    var description: String {
+        get {
+            switch self {
+                case .Forced:
+                    return "Forced"
+                case .MaxAttempt:
+                    return "Max attempt"
+                case .Negative:
+                    return "Negative"
+                case .Normal:
+                    return "Normal"
+                case .Partial:
+                    return "Partial"
+            }
+        }
     }
 }
 
@@ -200,5 +293,16 @@ enum Unit: String {
         }
         
         return result
+    }
+    
+    var description: String {
+        get {
+            switch self {
+                case .KG:
+                    return "KG"
+                case .LB:
+                    return "LB"
+            }
+        }
     }
 }

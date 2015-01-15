@@ -40,4 +40,21 @@ class ExerciseCache {
         
         return result
     }
+    
+    class func getFirstExercise() -> Exercise? {
+        var result: Exercise?
+        
+        if self.exerciseCategories != nil {
+            for category in self.exerciseCategories! {
+                for (musclegroup,exercises) in category.exercises {
+                    for exercise in exercises {
+                        result = exercise
+                        break
+                    }
+                }
+            }
+        }
+        
+        return result
+    }
 }
