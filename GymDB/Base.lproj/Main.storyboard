@@ -796,6 +796,142 @@
             </objects>
             <point key="canvasLocation" x="-139" y="3369"/>
         </scene>
+        <!--Select Exercise View Controller-->
+        <scene sceneID="PeS-3z-5Li">
+            <objects>
+                <viewController storyboardIdentifier="selectExerciseViewController" id="6Nq-WJ-tD0" customClass="SelectExerciseViewController" customModule="GymDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ti4-An-SbF"/>
+                        <viewControllerLayoutGuide type="bottom" id="i91-bj-gfl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uzi-8E-JcH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar opaque="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFP-qr-cm9">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Select exercise" id="L8e-Ex-lqX">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="K4b-h0-2Ba">
+                                            <connections>
+                                                <action selector="close" destination="6Nq-WJ-tD0" id="3ZJ-ka-3MI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Select" id="cwe-Zn-v6h"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWn-uH-bsZ">
+                                <rect key="frame" x="90" y="78" width="141" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" tag="100" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q0t-Qt-AfE">
+                                <rect key="frame" x="0.0" y="107" width="320" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="IaW-cF-RJe"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exerciseCategoryCell" rowHeight="44" id="zDA-eH-m5T" customClass="SelectExerciseTableViewCell" customModule="GymDB" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zDA-eH-m5T" id="pyu-eg-JUW">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyI-RK-bhR">
+                                                    <rect key="frame" x="8" y="12" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lyI-RK-bhR" firstAttribute="trailing" secondItem="pyu-eg-JUW" secondAttribute="trailingMargin" id="2uY-bp-D5g"/>
+                                                <constraint firstItem="lyI-RK-bhR" firstAttribute="top" secondItem="pyu-eg-JUW" secondAttribute="topMargin" constant="4" id="6fo-Qh-o0A"/>
+                                                <constraint firstItem="lyI-RK-bhR" firstAttribute="leading" secondItem="pyu-eg-JUW" secondAttribute="leadingMargin" id="Dfp-67-Ug5"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lyI-RK-bhR" secondAttribute="bottom" constant="2" id="rEg-Nw-zC2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="lyI-RK-bhR" id="8lx-AG-ZeX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="6Nq-WJ-tD0" id="wbK-4v-gnm"/>
+                                    <outlet property="delegate" destination="6Nq-WJ-tD0" id="iJ0-1V-Vu5"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" tag="101" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ewm-EP-AHr">
+                                <rect key="frame" x="0.0" y="344" width="320" height="224"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="exerciseCell" rowHeight="44" id="WDt-0Y-0Eq" customClass="SelectExerciseTableViewCell" customModule="GymDB" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WDt-0Y-0Eq" id="mgK-ia-OAo">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Nd-fB-Tah">
+                                                    <rect key="frame" x="8" y="12" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8Nd-fB-Tah" firstAttribute="top" secondItem="mgK-ia-OAo" secondAttribute="topMargin" constant="4" id="0h9-hl-KTd"/>
+                                                <constraint firstItem="8Nd-fB-Tah" firstAttribute="trailing" secondItem="mgK-ia-OAo" secondAttribute="trailingMargin" id="PUf-WZ-C4u"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8Nd-fB-Tah" secondAttribute="bottom" constant="2" id="gYy-Zs-WBp"/>
+                                                <constraint firstItem="8Nd-fB-Tah" firstAttribute="leading" secondItem="mgK-ia-OAo" secondAttribute="leadingMargin" id="vhD-gf-XS9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="8Nd-fB-Tah" id="LKK-FN-vQh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6Nq-WJ-tD0" id="X72-7f-qQC"/>
+                                    <outlet property="delegate" destination="6Nq-WJ-tD0" id="RHj-g7-ul1"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROM-ex-X0Q">
+                                <rect key="frame" x="127" y="315" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ewm-EP-AHr" secondAttribute="trailing" constant="-16" id="2dQ-pi-l3c"/>
+                            <constraint firstItem="IFP-qr-cm9" firstAttribute="top" secondItem="ti4-An-SbF" secondAttribute="bottom" constant="8" id="6n0-th-jgl"/>
+                            <constraint firstItem="ewm-EP-AHr" firstAttribute="top" secondItem="ROM-ex-X0Q" secondAttribute="bottom" constant="8" id="F8s-WB-8DV"/>
+                            <constraint firstItem="ROM-ex-X0Q" firstAttribute="top" secondItem="Q0t-Qt-AfE" secondAttribute="bottom" constant="8" id="GhK-ys-MEy"/>
+                            <constraint firstItem="ROM-ex-X0Q" firstAttribute="leading" secondItem="Uzi-8E-JcH" secondAttribute="leadingMargin" constant="111" id="MUQ-F6-qh2"/>
+                            <constraint firstItem="ewm-EP-AHr" firstAttribute="leading" secondItem="Uzi-8E-JcH" secondAttribute="leadingMargin" constant="-16" id="QyB-dn-XtR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q0t-Qt-AfE" secondAttribute="trailing" constant="-16" id="RGj-t3-Are"/>
+                            <constraint firstItem="Q0t-Qt-AfE" firstAttribute="top" secondItem="EWn-uH-bsZ" secondAttribute="bottom" constant="8" id="WhD-XI-2Vs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IFP-qr-cm9" secondAttribute="trailing" constant="-16" id="cxb-bT-Kq4"/>
+                            <constraint firstItem="EWn-uH-bsZ" firstAttribute="top" secondItem="IFP-qr-cm9" secondAttribute="bottom" constant="6" id="fDd-aE-IoA"/>
+                            <constraint firstItem="ROM-ex-X0Q" firstAttribute="top" secondItem="Q0t-Qt-AfE" secondAttribute="bottom" constant="8" id="fgB-gu-Bgc"/>
+                            <constraint firstItem="i91-bj-gfl" firstAttribute="top" secondItem="ewm-EP-AHr" secondAttribute="bottom" id="hkE-fT-QTa"/>
+                            <constraint firstItem="IFP-qr-cm9" firstAttribute="leading" secondItem="Uzi-8E-JcH" secondAttribute="leadingMargin" constant="-16" id="ild-Z5-TJB"/>
+                            <constraint firstItem="Q0t-Qt-AfE" firstAttribute="leading" secondItem="Uzi-8E-JcH" secondAttribute="leadingMargin" constant="-16" id="oq8-Lj-h8o"/>
+                            <constraint firstItem="EWn-uH-bsZ" firstAttribute="leading" secondItem="Uzi-8E-JcH" secondAttribute="leadingMargin" constant="74" id="uIo-wt-k8A"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exerciseCategoryTable" destination="Q0t-Qt-AfE" id="Nkg-xs-HxG"/>
+                        <outlet property="exerciseTable" destination="ewm-EP-AHr" id="Eyk-BH-tZ3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xde-ui-RM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="261" y="3885"/>
+        </scene>
         <!--Workout Exercise Set View Controller-->
         <scene sceneID="W1z-Pa-JVM">
             <objects>
@@ -847,6 +983,9 @@
                                                 <state key="normal" title="Select">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="select" destination="Pag-iS-C0G" eventType="touchUpInside" id="Qjy-KY-tCm"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2z-id-fHB">
                                                 <rect key="frame" x="8" y="75" width="40" height="21"/>

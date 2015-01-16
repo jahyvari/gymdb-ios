@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WorkoutExerciseViewController: UIViewController {
+class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var navigationBar:       UINavigationBar!
     @IBOutlet weak var extratextText:       UITextField!
     @IBOutlet weak var specialPickerView:   UIPickerView!
@@ -212,11 +212,8 @@ class WorkoutExerciseViewController: UIViewController {
         self.extratextText.text = self.exercise.extratext
         
         if let special = self.exercise.special {
-            for (key,value) in enumerate(self.special) {
-                if value == special {
-                    self.specialPickerView.selectRow(key+1, inComponent: 0, animated: false)
-                    break
-                }
+            if let key = find(self.special, special) {
+                self.specialPickerView.selectRow(key+1, inComponent: 0, animated: false)
             }
         }
         

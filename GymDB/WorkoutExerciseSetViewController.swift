@@ -144,19 +144,13 @@ class WorkoutExerciseSetViewController: UIViewController {
         self.repsText.text      = String(self.exerciseSet.repetitions)
         self.weightText.text    = NSString(format: "%.2f", weight)
         
-        for (key,value) in enumerate(self.repType) {
-            if value == self.exerciseSet.repetitionsType {
-                self.repTypePicker.selectRow(key, inComponent: 0, animated: false)
-                break
-            }
+        if let key = find(self.repType, self.exerciseSet.repetitionsType) {
+            self.repTypePicker.selectRow(key, inComponent: 0, animated: false)
         }
         
         if let restIntervalSec = self.exerciseSet.restIntervalSec {
-            for (key,value) in enumerate(self.restTime) {
-                if value == restIntervalSec {
-                    self.restPicker.selectRow(key+1, inComponent: 0, animated: false)
-                    break
-                }
+            if let key = find(self.restTime, restIntervalSec) {
+                self.restPicker.selectRow(key+1, inComponent: 0, animated: false)
             }
         }
     }
@@ -183,6 +177,15 @@ class WorkoutExerciseSetViewController: UIViewController {
         }
         
         return result
+    }
+    
+    @IBAction func select() {
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("selectExerciseViewController") as SelectExerciseViewController
+        
+        viewController.exerciseId   = self.exerciseSet.exerciseId
+        viewController.exerciseSet  = self.exerciseSet
+        
+        self.presentViewController(viewController, animated: false, completion: nil)
     }
     
     @IBAction func close() {
@@ -218,12 +221,7 @@ class WorkoutExerciseSetViewController: UIViewController {
             if selected == 0 {
                 self.exerciseSet.restIntervalSec = nil
             } else {
-                for (key,value) in enumerate(self.restTime) {
-                    if key+1 == selected {
-                        self.exerciseSet.restIntervalSec = value
-                        break
-                    }
-                }
+                self.exerciseSet.restIntervalSec = self.restTime[selected-1]
             }
             
             var append = true

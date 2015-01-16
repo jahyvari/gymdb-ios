@@ -11,6 +11,8 @@
 		F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5121A5C0A43003FE376 /* WorkoutCache.swift */; };
 		F437B5171A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */; };
 		F437B5191A5C138D003FE376 /* WorkoutExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */; };
+		F43BFC031A694854006EA0D7 /* SelectExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43BFC021A694854006EA0D7 /* SelectExerciseViewController.swift */; };
+		F43BFC051A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43BFC041A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift */; };
 		F44866401A515AD8007CF17A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F448663F1A515AD8007CF17A /* LoginViewController.swift */; };
 		F44866421A515CA1007CF17A /* GymDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44866411A515CA1007CF17A /* GymDBAPI.swift */; };
 		F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */; };
@@ -53,6 +55,8 @@
 		F437B5121A5C0A43003FE376 /* WorkoutCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutCache.swift; sourceTree = "<group>"; };
 		F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesViewController.swift; sourceTree = "<group>"; };
+		F43BFC021A694854006EA0D7 /* SelectExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectExerciseViewController.swift; sourceTree = "<group>"; };
+		F43BFC041A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		F448663F1A515AD8007CF17A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F44866411A515CA1007CF17A /* GymDBAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymDBAPI.swift; sourceTree = "<group>"; };
 		F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymDBAPIResponse.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				F44866431A515D5C007CF17A /* GymDBAPIResponse.swift */,
 				F448663F1A515AD8007CF17A /* LoginViewController.swift */,
 				F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */,
+				F43BFC041A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift */,
+				F43BFC021A694854006EA0D7 /* SelectExerciseViewController.swift */,
 				F46AB9E11A540ED2001EF14B /* User.swift */,
 				F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */,
 				F46AB9DF1A540EAC001EF14B /* UserProtocol.swift */,
@@ -283,6 +289,7 @@
 			files = (
 				F44866421A515CA1007CF17A /* GymDBAPI.swift in Sources */,
 				F46BA7EC1A481B0D003D7C8E /* MasterViewController.swift in Sources */,
+				F43BFC031A694854006EA0D7 /* SelectExerciseViewController.swift in Sources */,
 				F4C7D5461A48752B0037510D /* Workout.swift in Sources */,
 				F45D94241A48631700491760 /* WorkoutExercise.swift in Sources */,
 				F4673B6D1A5E94BD002FB4E2 /* WorkoutExerciseViewController.swift in Sources */,
@@ -305,6 +312,7 @@
 				F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */,
 				F44866401A515AD8007CF17A /* LoginViewController.swift in Sources */,
 				F4FF5BFE1A5A9EBD00A59967 /* WorkoutRecordViewController.swift in Sources */,
+				F43BFC051A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift in Sources */,
 				F46169391A5FE2BF00573444 /* ExerciseCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
