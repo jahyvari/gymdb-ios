@@ -35,7 +35,12 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidAppear(animated)
         
         if !self.uiInit {
-            self.exercise = WorkoutExercise(unit: .KG, extratext: nil, special: nil, gearBelt: 0, gearKneeWraps: 0, gearShirt: 0, gearSuit: 0, gearWristStraps: 0, gearWristWraps: 0, sets: nil)
+            var unit: Unit = .KG
+            if let default_unit = UserCache.user?.default_unit {
+                unit = default_unit
+            }
+            
+            self.exercise = WorkoutExercise(unit: unit, extratext: nil, special: nil, gearBelt: 0, gearKneeWraps: 0, gearShirt: 0, gearSuit: 0, gearWristStraps: 0, gearWristWraps: 0, sets: nil)
             
             if let exerciseIndex = self.exerciseIndex {
                 if let exercises = WorkoutCache.workout?.exercises {
@@ -209,18 +214,18 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
         
         self.navigationBar.topItem?.title = "\(no). Exercise"
         
+        for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
+            if self.exercise.unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
+                self.unitSegmented.selectedSegmentIndex = i
+                break
+            }
+        }
+        
         self.extratextText.text = self.exercise.extratext
         
         if let special = self.exercise.special {
             if let key = find(self.special, special) {
                 self.specialPickerView.selectRow(key+1, inComponent: 0, animated: false)
-            }
-        }
-        
-        for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
-            if self.exercise.unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
-                self.unitSegmented.selectedSegmentIndex = i
-                break
             }
         }
         
@@ -275,6 +280,51 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
     }
         
     @IBAction func close() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    @IBAction func done() {
+        self.exercise.unit = Unit.fromString(self.unitSegmented.titleForSegmentAtIndex(self.unitSegmented.selectedSegmentIndex)!.lowercaseString)!
+        
+        if self.extratextText.text != "" {
+            self.exercise.extratext = self.extratextText.text
+        } else {
+            self.exercise.extratext = nil
+        }
+        
+        let selected = self.specialPickerView.selectedRowInComponent(0)
+        if selected == 0 {
+            self.exercise.special = nil
+        } else {
+            self.exercise.special = self.special[selected-1]
+        }
+        
+        self.exercise.gearBelt          = self.beltSwitch.on        ? 1 : 0
+        self.exercise.gearKneeWraps     = self.kneeWrapsSwitch.on   ? 1 : 0
+        self.exercise.gearShirt         = self.shirtSwitch.on       ? 1 : 0
+        self.exercise.gearSuit          = self.suitSwitch.on        ? 1 : 0
+        self.exercise.gearWristStraps   = self.wristStrapsSwitch.on ? 1 : 0
+        self.exercise.gearWristWraps    = self.wristWrapsSwitch.on  ? 1 : 0
+        
+        var append = true
+        
+        if let exerciseIndex = self.exerciseIndex {
+            if let exercises = WorkoutCache.workout?.exercises {
+                if exercises.count > exerciseIndex {
+                    WorkoutCache.workout!.exercises![exerciseIndex] = self.exercise
+                    append = false
+                }
+            }
+        }
+        
+        if append {
+            if WorkoutCache.workout!.exercises == nil {
+                WorkoutCache.workout!.exercises = [WorkoutExercise]()
+            }
+            
+            WorkoutCache.workout!.exercises!.append(self.exercise)
+        }
+        
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     

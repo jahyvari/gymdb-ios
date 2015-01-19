@@ -36,7 +36,8 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
         
         alert.dismissViewControllerAnimated(false, completion: {
             if user != nil {
-                self.user = user
+                self.user       = user
+                UserCache.user  = user
                 
                 self.emailText.text = self.user!.email
                 
@@ -125,9 +126,9 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
                 }
             }
             
-            self.user!.timeout_min  = UInt(timeoutSegmented.titleForSegmentAtIndex(timeoutSegmented.selectedSegmentIndex)!.toInt()!)
+            self.user!.timeout_min  = UInt(self.timeoutSegmented.titleForSegmentAtIndex(self.timeoutSegmented.selectedSegmentIndex)!.toInt()!)
             
-            self.user!.default_unit = Unit.fromString(unitSegmented.titleForSegmentAtIndex(unitSegmented.selectedSegmentIndex)!.lowercaseString)!
+            self.user!.default_unit = Unit.fromString(self.unitSegmented.titleForSegmentAtIndex(self.unitSegmented.selectedSegmentIndex)!.lowercaseString)!
             
             var password:   String?
             var password2:  String?
@@ -142,6 +143,7 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
             var apiResponse: GymDBAPIResponse?
             if self.user!.save(&apiResponse, password: password, password2: password2) {
                 alert.title = "User account data saved!"
+                UserCache.user = self.user
             } else {
                 alert.view.tintColor = UIColor.redColor()
                 alert.title = apiResponse!.text

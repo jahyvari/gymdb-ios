@@ -570,7 +570,11 @@
                                                 <action selector="close" destination="BJF-LJ-8NH" id="2Z8-Z9-1v4"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="ftD-1Y-yEj"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="ftD-1Y-yEj">
+                                            <connections>
+                                                <action selector="done" destination="BJF-LJ-8NH" id="gRM-ct-oQV"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1153,16 +1157,11 @@
                                                 <action selector="close" destination="K4N-Xn-d43" id="UYY-Oi-cJg"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Edit" id="bkL-HP-hsc">
-                                            <connections>
-                                                <action selector="edit" destination="K4N-Xn-d43" id="o9P-Kh-nDT"/>
-                                            </connections>
-                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MPn-ex-Yse">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="102" width="320" height="466"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="workoutExercisesCell" rowHeight="60" id="OvF-lh-FFU" customClass="WorkoutExercisesTableViewCell" customModule="GymDB" customModuleProvider="target">
@@ -1209,21 +1208,43 @@
                                     <outlet property="delegate" destination="K4N-Xn-d43" id="NGP-Sx-Qfq"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWk-l9-oNo">
+                                <rect key="frame" x="9" y="64" width="90" height="30"/>
+                                <state key="normal" title="Add exercise">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addExercise" destination="K4N-Xn-d43" eventType="touchUpInside" id="nyf-VH-Jhf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebu-CQ-faR">
+                                <rect key="frame" x="285" y="64" width="30" height="30"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="edit" destination="K4N-Xn-d43" eventType="touchUpInside" id="UGM-vQ-ICd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="MPn-ex-Yse" secondAttribute="trailing" constant="-16" id="5iq-kx-5zK"/>
-                            <constraint firstItem="MPn-ex-Yse" firstAttribute="top" secondItem="CDI-Hf-nCQ" secondAttribute="bottom" id="63d-WY-rT1"/>
-                            <constraint firstItem="MPn-ex-Yse" firstAttribute="leading" secondItem="a8c-0A-rGr" secondAttribute="leadingMargin" constant="-16" id="LC6-Wz-L1a"/>
-                            <constraint firstItem="CDI-Hf-nCQ" firstAttribute="leading" secondItem="a8c-0A-rGr" secondAttribute="leadingMargin" constant="-16" id="MJp-UX-nCO"/>
-                            <constraint firstItem="MPn-ex-Yse" firstAttribute="bottom" secondItem="a8c-0A-rGr" secondAttribute="bottomMargin" id="aHV-f1-coW"/>
-                            <constraint firstItem="CDI-Hf-nCQ" firstAttribute="top" secondItem="k9E-qB-QuV" secondAttribute="bottom" id="g5a-S7-c9S"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CDI-Hf-nCQ" secondAttribute="trailing" constant="-16" id="urn-zP-G9N"/>
+                            <constraint firstItem="dWk-l9-oNo" firstAttribute="leading" secondItem="a8c-0A-rGr" secondAttribute="leadingMargin" constant="-7" id="9kT-JH-afQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MPn-ex-Yse" secondAttribute="trailing" constant="-16" id="Bve-LN-TgC"/>
+                            <constraint firstItem="CDI-Hf-nCQ" firstAttribute="top" secondItem="k9E-qB-QuV" secondAttribute="bottom" id="PqO-qi-haT"/>
+                            <constraint firstItem="MPn-ex-Yse" firstAttribute="top" secondItem="dWk-l9-oNo" secondAttribute="bottom" constant="8" id="SwI-ak-4zh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CDI-Hf-nCQ" secondAttribute="trailing" constant="-16" id="XqR-sQ-KRd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ebu-CQ-faR" secondAttribute="trailing" constant="-11" id="dcz-0T-cYc"/>
+                            <constraint firstItem="CDI-Hf-nCQ" firstAttribute="leading" secondItem="a8c-0A-rGr" secondAttribute="leadingMargin" constant="-16" id="n77-B3-kER"/>
+                            <constraint firstItem="ebu-CQ-faR" firstAttribute="top" secondItem="CDI-Hf-nCQ" secondAttribute="bottom" id="rj3-Cu-bwL"/>
+                            <constraint firstItem="MPn-ex-Yse" firstAttribute="bottom" secondItem="a8c-0A-rGr" secondAttribute="bottomMargin" id="toh-ZX-nAG"/>
+                            <constraint firstItem="dWk-l9-oNo" firstAttribute="top" secondItem="CDI-Hf-nCQ" secondAttribute="bottom" id="wXt-Gq-2O1"/>
+                            <constraint firstItem="MPn-ex-Yse" firstAttribute="leading" secondItem="a8c-0A-rGr" secondAttribute="leadingMargin" constant="-16" id="wuv-II-N2j"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Exercises" id="Mlq-HL-yCC"/>
                     <connections>
-                        <outlet property="editBarButton" destination="bkL-HP-hsc" id="zvp-Qo-QCC"/>
+                        <outlet property="editButton" destination="ebu-CQ-faR" id="LbE-Qa-zB6"/>
                         <outlet property="exercisesTableView" destination="MPn-ex-Yse" id="XYZ-OL-dKP"/>
                     </connections>
                 </viewController>

@@ -39,6 +39,7 @@ class MasterViewController: UITableViewController {
         self.presentViewController(alert, animated: false, completion: nil)
         
         GymDBAPI.doLogout()
+        UserCache.user = nil
         
         alert.dismissViewControllerAnimated(false, completion: {
             self.dismissViewControllerAnimated(false, completion: nil)

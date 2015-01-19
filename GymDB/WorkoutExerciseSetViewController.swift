@@ -257,7 +257,7 @@ class WorkoutExerciseSetViewController: UIViewController {
                     self.exercise.sets = [WorkoutExerciseSet]()
                 }
             
-                self.exercise.sets!.append(self.exerciseSet!)
+                self.exercise.sets!.append(self.exerciseSet)
             }
             
             self.dismissViewControllerAnimated(false, completion: nil)

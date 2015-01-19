@@ -18,6 +18,8 @@ class WorkoutViewController: UIViewController {
     var hashId:         String?
     var locationFetch:  Bool                = false
     var locations:      [String: String]    = [:]
+    var uiInit:         Bool                = false
+    var workoutInit:    Bool                = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,28 +39,42 @@ class WorkoutViewController: UIViewController {
             self.locationFetch = true
         }
         
-        if self.hashId != nil {
-            if let workout = GymDBAPI.workoutLoad(self.hashId!) {
-                WorkoutCache.workout = workout
+        if !self.workoutInit {
+            if self.hashId != nil {
+                if let workout = GymDBAPI.workoutLoad(self.hashId!) {
+                    WorkoutCache.workout = workout
+                } else {
+                    let alert = UIAlertController(title: "Cannot load workout!", message: nil, preferredStyle: .Alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action: UIAlertAction!) in
+                        self.dismissViewControllerAnimated(false, completion: nil)
+                    }))
+                    alert.view.tintColor = UIColor.redColor()
+                    
+                    self.presentViewController(alert, animated: false, completion: nil)
+                }
+                
+                self.hashId = nil
             } else {
-                let alert = UIAlertController(title: "Cannot load workout!", message: nil, preferredStyle: .Alert)
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action: UIAlertAction!) in
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                }))
-                alert.view.tintColor = UIColor.redColor()
+                let now = NSDate()
+                let plusOneHour = NSDate.dateByAddingTimeInterval(NSDate())(60*60)
                 
-                self.presentViewController(alert, animated: false, completion: nil)
+                WorkoutCache.workout = Workout(hashId: nil, locationHashId: nil, trainingProgramHashId: nil, templateHashId: nil, extratext: "", startTime: dateFormatter.stringFromDate(now), endTime: dateFormatter.stringFromDate(plusOneHour), exercises: nil, records: nil)
             }
-            
-            self.hashId = nil
+            self.workoutInit = true
         }
         
         if ExerciseCache.exerciseCategories == nil {
             ExerciseCache.exerciseCategories = GymDBAPI.exerciseGetList()
         }
         
-        self.setViewUI()
+        if !self.uiInit {
+            self.setViewUI()
+            self.uiInit = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -43,9 +43,12 @@ class LoginViewController: UIViewController {
         self.presentViewController(alert, animated: false, completion: nil)
         
         let login = GymDBAPI.doLogin(email, password: password)
+        if login {
+            UserCache.user = GymDBAPI.userLoad()
+        }
         
         alert.dismissViewControllerAnimated(false, completion: {
-            if (login) {
+            if login {
                 self.performSegueWithIdentifier("showMasterViewController", sender: self)
             } else if showError {
                 self.errorLabel.text = GymDBAPI.lastAPIResponse!.text

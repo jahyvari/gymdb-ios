@@ -9,7 +9,7 @@
 import UIKit
 
 class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var editBarButton:       UIBarButtonItem!
+    @IBOutlet weak var editButton:          UIButton!
     @IBOutlet weak var exercisesTableView:  UITableView!
     
     override func viewDidLoad() {
@@ -35,9 +35,9 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         }
         
         if result > 0 {
-            self.editBarButton.enabled = true
+            self.editButton.enabled = true
         } else {
-            self.editBarButton.enabled = false
+            self.editButton.enabled = false
         }
         
         return result
@@ -90,12 +90,17 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.showWorkoutExercise(indexPath.row)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    func showWorkoutExercise(exerciseIndex: Int?) {
         let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseViewController") as WorkoutExerciseViewController
         
-        viewController.exerciseIndex = indexPath.row
+        viewController.exerciseIndex = exerciseIndex
         
         self.presentViewController(viewController, animated: false, completion: nil)
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     @IBAction func close() {
@@ -104,14 +109,18 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     
     @IBAction func edit() {
         if self.exercisesTableView.editing {
-            self.editBarButton.title = "Edit"
+            self.editButton.setTitle("Edit", forState: .Normal)
             
             self.exercisesTableView.setEditing(false, animated: false)
             self.exercisesTableView.reloadData()
         } else {
-            self.editBarButton.title = "Done"
+            self.editButton.setTitle("Done", forState: .Normal)
             
             self.exercisesTableView.setEditing(true, animated: false)
         }
+    }
+    
+    @IBAction func addExercise() {
+        self.showWorkoutExercise(nil)
     }
 }
