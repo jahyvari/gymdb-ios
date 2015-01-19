@@ -22,6 +22,7 @@ class WorkoutExerciseSetViewController: UIViewController {
     var setIndex:       Int?
     var repType:        [RepetionsType]     = RepetionsType.allValues
     var restTime:       [UInt16]            = [UInt16]()
+    var uiInit:         Bool                = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,29 +46,41 @@ class WorkoutExerciseSetViewController: UIViewController {
             
             self.presentViewController(alert, animated: false, completion: nil)
         } else {
-            var barbellType: BarbellType?
-            if exercise!.exerciseCategory == .Barbell {
-                barbellType = .StandardBar
-            }
-            
-            self.exerciseSet = WorkoutExerciseSet(exerciseId: exercise!.id, repetitions: 0, weightKG: 0, weightLB: 0, repetitionsType: .Normal, barbellType: barbellType, restIntervalSec: 120)
-            
-            if let index = self.setIndex {
-                if self.exercise.sets != nil && self.exercise.sets!.count > index {
-                    let tmp = self.exercise.sets![index]
-                    
-                    // Close exercise set
-                    self.exerciseSet.exerciseId        = tmp.exerciseId
-                    self.exerciseSet.repetitions       = tmp.repetitions
-                    self.exerciseSet.weightKG          = tmp.weightKG
-                    self.exerciseSet.weightLB          = tmp.weightLB
-                    self.exerciseSet.repetitionsType   = tmp.repetitionsType
-                    self.exerciseSet.barbellType       = tmp.barbellType
-                    self.exerciseSet.restIntervalSec   = tmp.restIntervalSec
+            if !self.uiInit {
+                var barbellType: BarbellType?
+                if exercise!.exerciseCategory == .Barbell {
+                    barbellType = .StandardBar
                 }
+                
+                self.exerciseSet = WorkoutExerciseSet(exerciseId: exercise!.id, repetitions: 0, weightKG: 0, weightLB: 0, repetitionsType: .Normal, barbellType: barbellType, restIntervalSec: 120)
+                
+                var useIndex: Int?
+                if self.setIndex != nil {
+                    useIndex = self.setIndex!
+                } else if self.exercise.sets != nil {
+                    useIndex = self.exercise.sets!.count-1
+                }
+                
+                if useIndex != nil {
+                    if self.exercise.sets != nil && self.exercise.sets!.count > useIndex! {
+                        let tmp = self.exercise.sets![useIndex!]
+                        
+                        // Close exercise set
+                        self.exerciseSet.exerciseId        = tmp.exerciseId
+                        self.exerciseSet.repetitions       = tmp.repetitions
+                        self.exerciseSet.weightKG          = tmp.weightKG
+                        self.exerciseSet.weightLB          = tmp.weightLB
+                        self.exerciseSet.repetitionsType   = tmp.repetitionsType
+                        self.exerciseSet.barbellType       = tmp.barbellType
+                        self.exerciseSet.restIntervalSec   = tmp.restIntervalSec
+                    }
+                }
+                
+                self.uiInit = true
+                self.setViewUI()
+            } else {
+                self.setViewUIExerciseName()
             }
-            
-            self.setViewUI()
         }
     }
 
@@ -128,19 +141,13 @@ class WorkoutExerciseSetViewController: UIViewController {
         
         self.navigationBar.topItem?.title = "\(no). Set"
         
-        var exercise = ExerciseCache.findByExerciseId(self.exerciseSet.exerciseId)
+        self.setViewUIExerciseName()
         
         var weight = self.exerciseSet.weightKG
         if self.exercise.unit == .LB {
             var weight = self.exerciseSet.weightLB
         }
         
-        var exerciseName = exercise!.name
-        if self.exerciseSet.barbellType != nil {
-            exerciseName = exerciseName + " (" + self.exerciseSet.barbellType!.description + ")"
-        }
-        
-        self.exerciseText.text  = exerciseName
         self.repsText.text      = String(self.exerciseSet.repetitions)
         self.weightText.text    = NSString(format: "%.2f", weight)
         
@@ -153,6 +160,17 @@ class WorkoutExerciseSetViewController: UIViewController {
                 self.restPicker.selectRow(key+1, inComponent: 0, animated: false)
             }
         }
+    }
+    
+    func setViewUIExerciseName() {
+        var exercise = ExerciseCache.findByExerciseId(self.exerciseSet.exerciseId)
+        
+        var exerciseName = exercise!.name
+        if self.exerciseSet.barbellType != nil {
+            exerciseName = exerciseName + " (" + self.exerciseSet.barbellType!.description + ")"
+        }
+        
+        self.exerciseText.text = exerciseName
     }
     
     func validateReps() -> Bool {
@@ -182,6 +200,7 @@ class WorkoutExerciseSetViewController: UIViewController {
     @IBAction func select() {
         let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("selectExerciseViewController") as SelectExerciseViewController
         
+        viewController.barbellType  = self.exerciseSet.barbellType
         viewController.exerciseId   = self.exerciseSet.exerciseId
         viewController.exerciseSet  = self.exerciseSet
         

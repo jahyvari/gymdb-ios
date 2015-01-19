@@ -9,16 +9,25 @@
 import UIKit
 
 class SelectExerciseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var selectBarButton:         UIBarButtonItem!
+    @IBOutlet weak var barbellTypePicker:       UIPickerView!
     @IBOutlet weak var exerciseCategoryTable:   UITableView!
     @IBOutlet weak var exerciseTable:           UITableView!
     
+    var barbellType:            BarbellType?
+    var barbellTypes:           [BarbellType] = BarbellType.allValues
+    var currentExercises:       [Exercise]?
     var exerciseId:             UInt?
     var exerciseSet:            WorkoutExerciseSet!
-    var selectedExercise:       Exercise?
+    var selectedCategory:       ExerciseCategories?
+    var selectedExerciseId:     UInt?
+    var selectedMusclegroup:    Musclegroup?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        self.exerciseCategoryTable.tableFooterView = UIView(frame: CGRectZero)
+        self.exerciseTable.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,36 +47,35 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
             
             self.presentViewController(alert, animated: false, completion: nil)
         } else {
-            self.selectedExercise = ExerciseCache.findByExerciseId(self.exerciseId!)
+            var foundExercise = ExerciseCache.findByExerciseId(self.exerciseId!)
             
-            var categoryRow = 0
-            var exerciseRow = 0
+            self.selectedCategory       = foundExercise!.exerciseCategory
+            self.selectedExerciseId     = foundExercise!.id
+            self.selectedMusclegroup    = foundExercise!.musglegroup
+            
+            var categoryRow     = 0
+            var exerciseRow     = 0
             var categorySection = 0
             
             // Find row & section for exercise category and exercise
             for category in ExerciseCache.exerciseCategories! {
-                if category.category == self.selectedExercise!.exerciseCategory {
+                if category.category == self.selectedCategory! {
                     categoryRow = 0
-                    
                     for (musclegroup,exercises) in category.exercises {
-                        if musclegroup == self.selectedExercise!.musglegroup {
+                        if musclegroup == self.selectedMusclegroup! {
+                            self.currentExercises = exercises
                             for exercise in exercises {
-                                if exercise.id == selectedExercise!.id {
+                                if exercise.id == self.selectedExerciseId! {
                                     break
                                 }
-                                
                                 exerciseRow++
                             }
-                            
                             break
                         }
-                    
                         categoryRow++
                     }
-                    
                     break
                 }
-                
                 categorySection++
             }
             
@@ -75,6 +83,14 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
             
             self.exerciseTable.reloadData()
             self.exerciseTable.selectRowAtIndexPath(NSIndexPath(forRow: exerciseRow, inSection: 0), animated: false, scrollPosition: .Middle)
+            
+            if self.selectedCategory == .Barbell && self.barbellType != nil {
+                if let index = find(self.barbellTypes, self.barbellType!) {
+                    self.barbellTypePicker.selectRow(index+1, inComponent: 0, animated: false)
+                }
+            } else if self.selectedCategory != .Barbell {
+                self.barbellTypePicker.userInteractionEnabled = false
+            }
         }
     }
 
@@ -110,23 +126,13 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var result = 0
         
-        if let categories = ExerciseCache.exerciseCategories {
-            if tableView.tag == 100 {
+        if tableView.tag == 100 {
+            if let categories = ExerciseCache.exerciseCategories {
                 result = categories[section].exercises.count
-            } else {
-                if let selected = self.selectedExercise {
-                    for category in categories {
-                        if category.category == selected.exerciseCategory {
-                            for (musclegroup,exercises) in category.exercises {
-                                if musclegroup == selected.musglegroup {
-                                    result = exercises.count
-                                    break
-                                }
-                            }
-                            break
-                        }
-                    }
-                }
+            }
+        } else {
+            if let currentExercises = self.currentExercises {
+                result = currentExercises.count
             }
         }
         
@@ -143,35 +149,97 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
         
         var cellText = ""
         
-        if let categories = ExerciseCache.exerciseCategories {
-            if tableView.tag == 100 {
+        if tableView.tag == 100 {
+            if let categories = ExerciseCache.exerciseCategories {
                 var i = 0
-                for (key,value) in categories[indexPath.section].exercises {
+                for (musclegroup,exercises) in categories[indexPath.section].exercises {
                     if i++ == indexPath.row {
-                        cellText = key.description
+                        cellText = musclegroup.description
                         break
                     }
                 }
-            } else {
-                if let selected = self.selectedExercise {
-                    for category in categories {
-                        if category.category == selected.exerciseCategory {
-                            for (musclegroup,exercises) in category.exercises {
-                                if musclegroup == selected.musglegroup {
-                                    cellText = exercises[indexPath.row].name
-                                    break
-                                }
-                            }
-                            break
-                        }
-                    }
-                }
+            }
+        } else {
+            if let currentExercises = self.currentExercises {
+                cellText = currentExercises[indexPath.row].name
             }
         }
     
         cell.nameLabel.text = cellText
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView.tag == 100 {
+            if let categories = ExerciseCache.exerciseCategories {
+                let category = categories[indexPath.section]
+                
+                self.selectedCategory = category.category
+                
+                var i = 0
+                for (musclegroup,exercises) in category.exercises {
+                    if i++ == indexPath.row {
+                        self.currentExercises = exercises
+                        self.selectedMusclegroup = musclegroup
+                        break
+                    }
+                }
+                
+                self.selectedExerciseId = nil
+                self.selectBarButton.enabled = false
+            
+                if self.selectedCategory == .Barbell {
+                    self.barbellTypePicker.userInteractionEnabled = true
+                } else {
+                    self.barbellTypePicker.selectRow(0, inComponent: 0, animated: false)
+                    self.barbellTypePicker.userInteractionEnabled = false
+                }
+                
+                self.exerciseTable.reloadData()
+            }
+        } else {
+            if let currentExercises = self.currentExercises {
+                self.selectBarButton.enabled = true
+                self.selectedExerciseId = currentExercises[indexPath.row].id
+            }
+        }
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.barbellTypes.count+1
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        var result = ""
+        
+        if row == 0 {
+            result = "- Not selected -"
+        } else {
+            result = self.barbellTypes[row-1].description
+        }
+        
+        return result
+    }
+    
+    @IBAction func select() {
+        if let selectedExerciseId = self.selectedExerciseId {
+            self.exerciseSet.exerciseId = selectedExerciseId
+            self.exerciseSet.barbellType = nil
+            
+            if self.selectedCategory == .Barbell {
+                let selected = self.barbellTypePicker.selectedRowInComponent(0)
+                if selected > 0 {
+                    self.exerciseSet.barbellType = self.barbellTypes[selected-1]
+                }
+            }
+            
+            self.dismissViewControllerAnimated(false, completion: nil)
+        }
     }
 
     @IBAction func close() {
