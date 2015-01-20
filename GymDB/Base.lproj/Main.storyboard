@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Workout List Table View Controller-->
+        <!--Workout list-->
         <scene sceneID="g1X-ty-DrR">
             <objects>
                 <tableViewController id="wS1-nM-d9y" customClass="WorkoutListTableViewController" customModule="GymDB" customModuleProvider="target" sceneMemberID="viewController">
@@ -44,7 +44,7 @@
                             <outlet property="delegate" destination="wS1-nM-d9y" id="vAW-M5-7cA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="mqt-Py-58R"/>
+                    <navigationItem key="navigationItem" title="Workout list" id="mqt-Py-58R"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gm6-de-Zhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
