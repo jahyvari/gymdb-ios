@@ -76,6 +76,12 @@ class WorkoutViewController: UIViewController {
             self.uiInit = true
         }
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.dataToCache()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -108,12 +114,44 @@ class WorkoutViewController: UIViewController {
         return result
     }
     
+    func dataToCache() {
+        if WorkoutCache.workout != nil {
+            WorkoutCache.workout!.extratext = self.extratextText.text
+            
+            let selected = self.locationPickerView.selectedRowInComponent(0)
+            if selected == 0 {
+                WorkoutCache.workout!.locationHashId = nil
+            } else {
+                var i = 1
+                for (key,value) in self.locations {
+                    if i++ == selected {
+                        WorkoutCache.workout!.locationHashId = key
+                        break
+                    }
+                }
+            }
+            
+            let locationText = self.newLocationText.text
+            if locationText != "" {
+                WorkoutCache.workout!.locationText = locationText
+            } else {
+                WorkoutCache.workout!.locationText = nil
+            }
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            
+            WorkoutCache.workout!.startTime = dateFormatter.stringFromDate(self.startTimeDatePicker.date)
+            WorkoutCache.workout!.endTime   = dateFormatter.stringFromDate(self.endTimeDatePicker.date)
+        }
+    }
+    
     func setViewUI() {
         if let workout = WorkoutCache.workout {
             self.extratextText.text = workout.extratext
             
             if let locationHashId = workout.locationHashId {
-                var i = 0
+                var i = 1
                 
                 for (key,value) in self.locations {
                     if key == locationHashId {
@@ -134,5 +172,27 @@ class WorkoutViewController: UIViewController {
     
     @IBAction func close() {
         self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    @IBAction func save() {
+        let alert = UIAlertController(title: "Saving data...", message: nil, preferredStyle: .Alert)
+        self.presentViewController(alert, animated: false, completion: nil)
+        
+        self.dataToCache()
+        
+        if WorkoutCache.workout != nil {
+            var apiResponse: GymDBAPIResponse?
+            if WorkoutCache.workout!.save(&apiResponse) {
+                alert.title = "Workout saved!"
+            } else {
+                alert.view.tintColor = UIColor.redColor()
+                alert.title = apiResponse!.text
+            }
+        } else {
+            alert.view.tintColor = UIColor.redColor()
+            alert.title = "Workout cache is empty!"
+        }
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
     }
 }

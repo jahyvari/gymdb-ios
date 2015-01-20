@@ -85,7 +85,7 @@ class WorkoutExercise: WorkoutProtocol {
             "gear_suit":            String(self.gearSuit),
             "gear_wrist_straps":    String(self.gearWristStraps),
             "gear_wrist_wraps":     String(self.gearWristWraps),
-            "sets":                 [[String: AnyObject]]()
+            "sets":                 sets
         ]
         
         if let extratext = self.extratext {

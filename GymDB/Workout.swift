@@ -11,6 +11,7 @@ import Foundation
 class Workout: WorkoutProtocol {
     var hashId:                 String?
     var locationHashId:         String?
+    var locationText:           String?
     var trainingProgramHashId:  String?
     var templateHashId:         String?
     var extratext:              String
@@ -64,7 +65,20 @@ class Workout: WorkoutProtocol {
     }
     
     func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
-        return false
+        var result = false
+        
+        let json = self.toJSONObject()
+        
+        GymDBAPI.postRequest("Workout", functionName: "save", data: json)
+        
+        apiResponse = GymDBAPI.lastAPIResponse!
+        
+        if (apiResponse!.code == 0) {
+            self.hashId = apiResponse!.data as? String
+            result = true
+        }
+        
+        return result
     }
     
     func toJSONObject() -> [String : AnyObject] {
@@ -96,6 +110,10 @@ class Workout: WorkoutProtocol {
         
         if let locationHashId = self.locationHashId {
             json["locationhashid"] = locationHashId
+        }
+        
+        if let locationText = self.locationText {
+            json["locationtext"] = locationText
         }
         
         if let trainingProgramHashId = self.trainingProgramHashId {

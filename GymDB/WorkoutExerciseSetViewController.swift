@@ -145,7 +145,7 @@ class WorkoutExerciseSetViewController: UIViewController {
         
         var weight = self.exerciseSet.weightKG
         if self.exercise.unit == .LB {
-            var weight = self.exerciseSet.weightLB
+            weight = self.exerciseSet.weightLB
         }
         
         self.weightUnitLabel.text = "("+self.exercise.unit.description+")"

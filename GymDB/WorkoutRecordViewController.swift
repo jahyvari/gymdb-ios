@@ -11,6 +11,8 @@ import UIKit
 class WorkoutRecordViewController: UIViewController {
     @IBOutlet weak var recordTextView: UITextView!
     
+    var uiInit = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,13 +25,15 @@ class WorkoutRecordViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // Set UI
-        
-        if let workout = WorkoutCache.workout {
-            if let records = workout.records {
-                if records.count > 0 {
-                    self.recordTextView.text = records[0].record
+        if !self.uiInit {
+            if let workout = WorkoutCache.workout {
+                if let records = workout.records {
+                    if records.count > 0 {
+                        self.recordTextView.text = records[0].record
+                    }
                 }
             }
+            self.uiInit = true
         }
     }
 
@@ -38,7 +42,26 @@ class WorkoutRecordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func close() {
-        self.dismissViewControllerAnimated(false, completion: nil)
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.dataToCache()
+    }
+    
+    func dataToCache() {
+        if WorkoutCache.workout != nil {
+            let recordText = self.recordTextView.text
+            if recordText != "" {
+                let record = WorkoutRecord(record: recordText)
+                
+                if WorkoutCache.workout!.records == nil {
+                    WorkoutCache.workout!.records = [WorkoutRecord](count: 1, repeatedValue: record)
+                } else {
+                    WorkoutCache.workout!.records![0] = record
+                }
+            } else {
+                WorkoutCache.workout!.records = nil
+            }
+        }
     }
 }

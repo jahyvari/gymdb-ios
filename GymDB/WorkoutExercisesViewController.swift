@@ -65,6 +65,10 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             WorkoutCache.workout!.exercises!.removeAtIndex(indexPath.row)
             
+            if WorkoutCache.workout!.exercises!.count == 0 {
+                WorkoutCache.workout!.exercises = nil
+            }
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             tableView.reloadData()
         })
@@ -101,10 +105,6 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         viewController.exerciseIndex = exerciseIndex
         
         self.presentViewController(viewController, animated: false, completion: nil)
-    }
-    
-    @IBAction func close() {
-        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     @IBAction func edit() {

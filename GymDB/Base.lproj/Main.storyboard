@@ -176,7 +176,11 @@
                                                 <action selector="close" destination="1xv-Lc-pQA" id="GOq-ld-Phc"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="4eH-SD-lu0"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="4eH-SD-lu0">
+                                            <connections>
+                                                <action selector="save" destination="1xv-Lc-pQA" id="8LS-02-Fi6"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -504,13 +508,7 @@
                             <navigationBar opaque="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uz8-Uc-z6n">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Notes" id="zkr-II-T6Y">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="762-ck-dou">
-                                            <connections>
-                                                <action selector="close" destination="Ec6-10-9u7" id="GY3-Eh-dQ8"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Notes" id="zkr-II-T6Y"/>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7D-XG-wI9">
@@ -1154,13 +1152,7 @@
                             <navigationBar opaque="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDI-Hf-nCQ">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Exercises" id="gHV-gs-PlA">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="TBo-av-q24">
-                                            <connections>
-                                                <action selector="close" destination="K4N-Xn-d43" id="UYY-Oi-cJg"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Exercises" id="gHV-gs-PlA"/>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MPn-ex-Yse">
