@@ -37,6 +37,7 @@
 		F46BA80E1A481C07003D7C8E /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BA80D1A481C07003D7C8E /* Enums.swift */; };
 		F49B13F21A652E36001CC000 /* WorkoutExerciseSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B13F11A652E36001CC000 /* WorkoutExerciseSetViewController.swift */; };
 		F4C7D5461A48752B0037510D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C7D5451A48752B0037510D /* Workout.swift */; };
+		F4D28A211A6E734B00262A8D /* UnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D28A201A6E734B00262A8D /* UnitConverter.swift */; };
 		F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */; };
 		F4FF5BFE1A5A9EBD00A59967 /* WorkoutRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF5BFD1A5A9EBD00A59967 /* WorkoutRecordViewController.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		F46BA80D1A481C07003D7C8E /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F49B13F11A652E36001CC000 /* WorkoutExerciseSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseSetViewController.swift; sourceTree = "<group>"; };
 		F4C7D5451A48752B0037510D /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		F4D28A201A6E734B00262A8D /* UnitConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitConverter.swift; sourceTree = "<group>"; };
 		F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
 		F4FF5BFD1A5A9EBD00A59967 /* WorkoutRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutRecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 				F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */,
 				F43BFC041A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift */,
 				F43BFC021A694854006EA0D7 /* SelectExerciseViewController.swift */,
+				F4D28A201A6E734B00262A8D /* UnitConverter.swift */,
 				F46AB9E11A540ED2001EF14B /* User.swift */,
 				F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */,
 				F43D8B8A1A6D7F6A00E84026 /* UserCache.swift */,
@@ -309,6 +312,7 @@
 				F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */,
 				F46509841A5EBCCD0078C1DA /* WorkoutExerciseTableViewCell.swift in Sources */,
 				F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */,
+				F4D28A211A6E734B00262A8D /* UnitConverter.swift in Sources */,
 				F46169371A5FDF3100573444 /* Exercise.swift in Sources */,
 				F4271EF21A5FE7F500FE061A /* ExerciseCache.swift in Sources */,
 				F49B13F21A652E36001CC000 /* WorkoutExerciseSetViewController.swift in Sources */,

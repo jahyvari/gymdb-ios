@@ -148,6 +148,8 @@ class WorkoutExerciseSetViewController: UIViewController {
             var weight = self.exerciseSet.weightLB
         }
         
+        self.weightUnitLabel.text = "("+self.exercise.unit.description+")"
+        
         self.repsText.text      = String(self.exerciseSet.repetitions)
         self.weightText.text    = NSString(format: "%.2f", weight)
         
@@ -232,9 +234,16 @@ class WorkoutExerciseSetViewController: UIViewController {
         
         if save {
             self.exerciseSet.repetitions        = NSNumberFormatter().numberFromString(self.repsText.text)!.unsignedShortValue
-            self.exerciseSet.weightKG           = NSNumberFormatter().numberFromString(self.weightText.text)!.floatValue
-            self.exerciseSet.weightLB           = self.exerciseSet.weightKG
             self.exerciseSet.repetitionsType    = self.repType[self.repTypePicker.selectedRowInComponent(0)]
+            
+            let weight = NSNumberFormatter().numberFromString(self.weightText.text)!.floatValue
+            if self.exercise.unit == .KG {
+                self.exerciseSet.weightKG = weight
+                self.exerciseSet.weightLB = UnitConverter.kgToLB(weight)
+            } else {
+                self.exerciseSet.weightKG = UnitConverter.lbToKG(weight)
+                self.exerciseSet.weightLB = weight
+            }
             
             var selected = self.restPicker.selectedRowInComponent(0)
             if selected == 0 {

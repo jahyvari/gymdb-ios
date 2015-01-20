@@ -155,7 +155,7 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
                     weight = set.weightLB
                 }
                     
-                cell.weightLabel.text = NSString(format: "%.2f", weight)
+                cell.weightLabel.text = NSString(format: "%.2f", weight)+" ("+self.exercise.unit.description+")"
             }
         }
         
@@ -283,9 +283,7 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
-    @IBAction func done() {
-        self.exercise.unit = Unit.fromString(self.unitSegmented.titleForSegmentAtIndex(self.unitSegmented.selectedSegmentIndex)!.lowercaseString)!
-        
+    @IBAction func done() {        
         if self.extratextText.text != "" {
             self.exercise.extratext = self.extratextText.text
         } else {
@@ -343,5 +341,12 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
             
             self.setsTableView.setEditing(true, animated: false)
         }
+    }
+    
+    @IBAction func unitValueChanged() {
+        let unit = Unit.fromString(self.unitSegmented.titleForSegmentAtIndex(self.unitSegmented.selectedSegmentIndex)!.lowercaseString)!
+        
+        self.exercise.unit = unit
+        self.setsTableView.reloadData()
     }
 }

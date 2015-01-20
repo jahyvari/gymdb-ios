@@ -635,7 +635,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2TS-ja-NfA">
-                                                                    <rect key="frame" x="82" y="30" width="60" height="21"/>
+                                                                    <rect key="frame" x="82" y="31" width="100" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -691,6 +691,9 @@
                                                     <segment title="KG"/>
                                                     <segment title="LB"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="unitValueChanged" destination="BJF-LJ-8NH" eventType="valueChanged" id="Lcx-r5-MfB"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gear" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwm-l6-s9K">
                                                 <rect key="frame" x="8" y="339" width="38" height="21"/>
@@ -798,7 +801,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFy-Pp-TL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-139" y="3369"/>
+            <point key="canvasLocation" x="-139" y="3368"/>
         </scene>
         <!--Select Exercise View Controller-->
         <scene sceneID="PeS-3z-5Li">
@@ -1053,11 +1056,6 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rmd-vK-cTn">
-                                                <rect key="frame" x="8" y="104" width="120" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fJd-Qe-LuQ">
                                                 <rect key="frame" x="141" y="104" width="120" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1093,6 +1091,11 @@
                                                     <outlet property="delegate" destination="Pag-iS-C0G" id="WuT-JG-uSr"/>
                                                 </connections>
                                             </pickerView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rmd-vK-cTn">
+                                                <rect key="frame" x="8" y="104" width="120" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
