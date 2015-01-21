@@ -69,7 +69,6 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
                 WorkoutCache.workout!.exercises = nil
             }
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             tableView.reloadData()
         })
         

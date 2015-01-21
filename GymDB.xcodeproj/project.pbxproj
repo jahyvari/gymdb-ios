@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F4271EF21A5FE7F500FE061A /* ExerciseCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4271EF11A5FE7F500FE061A /* ExerciseCache.swift */; };
+		F430A9D91A6FABD100B88050 /* WorkoutSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430A9D81A6FABD100B88050 /* WorkoutSearchResponse.swift */; };
 		F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5121A5C0A43003FE376 /* WorkoutCache.swift */; };
 		F437B5171A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */; };
 		F437B5191A5C138D003FE376 /* WorkoutExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		F4271EF11A5FE7F500FE061A /* ExerciseCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCache.swift; sourceTree = "<group>"; };
+		F430A9D81A6FABD100B88050 /* WorkoutSearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSearchResponse.swift; sourceTree = "<group>"; };
 		F437B5121A5C0A43003FE376 /* WorkoutCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutCache.swift; sourceTree = "<group>"; };
 		F437B5161A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		F437B5181A5C138D003FE376 /* WorkoutExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				F45F8B0B1A494CD8008C0A2B /* WorkoutProtocol.swift */,
 				F45F8B0D1A4958F1008C0A2B /* WorkoutRecord.swift */,
 				F4FF5BFD1A5A9EBD00A59967 /* WorkoutRecordViewController.swift */,
+				F430A9D81A6FABD100B88050 /* WorkoutSearchResponse.swift */,
 				F44F1A2D1A56A656005501EC /* WorkoutViewController.swift */,
 				F46BA7F21A481B0D003D7C8E /* Images.xcassets */,
 				F46BA7F41A481B0D003D7C8E /* LaunchScreen.xib */,
@@ -321,6 +324,7 @@
 				F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */,
 				F4D28A211A6E734B00262A8D /* UnitConverter.swift in Sources */,
 				F46169371A5FDF3100573444 /* Exercise.swift in Sources */,
+				F430A9D91A6FABD100B88050 /* WorkoutSearchResponse.swift in Sources */,
 				F4271EF21A5FE7F500FE061A /* ExerciseCache.swift in Sources */,
 				F49B13F21A652E36001CC000 /* WorkoutExerciseSetViewController.swift in Sources */,
 				F44F1A2E1A56A656005501EC /* WorkoutViewController.swift in Sources */,

@@ -9,15 +9,33 @@
 import UIKit
 
 class WorkoutListTableViewController: UITableViewController {
+    var searchResult: [WorkoutSearchResponse] = [WorkoutSearchResponse]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        let alert = UIAlertController(title: "Fetching data...", message: nil, preferredStyle: .Alert)
+        self.presentViewController(alert, animated: false, completion: nil)
+        
+        let result = GymDBAPI.workoutSearch(nil, endDate: nil, pos: 0, count: 30)
+        
+        alert.dismissViewControllerAnimated(false, completion: {
+            if result != nil {
+                self.searchResult = result!
+            } else {
+                self.searchResult = [WorkoutSearchResponse]()
+            }
+            
+            self.tableView.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,18 +43,10 @@ class WorkoutListTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var result = 0
+        let result = self.searchResult.count
         
-        if result > 0 {
-            self.navigationItem.rightBarButtonItem?.enabled = true
-        } else {
-            self.navigationItem.rightBarButtonItem?.enabled = false
-        }
+        self.navigationItem.rightBarButtonItem?.enabled = result > 0 ? true : false
         
         return result
     }
@@ -45,13 +55,53 @@ class WorkoutListTableViewController: UITableViewController {
         return true
     }
     
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            let alert = UIAlertController(title: "Deleting in...", message: nil, preferredStyle: .Alert)
+            self.presentViewController(alert, animated: false, completion: nil)
+            
+            let result = GymDBAPI.workoutDelete(self.searchResult[indexPath.row].hashId)
+            
+            if result {
+                alert.dismissViewControllerAnimated(false, completion: {
+                    self.searchResult.removeAtIndex(indexPath.row)
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                })
+            } else {
+                alert.view.tintColor = UIColor.redColor()
+                alert.title = "Delete failed!"
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            }
+        })
+        
+        deleteAction.backgroundColor = UIColor.redColor()
+        
+        return [deleteAction]
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("workoutListCell", forIndexPath: indexPath) as WorkoutListTableViewCell
-
+        
+        cell.extratextLabel.text = self.searchResult[indexPath.row].extratext
+        
+        let startTime = self.searchResult[indexPath.row].startTime
+        cell.dateLabel.text = startTime.substringToIndex(advance(startTime.startIndex, 10))
+        
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showWorkoutViewController" {
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let hashId = self.searchResult[indexPath.row].hashId
+                
+                let tabBarController = segue.destinationViewController as UITabBarController
+                (tabBarController.viewControllers![0] as WorkoutViewController).hashId = hashId
+            }
+        }
     }
 }

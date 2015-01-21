@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="workoutListCell" rowHeight="60" id="GZQ-AD-LLN" customClass="WorkoutListTableViewCell" customModule="GymDB" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="workoutListCell" rowHeight="60" id="GZQ-AD-LLN" customClass="WorkoutListTableViewCell" customModule="GymDB" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GZQ-AD-LLN" id="wA6-Jg-j7S">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -36,6 +36,7 @@
                                 <connections>
                                     <outlet property="dateLabel" destination="gl5-vB-C1b" id="P6K-Yq-731"/>
                                     <outlet property="extratextLabel" destination="gPb-En-zPi" id="XQN-Jc-rMJ"/>
+                                    <segue destination="s1c-xk-2uM" kind="modal" identifier="showWorkoutViewController" animates="NO" id="5Xt-0g-RZD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -48,7 +49,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gm6-de-Zhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-540" y="733"/>
+            <point key="canvasLocation" x="-534" y="735"/>
         </scene>
         <!--Main-->
         <scene sceneID="VgW-fR-Quf">
@@ -1318,4 +1319,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Xt-0g-RZD"/>
+    </inferredMetricsTieBreakers>
 </document>

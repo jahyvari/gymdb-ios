@@ -285,6 +285,18 @@ class GymDBAPI {
         return result
     }
     
+    class func workoutDelete(hashId: String) -> Bool {
+        var result = false
+        
+        self.postRequest("Workout", functionName: "delete", data: ["hashid": hashId])
+        
+        if self.lastAPIResponse!.code == 0 {
+            result = true
+        }
+        
+        return result
+    }
+    
     class func workoutLoad(hashId: String) -> Workout? {
         var result: Workout?
         
@@ -292,6 +304,62 @@ class GymDBAPI {
         
         if self.lastAPIResponse!.code == 0 {
             result = Workout(data: self.lastAPIResponse!.data!)
+        }
+        
+        return result
+    }
+    
+    class func workoutSearch(startDate: String?, endDate: String?, pos: UInt?, count: UInt?) -> [WorkoutSearchResponse]? {
+        var result: [WorkoutSearchResponse]?
+        var data: [String: String] = [:]
+        
+        if startDate != nil {
+            data["startdate"] = startDate!
+        }
+        if endDate != nil {
+            data["endDate"] = endDate!
+        }
+        if pos != nil {
+            data["pos"] = String(pos!)
+        }
+        if count != nil {
+            data["count"] = String(count!)
+        }
+        
+        self.postRequest("Workout", functionName: "search", data: data.count > 0 ? data: nil)
+        
+        if self.lastAPIResponse!.code == 0 {
+            if let data = self.lastAPIResponse!.data as? [String: AnyObject] {
+                if let list = data["list"] as? [[String: AnyObject]] {
+                    for value in list {
+                        if result == nil {
+                            result = [WorkoutSearchResponse]()
+                        }
+                        
+                        let hashId      = value["hashid"] as String
+                        let extratext   = value["extratext"] as String
+                        let startTime   = value["starttime"] as String
+                        let durationMin = (value["duration_min"] as String).toInt()!
+                        
+                        var exercises: UInt?
+                        if let _exercises = value["duration_min"] as? String {
+                            exercises = UInt(_exercises.toInt()!)
+                        }
+                        
+                        var sets: UInt?
+                        if let _sets = value["sets"] as? String {
+                            sets = UInt(_sets.toInt()!)
+                        }
+                        
+                        var repetitions: UInt?
+                        if let _repetitions = value["repetitions"] as? String {
+                            repetitions = UInt(_repetitions.toInt()!)
+                        }
+                        
+                        result!.append(WorkoutSearchResponse(hashId: hashId, extratext: extratext, startTime: startTime, durationMin: durationMin, exercises: exercises, sets: sets, repetitions: repetitions))
+                    }
+                }
+            }
         }
         
         return result
