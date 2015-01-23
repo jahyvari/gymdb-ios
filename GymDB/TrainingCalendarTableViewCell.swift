@@ -11,6 +11,8 @@ import UIKit
 class TrainingCalendarTableViewCell: UITableViewCell {
     @IBOutlet weak var trainingProgramLabel:    UILabel!
     @IBOutlet weak var templateLabel:           UILabel!
+    @IBOutlet weak var workoutDateLabel:        UILabel!
+    @IBOutlet weak var todayLabel:              UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

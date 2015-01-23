@@ -273,6 +273,48 @@ class GymDBAPI {
         return result
     }
     
+    class func trainingProgramSchedule(startDate: String?, endDate: String?, pos: UInt?, count: UInt?) -> [TrainingProgramScheduleResponse]? {
+        var result: [TrainingProgramScheduleResponse]?
+        var data: [String: String] = [:]
+        
+        if startDate != nil {
+            data["startdate"] = startDate!
+        }
+        if endDate != nil {
+            data["enddate"] = endDate!
+        }
+        if pos != nil {
+            data["pos"] = String(pos!)
+        }
+        if count != nil {
+            data["count"] = String(count!)
+        }
+        
+        self.postRequest("TrainingProgram", functionName: "schedule", data: data.count > 0 ? data: nil)
+        
+        if self.lastAPIResponse!.code == 0 {
+            if let data = self.lastAPIResponse!.data as? [String: AnyObject] {
+                if let list = data["list"] as? [[String: AnyObject]] {
+                    for value in list {
+                        if result == nil {
+                            result = [TrainingProgramScheduleResponse]()
+                        }
+                        
+                        let hashId              = value["hashid"] as String
+                        let programName         = value["program_name"] as String
+                        let templateHashId      = value["templatehashid"] as String
+                        let templateExtratext   = value["template_extratext"] as String
+                        let workoutDate         = value["workout_date"] as String
+                        
+                        result!.append(TrainingProgramScheduleResponse(hashId: hashId, programName: programName, templateHashId: templateHashId, templateExtratext: templateExtratext, workoutDate: workoutDate))
+                    }
+                }
+            }
+        }
+        
+        return result
+    }
+    
     class func userLoad() -> User? {
         var result: User?
         
@@ -317,7 +359,7 @@ class GymDBAPI {
             data["startdate"] = startDate!
         }
         if endDate != nil {
-            data["endDate"] = endDate!
+            data["enddate"] = endDate!
         }
         if pos != nil {
             data["pos"] = String(pos!)
