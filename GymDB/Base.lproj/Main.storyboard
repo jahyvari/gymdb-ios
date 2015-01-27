@@ -620,7 +620,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="K8Y-yH-1ua">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="s1c-xk-2uM" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="workoutTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="s1c-xk-2uM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="OMY-sp-zZm"/>
                     <nil key="simulatedBottomBarMetrics"/>

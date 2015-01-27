@@ -65,6 +65,38 @@ class WorkoutExercise: WorkoutProtocol {
         }
     }
     
+    required init(templateData: AnyObject) {
+        if let unit = Unit.fromString(templateData["unit"] as String) {
+            self.unit = unit
+        } else {
+            self.unit = .KG
+        }
+        
+        self.extratext = templateData["extratext"] as? String
+        
+        if let special = templateData["special"] as? String {
+            self.special = Special.fromString(special)
+        }
+        
+        self.gearBelt           = UInt8((templateData["gear_belt"] as String).toInt()!)
+        self.gearKneeWraps      = UInt8((templateData["gear_knee_wraps"] as String).toInt()!)
+        self.gearShirt          = UInt8((templateData["gear_shirt"] as String).toInt()!)
+        self.gearSuit           = UInt8((templateData["gear_suit"] as String).toInt()!)
+        self.gearWristStraps    = UInt8((templateData["gear_wrist_straps"] as String).toInt()!)
+        self.gearWristWraps     = UInt8((templateData["gear_wrist_wraps"] as String).toInt()!)
+        
+        if let sets = templateData["sets"] as? [AnyObject] {
+            var i = 0
+            for set in sets {
+                if i == 0 {
+                    self.sets = [WorkoutExerciseSet]()
+                }
+                self.sets?.append(WorkoutExerciseSet(templateData: set))
+                i++
+            }
+        }
+    }
+    
     func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
         return false
     }

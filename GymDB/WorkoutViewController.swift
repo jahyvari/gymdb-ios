@@ -15,11 +15,13 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     @IBOutlet weak var endTimeDatePicker:   UIDatePicker!
     
-    var hashId:         String?
-    var locationFetch:  Bool                = false
-    var locations:      [String: String]    = [:]
-    var uiInit:         Bool                = false
-    var workoutInit:    Bool                = false
+    var hashId:                 String?
+    var templateHashId:         String?
+    var trainingProgramHashId:  String?
+    var locationFetch:          Bool                = false
+    var locations:              [String: String]    = [:]
+    var uiInit:                 Bool                = false
+    var workoutInit:            Bool                = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +42,17 @@ class WorkoutViewController: UIViewController {
         }
         
         if !self.workoutInit {
-            if self.hashId != nil {
-                if let workout = GymDBAPI.workoutLoad(self.hashId!) {
-                    WorkoutCache.workout = workout
+            if self.hashId != nil || self.templateHashId != nil {
+                var workout: Workout?
+                
+                if self.hashId != nil {
+                    workout = GymDBAPI.workoutLoad(self.hashId!)
+                } else {
+                    workout = GymDBAPI.workoutLoadFromTemplate(self.templateHashId!)
+                }
+                
+                if workout != nil {
+                    WorkoutCache.workout = workout!
                 } else {
                     let alert = UIAlertController(title: "Cannot load workout!", message: nil, preferredStyle: .Alert)
                     
@@ -55,6 +65,7 @@ class WorkoutViewController: UIViewController {
                 }
                 
                 self.hashId = nil
+                self.templateHashId = nil
             } else {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -64,6 +75,8 @@ class WorkoutViewController: UIViewController {
                 
                 WorkoutCache.workout = Workout(hashId: nil, locationHashId: nil, trainingProgramHashId: nil, templateHashId: nil, extratext: "", startTime: dateFormatter.stringFromDate(now), endTime: dateFormatter.stringFromDate(plusOneHour), exercises: nil, records: nil)
             }
+            
+            WorkoutCache.workout!.trainingProgramHashId = self.trainingProgramHashId
             self.workoutInit = true
         }
         

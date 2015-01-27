@@ -64,6 +64,42 @@ class Workout: WorkoutProtocol {
         }
     }
     
+    required init(templateData: AnyObject) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let now = NSDate()
+        let plusOneHour = NSDate.dateByAddingTimeInterval(NSDate())(60*60)
+        
+        self.templateHashId = templateData["hashid"] as? String
+        self.extratext      = templateData["extratext"] as String
+        self.startTime      = dateFormatter.stringFromDate(now)
+        self.endTime        = dateFormatter.stringFromDate(plusOneHour)
+        
+        var i = 0
+        
+        if let exercises = templateData["exercises"] as? [AnyObject] {
+            for exercise in exercises {
+                if i == 0 {
+                    self.exercises = [WorkoutExercise]()
+                }
+                self.exercises?.append(WorkoutExercise(templateData: exercise))
+                i++
+            }
+        }
+        
+        if let records = templateData["records"] as? [AnyObject] {
+            i = 0
+            for record in records {
+                if i == 0 {
+                    self.records = [WorkoutRecord]()
+                }
+                self.records?.append(WorkoutRecord(templateData: record))
+                i++
+            }
+        }
+    }
+    
     func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
         var result = false
         

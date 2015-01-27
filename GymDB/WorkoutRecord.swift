@@ -19,6 +19,10 @@ class WorkoutRecord: WorkoutProtocol {
         self.record = data["record"] as String
     }
     
+    required init(templateData: AnyObject) {
+        self.record = templateData["record"] as String
+    }
+    
     func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
         return false
     }

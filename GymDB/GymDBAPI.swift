@@ -351,6 +351,18 @@ class GymDBAPI {
         return result
     }
     
+    class func workoutLoadFromTemplate(templateHashId: String) -> Workout? {
+        var result: Workout?
+        
+        self.postRequest("Template", functionName: "load", data: ["hashid": templateHashId])
+        
+        if self.lastAPIResponse!.code == 0 {
+            result = Workout(templateData: self.lastAPIResponse!.data!)
+        }
+        
+        return result
+    }
+    
     class func workoutSearch(startDate: String?, endDate: String?, pos: UInt?, count: UInt?) -> [WorkoutSearchResponse]? {
         var result: [WorkoutSearchResponse]?
         var data: [String: String] = [:]

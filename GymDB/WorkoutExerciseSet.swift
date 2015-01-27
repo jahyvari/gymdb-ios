@@ -48,6 +48,38 @@ class WorkoutExerciseSet: WorkoutProtocol {
         }
     }
     
+    required init(templateData: AnyObject) {
+        self.exerciseId     = UInt((templateData["exerciseid"] as String).toInt()!)
+        self.repetitions    = UInt16((templateData["repetitions"] as String).toInt()!)
+        self.weightKG       = NSNumberFormatter().numberFromString(templateData["weight_kg"] as String)!.floatValue
+        self.weightLB       = NSNumberFormatter().numberFromString(templateData["weight_lb"] as String)!.floatValue
+        
+        if let repetitionsEnd = (templateData["repetitions_end"] as? String)?.toInt() {
+            self.repetitions = UInt16(repetitionsEnd)
+        }
+        
+        if let oneRepMaxPercent = templateData["onerepmax_percent"] as? String {
+            if let oneRepMaxFormatted = NSNumberFormatter().numberFromString(oneRepMaxPercent) {
+                self.weightKG = self.weightKG * (oneRepMaxFormatted.floatValue / 100)
+                self.weightLB = self.weightLB * (oneRepMaxFormatted.floatValue / 100)
+            }
+        }
+        
+        if let repetitionsType = RepetionsType.fromString(templateData["repetitions_type"] as String) {
+            self.repetitionsType = repetitionsType
+        } else {
+            self.repetitionsType = .Normal
+        }
+        
+        if let barbellType = templateData["barbell_type"] as? String {
+            self.barbellType = BarbellType.fromString(barbellType)
+        }
+        
+        if let restIntervalSec = templateData["rest_interval_sec"] as? String {
+            self.restIntervalSec = UInt16(restIntervalSec.toInt()!)
+        }
+    }
+    
     func save(inout apiResponse: GymDBAPIResponse?) -> Bool {
         return false
     }
