@@ -31,55 +31,22 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
         let alert = UIAlertController(title: "Loading data...", message: nil, preferredStyle: .Alert)
         self.presentViewController(alert, animated: false, completion: nil)
         
-        var timezones   = GymDBAPI.timeZoneGetList()
-        var user        = GymDBAPI.userLoad()
+        let timezones   = GymDBAPI.timeZoneGetList()
+        let user        = GymDBAPI.userLoad()
         
-        alert.dismissViewControllerAnimated(false, completion: {
-            if user != nil {
-                self.user       = user
-                UserCache.user  = user
-                
-                self.emailText.text = self.user!.email
-                
-                if let firstname = self.user!.firstname {
-                    self.firstnameText.text = firstname
-                }
-                
-                if let lastname = self.user!.lastname {
-                    self.lastnameText.text = lastname
-                }
-                
-                for var i = 0; i < self.timeoutSegmented.numberOfSegments; i++ {
-                    if self.user!.timeout_min == UInt(self.timeoutSegmented.titleForSegmentAtIndex(i)!.toInt()!) {
-                        self.timeoutSegmented.selectedSegmentIndex = i
-                        break
-                    }
-                }
-                
-                for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
-                    if self.user!.default_unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
-                        self.unitSegmented.selectedSegmentIndex = i
-                        break
-                    }
-                }
-            }
-            
-            if timezones != nil {
-                self.timezones = timezones!
-                self.timeZonePickerView.reloadAllComponents()
-                
-                if self.user != nil {
-                    var i = 0
-                    for (key,value) in self.timezones {
-                        if key == self.user!.timezoneid {
-                            self.timeZonePickerView.selectRow(i, inComponent: 0, animated: false)
-                            break
-                        }
-                        i++
-                    }
-                }
-            }
-        })
+        if user != nil {
+            self.user       = user
+            UserCache.user  = user
+        }
+        
+        if timezones != nil {
+            self.timezones = timezones!
+            self.timeZonePickerView.reloadAllComponents()
+        }
+        
+        self.setViewUI()
+        
+        alert.dismissViewControllerAnimated(false, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,6 +74,43 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
         }
         
         return result
+    }
+    
+    func setViewUI() {
+        if self.user != nil {
+            self.emailText.text = self.user!.email
+            
+            if let firstname = self.user!.firstname {
+                self.firstnameText.text = firstname
+            }
+            
+            if let lastname = self.user!.lastname {
+                self.lastnameText.text = lastname
+            }
+            
+            for var i = 0; i < self.timeoutSegmented.numberOfSegments; i++ {
+                if self.user!.timeout_min == UInt(self.timeoutSegmented.titleForSegmentAtIndex(i)!.toInt()!) {
+                    self.timeoutSegmented.selectedSegmentIndex = i
+                    break
+                }
+            }
+            
+            for var i = 0; i < self.unitSegmented.numberOfSegments; i++ {
+                if self.user!.default_unit.rawValue == self.unitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
+                    self.unitSegmented.selectedSegmentIndex = i
+                    break
+                }
+            }
+            
+            var i = 0
+            for (key,value) in self.timezones {
+                if key == self.user!.timezoneid {
+                    self.timeZonePickerView.selectRow(i, inComponent: 0, animated: false)
+                    break
+                }
+                i++
+            }
+        }
     }
     
     @IBAction func save() {

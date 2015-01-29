@@ -27,15 +27,15 @@ class WorkoutListTableViewController: UITableViewController {
         
         let result = GymDBAPI.workoutSearch(nil, endDate: nil, pos: 0, count: 30)
         
-        alert.dismissViewControllerAnimated(false, completion: {
-            if result != nil {
-                self.searchResult = result!
-            } else {
-                self.searchResult = [WorkoutSearchResponse]()
-            }
-            
-            self.tableView.reloadData()
-        })
+        if result != nil {
+            self.searchResult = result!
+        } else {
+            self.searchResult = [WorkoutSearchResponse]()
+        }
+        
+        self.tableView.reloadData()
+        
+        alert.dismissViewControllerAnimated(false, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
