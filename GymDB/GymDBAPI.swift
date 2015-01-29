@@ -255,6 +255,18 @@ class GymDBAPI {
         return result
     }
     
+    class func templateLoad(hashId: String) -> Template? {
+        var result: Template?
+        
+        self.postRequest("Template", functionName: "load", data: ["hashid": hashId])
+        
+        if self.lastAPIResponse!.code == 0 {
+            result = Template(data: self.lastAPIResponse!.data!)
+        }
+        
+        return result
+    }
+    
     class func timeZoneGetList() -> [UInt: String]? {
         var result: [UInt: String]?
         

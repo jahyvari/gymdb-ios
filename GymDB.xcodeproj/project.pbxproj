@@ -42,6 +42,11 @@
 		F47CFCC81A6EC3F100930E34 /* WorkoutListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CFCC71A6EC3F100930E34 /* WorkoutListTableViewController.swift */; };
 		F47CFCCA1A6EC60100930E34 /* WorkoutListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CFCC91A6EC60100930E34 /* WorkoutListTableViewCell.swift */; };
 		F49B13F21A652E36001CC000 /* WorkoutExerciseSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B13F11A652E36001CC000 /* WorkoutExerciseSetViewController.swift */; };
+		F4BA162A1A7A5D44006235A5 /* TemplateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA16291A7A5D44006235A5 /* TemplateProtocol.swift */; };
+		F4BA162C1A7A5D80006235A5 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA162B1A7A5D80006235A5 /* Template.swift */; };
+		F4BA162E1A7A5ED1006235A5 /* TemplateRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA162D1A7A5ED1006235A5 /* TemplateRecord.swift */; };
+		F4BA16321A7A5F26006235A5 /* TemplateExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA16311A7A5F26006235A5 /* TemplateExercise.swift */; };
+		F4BA16341A7A6029006235A5 /* TemplateExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA16331A7A6029006235A5 /* TemplateExerciseSet.swift */; };
 		F4C7D5461A48752B0037510D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C7D5451A48752B0037510D /* Workout.swift */; };
 		F4D28A211A6E734B00262A8D /* UnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D28A201A6E734B00262A8D /* UnitConverter.swift */; };
 		F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */; };
@@ -98,6 +103,11 @@
 		F47CFCC71A6EC3F100930E34 /* WorkoutListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutListTableViewController.swift; sourceTree = "<group>"; };
 		F47CFCC91A6EC60100930E34 /* WorkoutListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutListTableViewCell.swift; sourceTree = "<group>"; };
 		F49B13F11A652E36001CC000 /* WorkoutExerciseSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseSetViewController.swift; sourceTree = "<group>"; };
+		F4BA16291A7A5D44006235A5 /* TemplateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateProtocol.swift; sourceTree = "<group>"; };
+		F4BA162B1A7A5D80006235A5 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		F4BA162D1A7A5ED1006235A5 /* TemplateRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateRecord.swift; sourceTree = "<group>"; };
+		F4BA16311A7A5F26006235A5 /* TemplateExercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateExercise.swift; sourceTree = "<group>"; };
+		F4BA16331A7A6029006235A5 /* TemplateExerciseSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateExerciseSet.swift; sourceTree = "<group>"; };
 		F4C7D5451A48752B0037510D /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		F4D28A201A6E734B00262A8D /* UnitConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitConverter.swift; sourceTree = "<group>"; };
 		F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +164,11 @@
 				F46BA7EB1A481B0D003D7C8E /* MasterViewController.swift */,
 				F43BFC041A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift */,
 				F43BFC021A694854006EA0D7 /* SelectExerciseViewController.swift */,
+				F4BA162B1A7A5D80006235A5 /* Template.swift */,
+				F4BA16311A7A5F26006235A5 /* TemplateExercise.swift */,
+				F4BA16331A7A6029006235A5 /* TemplateExerciseSet.swift */,
+				F4BA16291A7A5D44006235A5 /* TemplateProtocol.swift */,
+				F4BA162D1A7A5ED1006235A5 /* TemplateRecord.swift */,
 				F46A79331A728A6D00B108E5 /* TrainingCalendarTableViewCell.swift */,
 				F46A79311A728A0800B108E5 /* TrainingCalendarTableViewController.swift */,
 				F46A79351A728DF400B108E5 /* TrainingProgramScheduleResponse.swift */,
@@ -323,11 +338,14 @@
 				F4673B6D1A5E94BD002FB4E2 /* WorkoutExerciseViewController.swift in Sources */,
 				F45F8B0C1A494CD8008C0A2B /* WorkoutProtocol.swift in Sources */,
 				F437B5171A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift in Sources */,
+				F4BA16341A7A6029006235A5 /* TemplateExerciseSet.swift in Sources */,
 				F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */,
 				F46AB9E21A540ED2001EF14B /* User.swift in Sources */,
 				F46BA80E1A481C07003D7C8E /* Enums.swift in Sources */,
+				F4BA162A1A7A5D44006235A5 /* TemplateProtocol.swift in Sources */,
 				F46BA80C1A481B4F003D7C8E /* WorkoutExerciseSet.swift in Sources */,
 				F46AB9E01A540EAC001EF14B /* UserProtocol.swift in Sources */,
+				F4BA16321A7A5F26006235A5 /* TemplateExercise.swift in Sources */,
 				F437B5191A5C138D003FE376 /* WorkoutExercisesViewController.swift in Sources */,
 				F45F8B0E1A4958F1008C0A2B /* WorkoutRecord.swift in Sources */,
 				F44866441A515D5C007CF17A /* GymDBAPIResponse.swift in Sources */,
@@ -338,11 +356,13 @@
 				F46A79321A728A0800B108E5 /* TrainingCalendarTableViewController.swift in Sources */,
 				F430A9D91A6FABD100B88050 /* WorkoutSearchResponse.swift in Sources */,
 				F4271EF21A5FE7F500FE061A /* ExerciseCache.swift in Sources */,
+				F4BA162E1A7A5ED1006235A5 /* TemplateRecord.swift in Sources */,
 				F49B13F21A652E36001CC000 /* WorkoutExerciseSetViewController.swift in Sources */,
 				F44F1A2E1A56A656005501EC /* WorkoutViewController.swift in Sources */,
 				F46BA7EA1A481B0D003D7C8E /* AppDelegate.swift in Sources */,
 				F44866401A515AD8007CF17A /* LoginViewController.swift in Sources */,
 				F4FF5BFE1A5A9EBD00A59967 /* WorkoutRecordViewController.swift in Sources */,
+				F4BA162C1A7A5D80006235A5 /* Template.swift in Sources */,
 				F43BFC051A6949C2006EA0D7 /* SelectExerciseTableViewCell.swift in Sources */,
 				F47CFCCA1A6EC60100930E34 /* WorkoutListTableViewCell.swift in Sources */,
 				F46169391A5FE2BF00573444 /* ExerciseCategory.swift in Sources */,
