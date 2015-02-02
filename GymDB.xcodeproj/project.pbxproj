@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F423E2351A7F905E00249FC2 /* TemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423E2341A7F905E00249FC2 /* TemplateViewController.swift */; };
+		F423E2371A7F970D00249FC2 /* TemplateExerciseSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423E2361A7F970D00249FC2 /* TemplateExerciseSetTableViewCell.swift */; };
 		F4271EF21A5FE7F500FE061A /* ExerciseCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4271EF11A5FE7F500FE061A /* ExerciseCache.swift */; };
 		F430A9D91A6FABD100B88050 /* WorkoutSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430A9D81A6FABD100B88050 /* WorkoutSearchResponse.swift */; };
 		F437B5131A5C0A43003FE376 /* WorkoutCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F437B5121A5C0A43003FE376 /* WorkoutCache.swift */; };
@@ -64,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F423E2341A7F905E00249FC2 /* TemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateViewController.swift; sourceTree = "<group>"; };
+		F423E2361A7F970D00249FC2 /* TemplateExerciseSetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateExerciseSetTableViewCell.swift; sourceTree = "<group>"; };
 		F4271EF11A5FE7F500FE061A /* ExerciseCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCache.swift; sourceTree = "<group>"; };
 		F430A9D81A6FABD100B88050 /* WorkoutSearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSearchResponse.swift; sourceTree = "<group>"; };
 		F437B5121A5C0A43003FE376 /* WorkoutCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutCache.swift; sourceTree = "<group>"; };
@@ -167,8 +171,10 @@
 				F4BA162B1A7A5D80006235A5 /* Template.swift */,
 				F4BA16311A7A5F26006235A5 /* TemplateExercise.swift */,
 				F4BA16331A7A6029006235A5 /* TemplateExerciseSet.swift */,
+				F423E2361A7F970D00249FC2 /* TemplateExerciseSetTableViewCell.swift */,
 				F4BA16291A7A5D44006235A5 /* TemplateProtocol.swift */,
 				F4BA162D1A7A5ED1006235A5 /* TemplateRecord.swift */,
+				F423E2341A7F905E00249FC2 /* TemplateViewController.swift */,
 				F46A79331A728A6D00B108E5 /* TrainingCalendarTableViewCell.swift */,
 				F46A79311A728A0800B108E5 /* TrainingCalendarTableViewController.swift */,
 				F46A79351A728DF400B108E5 /* TrainingProgramScheduleResponse.swift */,
@@ -326,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F423E2371A7F970D00249FC2 /* TemplateExerciseSetTableViewCell.swift in Sources */,
 				F44866421A515CA1007CF17A /* GymDBAPI.swift in Sources */,
 				F43D8B8B1A6D7F6A00E84026 /* UserCache.swift in Sources */,
 				F46BA7EC1A481B0D003D7C8E /* MasterViewController.swift in Sources */,
@@ -340,6 +347,7 @@
 				F437B5171A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift in Sources */,
 				F4BA16341A7A6029006235A5 /* TemplateExerciseSet.swift in Sources */,
 				F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */,
+				F423E2351A7F905E00249FC2 /* TemplateViewController.swift in Sources */,
 				F46AB9E21A540ED2001EF14B /* User.swift in Sources */,
 				F46BA80E1A481C07003D7C8E /* Enums.swift in Sources */,
 				F4BA162A1A7A5D44006235A5 /* TemplateProtocol.swift in Sources */,

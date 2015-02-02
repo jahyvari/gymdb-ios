@@ -50,13 +50,9 @@ class WorkoutExerciseSet: WorkoutProtocol {
     
     required init(templateData: AnyObject) {
         self.exerciseId     = UInt((templateData["exerciseid"] as String).toInt()!)
-        self.repetitions    = UInt16((templateData["repetitions"] as String).toInt()!)
+        self.repetitions    = UInt16((templateData["repetitions_end"] as String).toInt()!)
         self.weightKG       = NSNumberFormatter().numberFromString(templateData["weight_kg"] as String)!.floatValue
         self.weightLB       = NSNumberFormatter().numberFromString(templateData["weight_lb"] as String)!.floatValue
-        
-        if let repetitionsEnd = (templateData["repetitions_end"] as? String)?.toInt() {
-            self.repetitions = UInt16(repetitionsEnd)
-        }
         
         if let oneRepMaxPercent = templateData["onerepmax_percent"] as? String {
             if let oneRepMaxFormatted = NSNumberFormatter().numberFromString(oneRepMaxPercent) {

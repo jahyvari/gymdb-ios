@@ -129,6 +129,14 @@ class TrainingCalendarTableViewController: UITableViewController {
             
             self.presentViewController(tabBarController, animated: false, completion: nil)
         }))
+        alert.addAction(UIAlertAction(title: "Show template", style: .Default, handler: {(action: UIAlertAction!) in
+            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("templateViewController") as TemplateViewController
+            let resultRow = self.getResultRow(indexPath)
+            
+            viewController.hashId = resultRow.templateHashId
+            
+            self.presentViewController(viewController, animated: false, completion: nil)
+        }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
         
         self.presentViewController(alert, animated: false, completion: nil)
