@@ -1178,7 +1178,7 @@
                         <viewControllerLayoutGuide type="bottom" id="i91-bj-gfl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Uzi-8E-JcH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="840"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="894"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar opaque="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFP-qr-cm9">
@@ -1199,13 +1199,13 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5s-7z-wR7">
-                                <rect key="frame" x="0.0" y="72" width="320" height="768"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="822"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-Km-kHQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="822"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws3-Es-zHm">
-                                                <rect key="frame" x="87" y="8" width="146" height="21"/>
+                                                <rect key="frame" x="90" y="8" width="141" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1289,7 +1289,7 @@
                                                 </connections>
                                             </tableView>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haQ-VU-BVk">
-                                                <rect key="frame" x="0.0" y="608" width="320" height="162"/>
+                                                <rect key="frame" x="0.0" y="608" width="320" height="216"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="6Nq-WJ-tD0" id="9mX-gw-vgv"/>
                                                 </connections>
@@ -1303,23 +1303,23 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="centerX" secondItem="Ws3-Es-zHm" secondAttribute="centerX" id="0py-Hk-bRZ"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="centerX" secondItem="BCd-SE-2VA" secondAttribute="centerX" id="7qT-an-zLN"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="trailing" secondItem="haQ-VU-BVk" secondAttribute="trailing" id="9dS-w6-fCA"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="leading" secondItem="Rn9-os-cru" secondAttribute="leading" id="GAN-Gg-TUd"/>
-                                            <constraint firstItem="BCd-SE-2VA" firstAttribute="top" secondItem="lww-a7-DKp" secondAttribute="bottom" constant="8" symbolic="YES" id="N0A-7f-zPP"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="centerX" secondItem="eQE-fv-6h6" secondAttribute="centerX" id="NaL-D9-m3u"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="trailing" secondItem="lww-a7-DKp" secondAttribute="trailing" id="7Jb-jZ-CYK"/>
+                                            <constraint firstItem="lww-a7-DKp" firstAttribute="top" secondItem="eQE-fv-6h6" secondAttribute="bottom" constant="8" symbolic="YES" id="7OD-py-skm"/>
+                                            <constraint firstItem="BCd-SE-2VA" firstAttribute="top" secondItem="lww-a7-DKp" secondAttribute="bottom" constant="8" symbolic="YES" id="9eE-45-VPT"/>
+                                            <constraint firstItem="haQ-VU-BVk" firstAttribute="top" secondItem="BCd-SE-2VA" secondAttribute="bottom" constant="5" id="ApJ-50-z52"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="centerX" secondItem="eQE-fv-6h6" secondAttribute="centerX" id="B58-xV-cms"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="leading" secondItem="haQ-VU-BVk" secondAttribute="leading" id="CA7-9o-M88"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="centerX" secondItem="Ws3-Es-zHm" secondAttribute="centerX" id="JRL-X7-N4Q"/>
                                             <constraint firstAttribute="width" constant="320" id="RJf-v7-Leo"/>
-                                            <constraint firstItem="Rn9-os-cru" firstAttribute="top" secondItem="Ws3-Es-zHm" secondAttribute="bottom" constant="8" symbolic="YES" id="RLT-ob-AB5"/>
-                                            <constraint firstItem="Ws3-Es-zHm" firstAttribute="top" secondItem="8cF-Km-kHQ" secondAttribute="topMargin" id="gOD-Ai-ccv"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="top" secondItem="8cF-Km-kHQ" secondAttribute="top" constant="324" id="hpc-pf-3lC"/>
-                                            <constraint firstItem="haQ-VU-BVk" firstAttribute="top" secondItem="BCd-SE-2VA" secondAttribute="bottom" constant="5" id="s91-Yp-FM0"/>
-                                            <constraint firstAttribute="height" constant="768" id="tz9-Td-DRf"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="leading" secondItem="8cF-Km-kHQ" secondAttribute="leading" id="ueF-BL-eRR"/>
-                                            <constraint firstItem="Ws3-Es-zHm" firstAttribute="leading" secondItem="8cF-Km-kHQ" secondAttribute="leading" constant="87" id="ueH-Fy-Mep"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="top" secondItem="eQE-fv-6h6" secondAttribute="bottom" constant="8" symbolic="YES" id="wcn-9y-VBN"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="leading" secondItem="haQ-VU-BVk" secondAttribute="leading" id="wlv-Lz-NOn"/>
-                                            <constraint firstItem="lww-a7-DKp" firstAttribute="trailing" secondItem="Rn9-os-cru" secondAttribute="trailing" id="yPo-pe-YLA"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="top" secondItem="8cF-Km-kHQ" secondAttribute="top" constant="37" id="SSP-sE-4mj"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="top" secondItem="Ws3-Es-zHm" secondAttribute="bottom" constant="8" symbolic="YES" id="UdP-hb-tZM"/>
+                                            <constraint firstItem="eQE-fv-6h6" firstAttribute="top" secondItem="Rn9-os-cru" secondAttribute="bottom" constant="8" symbolic="YES" id="f3a-3t-8WC"/>
+                                            <constraint firstAttribute="bottom" secondItem="haQ-VU-BVk" secondAttribute="bottom" constant="-2" id="gL3-tL-4KG"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="leading" secondItem="8cF-Km-kHQ" secondAttribute="leading" id="iFB-dP-f8D"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="centerX" secondItem="BCd-SE-2VA" secondAttribute="centerX" id="tHx-dg-8XK"/>
+                                            <constraint firstAttribute="height" constant="822" id="tz9-Td-DRf"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="trailing" secondItem="haQ-VU-BVk" secondAttribute="trailing" id="ush-ng-PiH"/>
+                                            <constraint firstItem="Rn9-os-cru" firstAttribute="leading" secondItem="lww-a7-DKp" secondAttribute="leading" id="xxs-mF-oeS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1343,7 +1343,7 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="840"/>
+                    <size key="freeformSize" width="320" height="894"/>
                     <connections>
                         <outlet property="barbellTypePicker" destination="haQ-VU-BVk" id="r7C-07-niW"/>
                         <outlet property="exerciseCategoryTable" destination="Rn9-os-cru" id="eUe-TD-eMV"/>
