@@ -11,6 +11,7 @@ import UIKit
 class TrainingCalendarTableViewController: UITableViewController {
     var searchResultComing: [TrainingProgramScheduleResponse] = [TrainingProgramScheduleResponse]()
     var searchResultToday:  [TrainingProgramScheduleResponse] = [TrainingProgramScheduleResponse]()
+    var uiSet:              Bool                              = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,55 +22,10 @@ class TrainingCalendarTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let alert = UIAlertController(title: "Fetching data...", message: nil, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: false, completion: nil)
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let now = NSCalendar.currentCalendar().startOfDayForDate(NSDate())
-        let plus30Days  = NSDate.dateByAddingTimeInterval(NSDate())(60*60*24*30)
-        
-        let result = GymDBAPI.trainingProgramSchedule(dateFormatter.stringFromDate(now), endDate: dateFormatter.stringFromDate(plus30Days), pos: nil, count: nil)
-        
-        if result != nil {
-            for value in result! {
-                let compare = now.compare(dateFormatter.dateFromString(value.workoutDate)!)
-                if compare == .OrderedAscending {
-                    self.searchResultComing.append(value)
-                } else {
-                    self.searchResultToday.append(value)
-                }
-            }
-        } else {
-            self.searchResultToday  = [TrainingProgramScheduleResponse]()
-            self.searchResultComing = [TrainingProgramScheduleResponse]()
+        if !self.uiSet {
+            self.setViewUI()
+            self.uiSet = true
         }
-        
-        self.tableView.reloadData()
-        
-        // Select current date
-        if self.searchResultToday.count > 0 {
-            let now = dateFormatter.stringFromDate(NSDate())
-            
-            for (key,value) in enumerate(self.searchResultToday) {
-                var scrolled = false
-                if value.workoutDate == now {
-                    let indexPath = NSIndexPath(forRow: key, inSection: 1)
-                    
-                    if !scrolled {
-                        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
-                        scrolled = true
-                    }
-                    
-                    let cell = self.tableView.cellForRowAtIndexPath(indexPath) as TrainingCalendarTableViewCell
-                    cell.backgroundColor = UIColor.colorWithAlphaComponent(UIColor.grayColor())(0.1)
-                    cell.todayLabel.hidden = false
-                }
-            }
-        }
-        
-        alert.dismissViewControllerAnimated(false, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,5 +105,57 @@ class TrainingCalendarTableViewController: UITableViewController {
         } else {
             return self.searchResultComing[indexPath.row]
         }
+    }
+    
+    func setViewUI() {
+        let alert = UIAlertController(title: "Fetching data...", message: nil, preferredStyle: .Alert)
+        self.presentViewController(alert, animated: false, completion: nil)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let now = NSCalendar.currentCalendar().startOfDayForDate(NSDate())
+        let plus30Days  = NSDate.dateByAddingTimeInterval(NSDate())(60*60*24*30)
+        
+        let result = GymDBAPI.trainingProgramSchedule(dateFormatter.stringFromDate(now), endDate: dateFormatter.stringFromDate(plus30Days), pos: nil, count: nil)
+        
+        if result != nil {
+            for value in result! {
+                let compare = now.compare(dateFormatter.dateFromString(value.workoutDate)!)
+                if compare == .OrderedAscending {
+                    self.searchResultComing.append(value)
+                } else {
+                    self.searchResultToday.append(value)
+                }
+            }
+        } else {
+            self.searchResultToday  = [TrainingProgramScheduleResponse]()
+            self.searchResultComing = [TrainingProgramScheduleResponse]()
+        }
+        
+        self.tableView.reloadData()
+        
+        // Select current date
+        if self.searchResultToday.count > 0 {
+            let now = dateFormatter.stringFromDate(NSDate())
+            
+            for (key,value) in enumerate(self.searchResultToday) {
+                var scrolled = false
+                if value.workoutDate == now {
+                    let indexPath = NSIndexPath(forRow: key, inSection: 1)
+                    
+                    if !scrolled {
+                        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
+                        scrolled = true
+                    }
+                    
+                    let cell = self.tableView.cellForRowAtIndexPath(indexPath) as TrainingCalendarTableViewCell
+                    cell.backgroundColor = UIColor.colorWithAlphaComponent(UIColor.grayColor())(0.1)
+                    cell.todayLabel.hidden = false
+                }
+            }
+        }
+        
+        alert.dismissViewControllerAnimated(false, completion: nil)
     }
 }
