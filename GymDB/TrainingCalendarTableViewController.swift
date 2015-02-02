@@ -11,7 +11,7 @@ import UIKit
 class TrainingCalendarTableViewController: UITableViewController {
     var searchResultComing: [TrainingProgramScheduleResponse] = [TrainingProgramScheduleResponse]()
     var searchResultToday:  [TrainingProgramScheduleResponse] = [TrainingProgramScheduleResponse]()
-    var uiSet:              Bool                              = false
+    var uiInit:             Bool                              = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,9 @@ class TrainingCalendarTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !self.uiSet {
+        if !self.uiInit {
             self.setViewUI()
-            self.uiSet = true
+            self.uiInit = true
         }
     }
 

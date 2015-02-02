@@ -23,7 +23,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
     var exerciseIndex:  Int                 = 0
     var hashId:         String?
     var template:       Template?
-    var uiSet:          Bool                = false
+    var uiInit:         Bool                = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !self.uiSet {
+        if !self.uiInit {
             self.presentViewController(self.alert, animated: false, completion: nil)
             
             if self.hashId != nil {
@@ -56,7 +56,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.setViewUI()
             }
             
-            self.uiSet = true
+            self.uiInit = true
         }
     }
     
