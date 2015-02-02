@@ -297,6 +297,15 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gg-nU-AMD">
+                                                <rect key="frame" x="249" y="4" width="63" height="30"/>
+                                                <state key="normal" title="Template">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="showTemplate" destination="1xv-Lc-pQA" eventType="touchUpInside" id="bx8-Ds-g4G"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -354,6 +363,7 @@
                         <outlet property="extratextText" destination="S2F-JT-a7G" id="wWt-XV-Iwu"/>
                         <outlet property="locationPickerView" destination="IrT-Ff-Fsf" id="N2D-DA-45F"/>
                         <outlet property="newLocationText" destination="DRv-N7-7ZQ" id="WPS-uc-RNh"/>
+                        <outlet property="showTemplateButton" destination="3Gg-nU-AMD" id="RWl-uh-DIQ"/>
                         <outlet property="startTimeDatePicker" destination="XUm-CS-wIA" id="e32-Es-ZcI"/>
                     </connections>
                 </viewController>

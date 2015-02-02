@@ -36,6 +36,7 @@ class Workout: WorkoutProtocol {
         self.hashId                 = data["hashid"] as? String
         self.locationHashId         = data["locationhashid"] as? String
         self.trainingProgramHashId  = data["training_program_hashid"] as? String
+        self.templateHashId         = data["templatehashid"] as? String
         self.extratext              = data["extratext"] as String
         self.startTime              = data["starttime"] as String
         self.endTime                = data["endtime"] as String
@@ -154,6 +155,10 @@ class Workout: WorkoutProtocol {
         
         if let trainingProgramHashId = self.trainingProgramHashId {
             json["training_program_hashid"] = trainingProgramHashId
+        }
+        
+        if let templateHashId = self.templateHashId {
+            json["templatehashid"] = templateHashId
         }
         
         if exercises.count == 0 {

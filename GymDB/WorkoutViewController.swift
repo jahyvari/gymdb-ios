@@ -9,6 +9,7 @@
 import UIKit
 
 class WorkoutViewController: UIViewController {
+    @IBOutlet weak var showTemplateButton:  UIButton!
     @IBOutlet weak var extratextText:       UITextField!
     @IBOutlet weak var locationPickerView:  UIPickerView!
     @IBOutlet weak var newLocationText:     UITextField!
@@ -188,6 +189,10 @@ class WorkoutViewController: UIViewController {
             
             self.startTimeDatePicker.setDate(dateFormatter.dateFromString(workout.startTime)!, animated: false)
             self.endTimeDatePicker.setDate(dateFormatter.dateFromString(workout.endTime)!, animated: false)
+            
+            if workout.templateHashId != nil {
+                self.showTemplateButton.enabled = true
+            }
         }
     }
     
@@ -216,5 +221,17 @@ class WorkoutViewController: UIViewController {
         }
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+    }
+    
+    @IBAction func showTemplate() {
+        if let workout = WorkoutCache.workout {
+            if let templateHashId = workout.templateHashId {
+                let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("templateViewController") as TemplateViewController
+                
+                viewController.hashId = templateHashId
+                
+                self.presentViewController(viewController, animated: false, completion: nil)
+            }
+        }
     }
 }
