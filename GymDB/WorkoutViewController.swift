@@ -15,13 +15,13 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     @IBOutlet weak var endTimeDatePicker:   UIDatePicker!
     
+    var alert:                  UIAlertController   = UIAlertController(title: "Loading data...", message: nil, preferredStyle: .Alert)
+    var canHideAlert:           Bool                = false
     var hashId:                 String?
     var templateHashId:         String?
     var trainingProgramHashId:  String?
-    var locationFetch:          Bool                = false
     var locations:              [String: String]    = [:]
     var uiInit:                 Bool                = false
-    var workoutInit:            Bool                = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,14 @@ class WorkoutViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !self.locationFetch {
+        if !self.uiInit {
+            var canHide = true
+            self.presentViewController(self.alert, animated: false, completion: nil)
+            
+            if ExerciseCache.exerciseCategories == nil {
+                ExerciseCache.exerciseCategories = GymDBAPI.exerciseGetList()
+            }
+            
             if let locations = GymDBAPI.locationGetList() {
                 for (key,value) in locations {
                     self.locations[key] = value
@@ -38,10 +45,6 @@ class WorkoutViewController: UIViewController {
                 self.locationPickerView.reloadAllComponents()
             }
             
-            self.locationFetch = true
-        }
-        
-        if !self.workoutInit {
             if self.hashId != nil || self.templateHashId != nil {
                 var workout: Workout?
                 
@@ -54,14 +57,13 @@ class WorkoutViewController: UIViewController {
                 if workout != nil {
                     WorkoutCache.workout = workout!
                 } else {
-                    let alert = UIAlertController(title: "Cannot load workout!", message: nil, preferredStyle: .Alert)
+                    canHide = false
                     
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action: UIAlertAction!) in
+                    self.alert.view.tintColor = UIColor.redColor()
+                    self.alert.title = "Cannot load workout!"
+                    self.alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(action: UIAlertAction!) in
                         self.dismissViewControllerAnimated(false, completion: nil)
                     }))
-                    alert.view.tintColor = UIColor.redColor()
-                    
-                    self.presentViewController(alert, animated: false, completion: nil)
                 }
                 
                 self.hashId = nil
@@ -76,17 +78,23 @@ class WorkoutViewController: UIViewController {
                 WorkoutCache.workout = Workout(hashId: nil, locationHashId: nil, trainingProgramHashId: nil, templateHashId: nil, extratext: "", startTime: dateFormatter.stringFromDate(now), endTime: dateFormatter.stringFromDate(plusOneHour), exercises: nil, records: nil)
             }
             
-            WorkoutCache.workout!.trainingProgramHashId = self.trainingProgramHashId
-            self.workoutInit = true
-        }
-        
-        if ExerciseCache.exerciseCategories == nil {
-            ExerciseCache.exerciseCategories = GymDBAPI.exerciseGetList()
-        }
-        
-        if !self.uiInit {
+            WorkoutCache.workout?.trainingProgramHashId = self.trainingProgramHashId
+            
             self.setViewUI()
             self.uiInit = true
+            
+            if canHide {
+                self.canHideAlert = true
+            }
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if self.canHideAlert {
+            self.canHideAlert = false
+            self.alert.dismissViewControllerAnimated(false, completion: nil)
         }
     }
     
@@ -196,6 +204,7 @@ class WorkoutViewController: UIViewController {
         if WorkoutCache.workout != nil {
             var apiResponse: GymDBAPIResponse?
             if WorkoutCache.workout!.save(&apiResponse) {
+                WorkoutCache.refreshList = true
                 alert.title = "Workout saved!"
             } else {
                 alert.view.tintColor = UIColor.redColor()

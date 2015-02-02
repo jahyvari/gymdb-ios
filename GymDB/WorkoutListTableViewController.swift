@@ -9,7 +9,8 @@
 import UIKit
 
 class WorkoutListTableViewController: UITableViewController {
-    var searchResult: [WorkoutSearchResponse] = [WorkoutSearchResponse]()
+    var searchResult:   [WorkoutSearchResponse] = [WorkoutSearchResponse]()
+    var uiInit:         Bool                    = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,20 +23,25 @@ class WorkoutListTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let alert = UIAlertController(title: "Fetching data...", message: nil, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: false, completion: nil)
-        
-        let result = GymDBAPI.workoutSearch(nil, endDate: nil, pos: 0, count: 30)
-        
-        if result != nil {
-            self.searchResult = result!
-        } else {
-            self.searchResult = [WorkoutSearchResponse]()
+        if !self.uiInit || WorkoutCache.refreshList {
+            let alert = UIAlertController(title: "Fetching data...", message: nil, preferredStyle: .Alert)
+            self.presentViewController(alert, animated: false, completion: nil)
+            
+            let result = GymDBAPI.workoutSearch(nil, endDate: nil, pos: 0, count: 30)
+            
+            if result != nil {
+                self.searchResult = result!
+            } else {
+                self.searchResult = [WorkoutSearchResponse]()
+            }
+            
+            self.tableView.reloadData()
+            
+            self.uiInit = true
+            WorkoutCache.refreshList = false
+            
+            alert.dismissViewControllerAnimated(false, completion: nil)
         }
-        
-        self.tableView.reloadData()
-        
-        alert.dismissViewControllerAnimated(false, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -64,6 +64,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLayoutSubviews()
         
         if self.canHideAlert {
+            self.canHideAlert = false
             self.alert.dismissViewControllerAnimated(false, completion: nil)
         }
     }

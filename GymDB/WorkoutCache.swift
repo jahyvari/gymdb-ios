@@ -10,7 +10,17 @@ import Foundation
 
 class WorkoutCache {
     private struct _cache {
-        static var workout: Workout?
+        static var refreshList: Bool = false
+        static var workout:     Workout?
+    }
+    
+    class var refreshList: Bool {
+        get {
+            return _cache.refreshList
+        }
+        set {
+            _cache.refreshList = newValue
+        }
     }
     
     class var workout: Workout? {
