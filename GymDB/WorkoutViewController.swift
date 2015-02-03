@@ -196,15 +196,9 @@ class WorkoutViewController: UIViewController {
         }
     }
     
-    @IBAction func close() {
-        self.dismissViewControllerAnimated(false, completion: nil)
-    }
-    
-    @IBAction func save() {
+    class func saveWorkout(sender: UIViewController) {
         let alert = UIAlertController(title: "Saving data...", message: nil, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: false, completion: nil)
-        
-        self.dataToCache()
+        sender.presentViewController(alert, animated: false, completion: nil)
         
         if WorkoutCache.workout != nil {
             var apiResponse: GymDBAPIResponse?
@@ -213,7 +207,8 @@ class WorkoutViewController: UIViewController {
                 alert.title = "Workout saved!"
             } else {
                 alert.view.tintColor = UIColor.redColor()
-                alert.title = apiResponse!.text
+                alert.title = "Error"
+                alert.message = GymDBAPI.apiResponseToString(apiResponse!)
             }
         } else {
             alert.view.tintColor = UIColor.redColor()
@@ -221,6 +216,15 @@ class WorkoutViewController: UIViewController {
         }
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+    }
+    
+    @IBAction func close() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    @IBAction func save() {
+        self.dataToCache()
+        WorkoutViewController.saveWorkout(self)
     }
     
     @IBAction func showTemplate() {

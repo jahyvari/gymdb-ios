@@ -148,6 +148,10 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
                     exerciseName = exercise.name
                 }
                 
+                if let barbellType = set.barbellType {
+                    exerciseName += " (" + barbellType.description + ")"
+                }
+                
                 cell.exerciseLabel.text = exerciseName
                 
                 var weight = set.weightKG

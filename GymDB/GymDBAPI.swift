@@ -10,6 +10,7 @@ import Foundation
 
 class GymDBAPI {
     private struct _data {
+        static var apiURL:              String = "http://localhost/gymdb/trunk/API/request/"
         static var defaultEmailKey:     String = "userEmail"
         static var defaultPasswordKey:  String = "userPassword"
         static var lastAPIResponse:     GymDBAPIResponse?
@@ -17,6 +18,12 @@ class GymDBAPI {
         static var sessionId:           String?
     }
     
+    class var apiURL: String {
+        get {
+            return _data.apiURL
+        }
+    }
+
     class var defaultEmailKey: String {
         get {
             return _data.defaultEmailKey
@@ -64,6 +71,40 @@ class GymDBAPI {
         set {
             _data.sessionId = newValue
         }
+    }
+    
+    class func apiResponseToString(response: GymDBAPIResponse) -> String {
+        var result = ""
+        
+        if let sourceDesc = response.sourceDesc {
+            if let iteration = response.iteration {
+                for (key,value) in iteration {
+                    if let keyDesc = sourceDesc["key"] {
+                        result += (result != "" ? "\n" : "") + keyDesc + " (\(value))"
+                    }
+                }
+            }
+            
+            if let reasonSource = response.reasonSource {
+                if let keyDesc = sourceDesc["key"] {
+                    result += (result != "" ? "\n" : "") + keyDesc
+                }
+            }
+        }
+        
+        if result != "" {
+            result += "\n"
+        }
+        
+        result += "* "
+        
+        if let keyDesc = response.keyDesc {
+            result += keyDesc + " -> "
+        }
+        
+        result += response.text
+        
+        return result
     }
     
     class func doLogin(email: String, password: String) -> Bool {
@@ -182,8 +223,7 @@ class GymDBAPI {
         var result = false
         var response = GymDBAPIResponse()
         
-        let apiURL = "http://localhost/gymdb/trunk/API/request/"
-        if let url = NSURL(string: apiURL+className+"/"+functionName) {
+        if let url = NSURL(string: self.apiURL+className+"/"+functionName) {
             let request = NSMutableURLRequest(URL: url)
             
             request.HTTPMethod = "POST"

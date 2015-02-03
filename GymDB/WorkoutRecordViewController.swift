@@ -64,4 +64,13 @@ class WorkoutRecordViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func close() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    @IBAction func save() {
+        self.dataToCache()
+        WorkoutViewController.saveWorkout(self)
+    }
 }

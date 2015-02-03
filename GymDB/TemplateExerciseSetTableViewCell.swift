@@ -12,7 +12,6 @@ class TemplateExerciseSetTableViewCell: UITableViewCell {
     @IBOutlet weak var setNoLabel:              UILabel!
     @IBOutlet weak var exerciseNameLabel:       UILabel!
     @IBOutlet weak var repsLabel:               UILabel!
-    @IBOutlet weak var repsEndLabel:            UILabel!
     @IBOutlet weak var weightLabel:             UILabel!
     @IBOutlet weak var restLabel:               UILabel!
     @IBOutlet weak var repTypeLabel:            UILabel!

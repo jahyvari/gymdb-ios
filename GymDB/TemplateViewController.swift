@@ -29,6 +29,10 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         self.setsTableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        self.recordTextView.layer.borderColor   = UIColor.blackColor().colorWithAlphaComponent(0.1).CGColor
+        self.recordTextView.layer.borderWidth   = 0.5
+        self.recordTextView.layer.cornerRadius  = 8
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -98,6 +102,11 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             }
             
+            var reps = String(set.repetitions)
+            if let repetitionsEnd = set.repetitionsEnd {
+                reps += " - "+String(repetitionsEnd)
+            }
+            
             let unit = self.getCurrentExercise()!.unit
             var weight = set.weightKG
             if unit == .LB {
@@ -117,8 +126,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
             
             cell.setNoLabel.text            = "\(indexPath.row+1)."
             cell.exerciseNameLabel.text     = exerciseName
-            cell.repsLabel.text             = String(set.repetitions)
-            cell.repsEndLabel.text          = String(set.repetitionsEnd)
+            cell.repsLabel.text             = reps
             cell.weightLabel.text           = NSString(format: "%.2f", weight)+" "+unit.description
             cell.restLabel.text             = rest
             cell.repTypeLabel.text          = set.repetitionsType.description

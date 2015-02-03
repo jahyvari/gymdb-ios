@@ -150,7 +150,8 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
                 UserCache.user = self.user
             } else {
                 alert.view.tintColor = UIColor.redColor()
-                alert.title = apiResponse!.text
+                alert.title = "Error"
+                alert.message = GymDBAPI.apiResponseToString(apiResponse!)
             }
         } else {
             alert.view.tintColor = UIColor.redColor()

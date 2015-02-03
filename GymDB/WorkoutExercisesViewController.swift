@@ -106,6 +106,14 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
         self.presentViewController(viewController, animated: false, completion: nil)
     }
     
+    @IBAction func close() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    @IBAction func save() {
+        WorkoutViewController.saveWorkout(self)
+    }
+    
     @IBAction func edit() {
         if self.exercisesTableView.editing {
             self.editButton.setTitle("Edit", forState: .Normal)
