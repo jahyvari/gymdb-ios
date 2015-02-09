@@ -40,7 +40,9 @@ class WorkoutListTableViewController: UITableViewController {
             self.uiInit = true
             WorkoutCache.refreshList = false
             
-            alert.dismissViewControllerAnimated(false, completion: nil)
+            alert.dismissViewControllerAnimated(false, completion: {
+                LoginViewController.showLoginViewIfTimedOut(self, sessionIsValid: nil)
+            })
         }
     }
 

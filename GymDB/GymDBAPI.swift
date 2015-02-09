@@ -10,29 +10,14 @@ import Foundation
 
 class GymDBAPI {
     private struct _data {
-        static var apiURL:              String = "http://localhost/gymdb/trunk/API/request/"
-        static var defaultEmailKey:     String = "userEmail"
-        static var defaultPasswordKey:  String = "userPassword"
-        static var lastAPIResponse:     GymDBAPIResponse?
-        static var lastRefresh:         Float?
-        static var sessionId:           String?
+        static var apiURL:          String = "http://localhost/gymdb/trunk/API/request/"
+        static var lastAPIResponse: GymDBAPIResponse?
+        static var sessionId:       String?
     }
     
     class var apiURL: String {
         get {
             return _data.apiURL
-        }
-    }
-
-    class var defaultEmailKey: String {
-        get {
-            return _data.defaultEmailKey
-        }
-    }
-    
-    class var defaultPasswordKey: String {
-        get {
-            return _data.defaultPasswordKey
         }
     }
     
@@ -52,15 +37,6 @@ class GymDBAPI {
         }
         set {
             _data.lastAPIResponse = newValue
-        }
-    }
-    
-    class var lastRefresh: Float? {
-        get {
-            return _data.lastRefresh
-        }
-        set {
-            _data.lastRefresh = newValue
         }
     }
     
@@ -120,26 +96,8 @@ class GymDBAPI {
         if self.lastAPIResponse!.code == 0 {
             if let sessionId = self.lastAPIResponse!.data as? String {
                 self.sessionId = sessionId
-                self.lastRefresh = round(Float(NSDate().timeIntervalSince1970)*1000)
-                
-                NSUserDefaults.standardUserDefaults().setValue(email, forKey: self.defaultEmailKey)
-                NSUserDefaults.standardUserDefaults().setValue(password, forKey: self.defaultPasswordKey)
-                
                 result = true
             }
-        }
-        
-        return result
-    }
-    
-    class func doLoginWithDefaults() -> Bool {
-        var result = false
-        
-        let email = NSUserDefaults.standardUserDefaults().valueForKey(self.defaultEmailKey) as? String
-        let password = NSUserDefaults.standardUserDefaults().valueForKey(self.defaultPasswordKey) as? String
-        
-        if email != nil && password != nil {
-            result = self.doLogin(email!, password: password!)
         }
         
         return result
@@ -150,13 +108,7 @@ class GymDBAPI {
         
         if (self.loged) {
             self.postRequest("Login", functionName: "doLogout", data: nil)
-        
             self.sessionId = nil
-            self.lastRefresh = nil
-            
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(self.defaultEmailKey)
-            NSUserDefaults.standardUserDefaults().removeObjectForKey(self.defaultPasswordKey)
-            
             result = true
         }
         
@@ -267,30 +219,6 @@ class GymDBAPI {
         }
         
         self.lastAPIResponse = response
-        
-        return result
-    }
-    
-    class func refreshLogin(force: Bool = false) -> Bool {
-        var result = true
-        
-        if let refresh = self.lastRefresh {
-            if (round(Float(NSDate().timeIntervalSince1970)*1000) - refresh) > 1500 {
-                self.postRequest("Login", functionName: "refreshLogin", data: nil)
-                
-                if self.lastAPIResponse!.code == 0 {
-                    self.lastRefresh = round(Float(NSDate().timeIntervalSince1970)*1000)
-                } else if force {
-                    result = self.doLoginWithDefaults()
-                } else {
-                    result = false
-                }
-            }
-        } else if force {
-            result = self.doLoginWithDefaults()
-        } else {
-            result = false
-        }
         
         return result
     }

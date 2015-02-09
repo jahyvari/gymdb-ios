@@ -46,7 +46,9 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
         
         self.setViewUI()
         
-        alert.dismissViewControllerAnimated(false, completion: nil)
+        alert.dismissViewControllerAnimated(false, completion: {
+            LoginViewController.showLoginViewIfTimedOut(self, sessionIsValid: nil)
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,6 +116,7 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
     }
     
     @IBAction func save() {
+        var addAction = true
         let alert = UIAlertController(title: "Saving data...", message: nil, preferredStyle: .Alert)
         self.presentViewController(alert, animated: false, completion: nil)
         
@@ -149,15 +152,23 @@ class UserAccountViewController: UIViewController, UIPickerViewDelegate {
                 alert.title = "User account data saved!"
                 UserCache.user = self.user
             } else {
-                alert.view.tintColor = UIColor.redColor()
-                alert.title = "Error"
-                alert.message = GymDBAPI.apiResponseToString(apiResponse!)
+                if GymDBAPI.loged {
+                    alert.view.tintColor = UIColor.redColor()
+                    alert.title = "Error"
+                    alert.message = GymDBAPI.apiResponseToString(apiResponse!)
+                } else {
+                    alert.dismissViewControllerAnimated(false, completion: {
+                        LoginViewController.showLoginViewIfTimedOut(self, sessionIsValid: nil)
+                    })
+                }
             }
         } else {
             alert.view.tintColor = UIColor.redColor()
             alert.title = "Unknown user!"
         }
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        if addAction {
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        }
     }
 }

@@ -197,25 +197,36 @@ class WorkoutViewController: UIViewController {
     }
     
     class func saveWorkout(sender: UIViewController) {
+        var addAction = true
         let alert = UIAlertController(title: "Saving data...", message: nil, preferredStyle: .Alert)
         sender.presentViewController(alert, animated: false, completion: nil)
         
         if WorkoutCache.workout != nil {
             var apiResponse: GymDBAPIResponse?
+            
             if WorkoutCache.workout!.save(&apiResponse) {
                 WorkoutCache.refreshList = true
                 alert.title = "Workout saved!"
             } else {
-                alert.view.tintColor = UIColor.redColor()
-                alert.title = "Error"
-                alert.message = GymDBAPI.apiResponseToString(apiResponse!)
+                if GymDBAPI.loged {
+                    alert.view.tintColor = UIColor.redColor()
+                    alert.title = "Error"
+                    alert.message = GymDBAPI.apiResponseToString(apiResponse!)
+                } else {
+                    addAction = false
+                    alert.dismissViewControllerAnimated(false, completion: {
+                        LoginViewController.showLoginViewIfTimedOut(sender, sessionIsValid: nil)
+                    })
+                }
             }
         } else {
             alert.view.tintColor = UIColor.redColor()
             alert.title = "Workout cache is empty!"
         }
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        if addAction {
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        }
     }
     
     @IBAction func close() {

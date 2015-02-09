@@ -156,6 +156,8 @@ class TrainingCalendarTableViewController: UITableViewController {
             }
         }
         
-        alert.dismissViewControllerAnimated(false, completion: nil)
+        alert.dismissViewControllerAnimated(false, completion: {
+            LoginViewController.showLoginViewIfTimedOut(self, sessionIsValid: nil)
+        })
     }
 }

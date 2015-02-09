@@ -548,7 +548,7 @@
         <!--Login-->
         <scene sceneID="5dV-sC-n5L">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" title="Login" id="QdM-8C-RL5" customClass="LoginViewController" customModule="GymDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" title="Login" id="QdM-8C-RL5" customClass="LoginViewController" customModule="GymDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g12-K3-qtv"/>
                         <viewControllerLayoutGuide type="bottom" id="Hyc-X2-mDJ"/>

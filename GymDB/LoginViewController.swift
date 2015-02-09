@@ -13,6 +13,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordText:    UITextField!
     @IBOutlet weak var errorLabel:      UILabel!
     
+    var modalPresentation: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,13 +24,6 @@ class LoginViewController: UIViewController {
         
         self.emailText.text     = ""
         self.passwordText.text  = ""
-        
-        let email = NSUserDefaults.standardUserDefaults().valueForKey(GymDBAPI.defaultEmailKey) as? String
-        let password = NSUserDefaults.standardUserDefaults().valueForKey(GymDBAPI.defaultPasswordKey) as? String
-        
-        if email != nil && password != nil {
-            self.doLogin(email!, password: password!, showError: false)
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,12 +44,27 @@ class LoginViewController: UIViewController {
         
         alert.dismissViewControllerAnimated(false, completion: {
             if login {
-                self.performSegueWithIdentifier("showMasterViewController", sender: self)
+                if self.modalPresentation {
+                    self.modalPresentation = false
+                    self.dismissViewControllerAnimated(false, completion: nil)
+                } else {
+                    self.performSegueWithIdentifier("showMasterViewController", sender: self)
+                }
             } else if showError {
                 self.errorLabel.text = GymDBAPI.lastAPIResponse!.text
                 self.errorLabel.hidden = false
             }
         })
+    }
+    
+    class func showLoginViewIfTimedOut(sender: UIViewController, sessionIsValid: (() -> Void)?) {
+        if !GymDBAPI.loged {
+            let view = sender.storyboard!.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+            view.modalPresentation = true
+            sender.presentViewController(view, animated: false, completion: nil)
+        } else if let sesValid = sessionIsValid {
+            sesValid()
+        }
     }
     
     @IBAction func login() {
