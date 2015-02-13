@@ -123,6 +123,37 @@ enum ExerciseCategories: String {
     }
 }
 
+enum MeasurementTime: String {
+    case Evening = "evening"
+    case Morning = "morning"
+    
+    static var allValues: [MeasurementTime] = [
+        Evening,
+        Morning
+    ]
+    
+    static func fromString(unit: String) -> MeasurementTime? {
+        var result: MeasurementTime?
+        
+        if let unit = self(rawValue: unit) {
+            result = unit
+        }
+        
+        return result
+    }
+    
+    var description: String {
+        get {
+            switch self {
+                case .Evening:
+                    return "Evening"
+                case .Morning:
+                    return "Morning"
+            }
+        }
+    }
+}
+
 enum Musclegroup: String {
     case Abs        = "Abs"
     case Back       = "Back"
