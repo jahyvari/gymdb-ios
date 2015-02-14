@@ -51,6 +51,8 @@
 		F4BA16341A7A6029006235A5 /* TemplateExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA16331A7A6029006235A5 /* TemplateExerciseSet.swift */; };
 		F4C7D5461A48752B0037510D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C7D5451A48752B0037510D /* Workout.swift */; };
 		F4D28A211A6E734B00262A8D /* UnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D28A201A6E734B00262A8D /* UnitConverter.swift */; };
+		F4D566731A8F9CD5006FF606 /* UserWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D566721A8F9CD5006FF606 /* UserWeight.swift */; };
+		F4D566751A8FA07E006FF606 /* UserWeightProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D566741A8FA07E006FF606 /* UserWeightProtocol.swift */; };
 		F4F044401A51B380001A09D2 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */; };
 		F4FF5BFE1A5A9EBD00A59967 /* WorkoutRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF5BFD1A5A9EBD00A59967 /* WorkoutRecordViewController.swift */; };
 /* End PBXBuildFile section */
@@ -114,6 +116,8 @@
 		F4BA16331A7A6029006235A5 /* TemplateExerciseSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateExerciseSet.swift; sourceTree = "<group>"; };
 		F4C7D5451A48752B0037510D /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		F4D28A201A6E734B00262A8D /* UnitConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitConverter.swift; sourceTree = "<group>"; };
+		F4D566721A8F9CD5006FF606 /* UserWeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserWeight.swift; sourceTree = "<group>"; };
+		F4D566741A8FA07E006FF606 /* UserWeightProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserWeightProtocol.swift; sourceTree = "<group>"; };
 		F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
 		F4FF5BFD1A5A9EBD00A59967 /* WorkoutRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutRecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +187,8 @@
 				F4F0443F1A51B380001A09D2 /* UserAccountViewController.swift */,
 				F43D8B8A1A6D7F6A00E84026 /* UserCache.swift */,
 				F46AB9DF1A540EAC001EF14B /* UserProtocol.swift */,
+				F4D566721A8F9CD5006FF606 /* UserWeight.swift */,
+				F4D566741A8FA07E006FF606 /* UserWeightProtocol.swift */,
 				F4C7D5451A48752B0037510D /* Workout.swift */,
 				F437B5121A5C0A43003FE376 /* WorkoutCache.swift */,
 				F45D94231A48631700491760 /* WorkoutExercise.swift */,
@@ -336,12 +342,14 @@
 				F44866421A515CA1007CF17A /* GymDBAPI.swift in Sources */,
 				F43D8B8B1A6D7F6A00E84026 /* UserCache.swift in Sources */,
 				F46BA7EC1A481B0D003D7C8E /* MasterViewController.swift in Sources */,
+				F4D566751A8FA07E006FF606 /* UserWeightProtocol.swift in Sources */,
 				F43BFC031A694854006EA0D7 /* SelectExerciseViewController.swift in Sources */,
 				F4C7D5461A48752B0037510D /* Workout.swift in Sources */,
 				F46A79341A728A6D00B108E5 /* TrainingCalendarTableViewCell.swift in Sources */,
 				F46A79361A728DF400B108E5 /* TrainingProgramScheduleResponse.swift in Sources */,
 				F47CFCC81A6EC3F100930E34 /* WorkoutListTableViewController.swift in Sources */,
 				F45D94241A48631700491760 /* WorkoutExercise.swift in Sources */,
+				F4D566731A8F9CD5006FF606 /* UserWeight.swift in Sources */,
 				F4673B6D1A5E94BD002FB4E2 /* WorkoutExerciseViewController.swift in Sources */,
 				F45F8B0C1A494CD8008C0A2B /* WorkoutProtocol.swift in Sources */,
 				F437B5171A5C0D27003FE376 /* WorkoutExercisesTableViewCell.swift in Sources */,
