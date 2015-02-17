@@ -17,10 +17,11 @@ class Workout: WorkoutProtocol {
     var extratext:              String
     var startTime:              String
     var endTime:                String
+    var userWeight:             UserWeight?
     var exercises:              [WorkoutExercise]?
     var records:                [WorkoutRecord]?
     
-    init(hashId: String?, locationHashId: String?, trainingProgramHashId: String?, templateHashId: String?, extratext: String, startTime: String, endTime: String, exercises: [WorkoutExercise]?, records: [WorkoutRecord]?) {
+    init(hashId: String?, locationHashId: String?, trainingProgramHashId: String?, templateHashId: String?, extratext: String, startTime: String, endTime: String, userWeight: UserWeight?, exercises: [WorkoutExercise]?, records: [WorkoutRecord]?) {
         self.hashId                 = hashId
         self.locationHashId         = locationHashId
         self.trainingProgramHashId  = trainingProgramHashId
@@ -28,6 +29,7 @@ class Workout: WorkoutProtocol {
         self.extratext              = extratext
         self.startTime              = startTime
         self.endTime                = endTime
+        self.userWeight             = userWeight
         self.exercises              = exercises
         self.records                = records
     }
@@ -42,6 +44,10 @@ class Workout: WorkoutProtocol {
         self.endTime                = data["endtime"] as String
         
         var i = 0
+        
+        if let userWeight = data["user_weight"] as? [String: AnyObject] {
+            self.userWeight = UserWeight(data: userWeight)
+        }
         
         if let exercises = data["exercises"] as? [AnyObject] {
             for exercise in exercises {
@@ -133,10 +139,16 @@ class Workout: WorkoutProtocol {
             }
         }
         
+        var userWeight: [String: AnyObject] = [:]
+        if self.userWeight != nil {
+            userWeight = self.userWeight!.toJSONObject()
+        }
+        
         var json: [String: AnyObject] = [
             "extratext":    self.extratext,
             "starttime":    self.startTime,
             "endtime":      self.endTime,
+            "user_weight":  userWeight,
             "exercises":    exercises,
             "records":      records
         ]
@@ -159,6 +171,10 @@ class Workout: WorkoutProtocol {
         
         if let templateHashId = self.templateHashId {
             json["templatehashid"] = templateHashId
+        }
+        
+        if userWeight.count == 0 {
+            json.removeValueForKey("user_weight")
         }
         
         if exercises.count == 0 {

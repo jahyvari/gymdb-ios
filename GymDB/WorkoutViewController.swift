@@ -76,7 +76,7 @@ class WorkoutViewController: UIViewController {
                 let now = NSDate()
                 let plusOneHour = NSDate.dateByAddingTimeInterval(NSDate())(60*60)
                 
-                WorkoutCache.workout = Workout(hashId: nil, locationHashId: nil, trainingProgramHashId: nil, templateHashId: nil, extratext: "", startTime: dateFormatter.stringFromDate(now), endTime: dateFormatter.stringFromDate(plusOneHour), exercises: nil, records: nil)
+                WorkoutCache.workout = Workout(hashId: nil, locationHashId: nil, trainingProgramHashId: nil, templateHashId: nil, extratext: "", startTime: dateFormatter.stringFromDate(now), endTime: dateFormatter.stringFromDate(plusOneHour), userWeight: nil, exercises: nil, records: nil)
             }
             
             WorkoutCache.workout?.trainingProgramHashId = self.trainingProgramHashId
