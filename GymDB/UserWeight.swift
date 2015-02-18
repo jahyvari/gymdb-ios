@@ -18,7 +18,7 @@ class UserWeight: UserWeightProtocol {
     var fatPercent:         Float?
     var date:               String
     
-    init(hashId: String, userId: UInt, weightKG: Float, weightLB: Float, unit: Unit, measurementTime: MeasurementTime, fatPercent: Float?, date: String) {
+    init(hashId: String?, userId: UInt?, weightKG: Float, weightLB: Float, unit: Unit, measurementTime: MeasurementTime, fatPercent: Float?, date: String) {
         self.hashId             = hashId
         self.userId             = userId
         self.weightKG           = weightKG

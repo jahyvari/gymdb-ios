@@ -9,12 +9,16 @@
 import UIKit
 
 class WorkoutViewController: UIViewController {
-    @IBOutlet weak var showTemplateButton:  UIButton!
-    @IBOutlet weak var extratextText:       UITextField!
-    @IBOutlet weak var locationPickerView:  UIPickerView!
-    @IBOutlet weak var newLocationText:     UITextField!
-    @IBOutlet weak var startTimeDatePicker: UIDatePicker!
-    @IBOutlet weak var endTimeDatePicker:   UIDatePicker!
+    @IBOutlet weak var showTemplateButton:          UIButton!
+    @IBOutlet weak var extratextText:               UITextField!
+    @IBOutlet weak var locationPickerView:          UIPickerView!
+    @IBOutlet weak var newLocationText:             UITextField!
+    @IBOutlet weak var userWeightMTimeSegmented:    UISegmentedControl!
+    @IBOutlet weak var userWeightText:              UITextField!
+    @IBOutlet weak var userWeightUnitSegmented:     UISegmentedControl!
+    @IBOutlet weak var fatPercentText:              UITextField!
+    @IBOutlet weak var startTimeDatePicker:         UIDatePicker!
+    @IBOutlet weak var endTimeDatePicker:           UIDatePicker!
     
     var alert:                  UIAlertController   = UIAlertController(title: "Loading data...", message: nil, preferredStyle: .Alert)
     var canHideAlert:           Bool                = false
@@ -165,6 +169,44 @@ class WorkoutViewController: UIViewController {
             
             WorkoutCache.workout!.startTime = dateFormatter.stringFromDate(self.startTimeDatePicker.date)
             WorkoutCache.workout!.endTime   = dateFormatter.stringFromDate(self.endTimeDatePicker.date)
+            
+            if self.userWeightText.text != "" || self.fatPercentText.text != "" {
+                var selected = self.userWeightMTimeSegmented.selectedSegmentIndex
+                var measurementTime: MeasurementTime = .Morning
+                if let mTime = MeasurementTime.fromString(self.userWeightMTimeSegmented.titleForSegmentAtIndex(selected)!.lowercaseString) {
+                    measurementTime = mTime
+                }
+                
+                var userWeightFloat: Float = 0.0
+                if let userWeight = NSNumberFormatter().numberFromString(self.userWeightText.text) {
+                    userWeightFloat = userWeight.floatValue
+                }
+                
+                selected = self.userWeightUnitSegmented.selectedSegmentIndex
+                var usedUnit: Unit = .KG
+                if let unit = Unit.fromString(self.userWeightUnitSegmented.titleForSegmentAtIndex(selected)!.lowercaseString) {
+                    usedUnit = unit
+                }
+                
+                var fatPercentFloat: Float?
+                if let fatPercent = NSNumberFormatter().numberFromString(self.fatPercentText.text) {
+                    fatPercentFloat = fatPercent.floatValue
+                }
+                
+                var userWeightKG = userWeightFloat
+                var userWeightLB = userWeightFloat
+                if usedUnit == .KG {
+                    userWeightLB = UnitConverter.kgToLB(userWeightFloat)
+                } else {
+                    userWeightKG = UnitConverter.lbToKG(userWeightFloat)
+                }
+                
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+                WorkoutCache.workout!.userWeight = UserWeight(hashId: nil, userId: nil, weightKG: userWeightKG, weightLB: userWeightLB, unit: usedUnit, measurementTime: measurementTime, fatPercent: fatPercentFloat, date: dateFormatter.stringFromDate(self.startTimeDatePicker.date))
+            } else {
+                WorkoutCache.workout!.userWeight = nil
+            }
         }
     }
     
@@ -189,6 +231,43 @@ class WorkoutViewController: UIViewController {
             
             self.startTimeDatePicker.setDate(dateFormatter.dateFromString(workout.startTime)!, animated: false)
             self.endTimeDatePicker.setDate(dateFormatter.dateFromString(workout.endTime)!, animated: false)
+            
+            var userWeightMTime: MeasurementTime = .Morning
+            var userWeightUnit: Unit = .KG
+            
+            if workout.userWeight != nil {
+                var weight = workout.userWeight!.weightKG
+                if workout.userWeight!.unit == .LB {
+                    weight = workout.userWeight!.weightLB
+                }
+                
+                var fatPercentText = ""
+                if let fatPercent = workout.userWeight!.fatPercent {
+                    fatPercentText = NSString(format: "%.2f", fatPercent)
+                }
+                
+                self.userWeightText.text = NSString(format: "%.2f", weight)
+                self.fatPercentText.text    = fatPercentText
+                
+                userWeightMTime = workout.userWeight!.measurementTime
+                userWeightUnit  = workout.userWeight!.unit
+            } else if UserCache.user != nil {
+                userWeightUnit = UserCache.user!.default_unit
+            }
+            
+            for var i = 0; i < self.userWeightMTimeSegmented.numberOfSegments; i++ {
+                if userWeightMTime.rawValue == self.userWeightMTimeSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
+                    self.userWeightMTimeSegmented.selectedSegmentIndex = i
+                    break
+                }
+            }
+            
+            for var i = 0; i < self.userWeightUnitSegmented.numberOfSegments; i++ {
+                if userWeightUnit.rawValue == self.userWeightUnitSegmented.titleForSegmentAtIndex(i)!.lowercaseString {
+                    self.userWeightUnitSegmented.selectedSegmentIndex = i
+                    break
+                }
+            }
             
             if workout.templateHashId != nil {
                 self.showTemplateButton.enabled = true

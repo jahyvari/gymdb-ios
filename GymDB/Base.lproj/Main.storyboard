@@ -230,14 +230,14 @@
                         <viewControllerLayoutGuide type="bottom" id="mrh-vG-eVK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9hW-9W-chD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="845"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="912"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rwx-IS-7nD">
-                                <rect key="frame" x="0.0" y="64" width="320" height="732"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="799"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qI5-bS-l2L">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="732"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="799"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name/short description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIg-vv-9UL">
                                                 <rect key="frame" x="8" y="8" width="181" height="21"/>
@@ -269,25 +269,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGR-9N-fEP">
-                                                <rect key="frame" x="8" y="341" width="75" height="21"/>
+                                                <rect key="frame" x="8" y="408" width="75" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atn-bQ-4rd">
-                                                <rect key="frame" x="8" y="540" width="68" height="21"/>
+                                                <rect key="frame" x="8" y="607" width="68" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="XUm-CS-wIA">
-                                                <rect key="frame" x="0.0" y="370" width="320" height="162"/>
+                                                <rect key="frame" x="0.0" y="437" width="320" height="162"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="441885580.89254302">
                                                     <!--2015-01-02 09:59:40 +0000-->
                                                 </date>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="rj7-4c-alu">
-                                                <rect key="frame" x="0.0" y="569" width="320" height="162"/>
+                                                <rect key="frame" x="0.0" y="636" width="320" height="162"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="441885580.89254302">
                                                     <!--2015-01-02 09:59:40 +0000-->
                                                 </date>
@@ -306,11 +306,47 @@
                                                     <action selector="showTemplate" destination="1xv-Lc-pQA" eventType="touchUpInside" id="bx8-Ds-g4G"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2F0-vB-lhQ">
+                                                <rect key="frame" x="8" y="341" width="53" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uCU-GO-sRn">
+                                                <rect key="frame" x="8" y="370" width="114" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                            </textField>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c0y-5J-5Za">
+                                                <rect key="frame" x="130" y="370" width="65" height="29"/>
+                                                <segments>
+                                                    <segment title="KG"/>
+                                                    <segment title="LB"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fat percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0t-MN-M3K">
+                                                <rect key="frame" x="210" y="341" width="88" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v9F-KJ-6By">
+                                                <rect key="frame" x="66" y="338" width="129" height="29"/>
+                                                <segments>
+                                                    <segment title="Morning"/>
+                                                    <segment title="Evening"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r8q-ap-9W4">
+                                                <rect key="frame" x="210" y="370" width="90" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="Cc8-8r-cSP"/>
-                                            <constraint firstAttribute="height" constant="732" id="lVk-CD-UYe"/>
+                                            <constraint firstAttribute="height" constant="799" id="lVk-CD-UYe"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -357,19 +393,23 @@
                         <barButtonItem key="rightBarButtonItem" title="Save" id="794-86-QCK"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="845"/>
+                    <size key="freeformSize" width="320" height="912"/>
                     <connections>
                         <outlet property="endTimeDatePicker" destination="rj7-4c-alu" id="tEd-Nw-qqC"/>
                         <outlet property="extratextText" destination="S2F-JT-a7G" id="wWt-XV-Iwu"/>
+                        <outlet property="fatPercentText" destination="r8q-ap-9W4" id="vhP-pg-u16"/>
                         <outlet property="locationPickerView" destination="IrT-Ff-Fsf" id="N2D-DA-45F"/>
                         <outlet property="newLocationText" destination="DRv-N7-7ZQ" id="WPS-uc-RNh"/>
                         <outlet property="showTemplateButton" destination="3Gg-nU-AMD" id="RWl-uh-DIQ"/>
                         <outlet property="startTimeDatePicker" destination="XUm-CS-wIA" id="e32-Es-ZcI"/>
+                        <outlet property="userWeightMTimeSegmented" destination="v9F-KJ-6By" id="XtX-Yx-Gbw"/>
+                        <outlet property="userWeightText" destination="uCU-GO-sRn" id="B2B-8f-guA"/>
+                        <outlet property="userWeightUnitSegmented" destination="c0y-5J-5Za" id="7hG-QE-Ql7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2Y-jG-ut2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261" y="1721.5"/>
+            <point key="canvasLocation" x="261" y="1721"/>
         </scene>
         <!--User-->
         <scene sceneID="OO4-CR-sdJ">
@@ -1433,7 +1473,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fJd-Qe-LuQ">
                                                 <rect key="frame" x="141" y="104" width="120" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rep type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-99-e44">
                                                 <rect key="frame" x="8" y="142" width="70" height="21"/>
@@ -1468,7 +1508,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rmd-vK-cTn">
                                                 <rect key="frame" x="8" y="104" width="120" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
