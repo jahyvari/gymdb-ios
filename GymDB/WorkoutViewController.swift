@@ -328,4 +328,24 @@ class WorkoutViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func userWeightUnitChanged() {
+        let selected = self.userWeightUnitSegmented.selectedSegmentIndex
+    
+        if self.userWeightText.text != "" {
+            if let unit = Unit.fromString(self.userWeightUnitSegmented.titleForSegmentAtIndex(selected)!.lowercaseString) {
+                if let weight = NSNumberFormatter().numberFromString(self.userWeightText.text) {
+                    var weightFloat: Float = 0.0
+                    
+                    if unit == .KG {
+                        weightFloat = UnitConverter.lbToKG(weight.floatValue)
+                    } else {
+                        weightFloat = UnitConverter.kgToLB(weight.floatValue)
+                    }
+                    
+                    self.userWeightText.text = NSString(format: "%.2f", weightFloat)
+                }
+            }
+        }
+    }
 }

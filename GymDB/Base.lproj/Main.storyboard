@@ -323,6 +323,9 @@
                                                     <segment title="KG"/>
                                                     <segment title="LB"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="userWeightUnitChanged" destination="1xv-Lc-pQA" eventType="valueChanged" id="7zI-wo-X7d"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fat percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0t-MN-M3K">
                                                 <rect key="frame" x="210" y="341" width="88" height="21"/>
