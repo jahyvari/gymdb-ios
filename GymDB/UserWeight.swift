@@ -35,11 +35,14 @@ class UserWeight: UserWeightProtocol {
         self.weightLB           = NSNumberFormatter().numberFromString(data["weight_lb"] as String)!.floatValue
         self.unit               = Unit.fromString(data["unit"] as String)!
         self.measurementTime    = MeasurementTime.fromString(data["measurement_time"] as String)!
-        self.fatPercent         = NSNumberFormatter().numberFromString(data["fatpercent"] as String)?.floatValue
         self.date               = data["date"] as String
         
         if let userId = data["userid"] as? String {
             self.userId = UInt(userId.toInt()!)
+        }
+        
+        if let fatPercent = data["fatpercent"] as? String {
+            self.fatPercent = NSNumberFormatter().numberFromString(fatPercent)!.floatValue
         }
     }
     

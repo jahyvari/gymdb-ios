@@ -667,6 +667,16 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJJ-47-u7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ip8-e3-XUG">
+                    <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Select">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="select" destination="Pag-iS-C0G" eventType="touchUpInside" id="Qjy-KY-tCm"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="261" y="20"/>
         </scene>
@@ -1452,15 +1462,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-e3-XUG">
-                                                <rect key="frame" x="269" y="37" width="43" height="30"/>
-                                                <state key="normal" title="Select">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="select" destination="Pag-iS-C0G" eventType="touchUpInside" id="Qjy-KY-tCm"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2z-id-fHB">
                                                 <rect key="frame" x="8" y="75" width="40" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
