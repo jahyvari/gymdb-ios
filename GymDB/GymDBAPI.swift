@@ -10,7 +10,12 @@ import Foundation
 
 class GymDBAPI {
     private struct _data {
+        // Production
+        //static var apiURL:          String = "http://api.gymdb.info/request/"
+        
+        // Test
         static var apiURL:          String = "http://localhost/gymdb/trunk/API/request/"
+        
         static var lastAPIResponse: GymDBAPIResponse?
         static var sessionId:       String?
     }
