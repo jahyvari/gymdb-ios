@@ -62,6 +62,30 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        let duplicateAction = UITableViewRowAction(style: .Default, title: "Duplicate", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            let source = WorkoutCache.workout!.exercises![indexPath.row]
+            
+            var sets: [WorkoutExerciseSet]?
+            if source.sets != nil && source.sets!.count > 0 {
+                var i = 0
+                for set in source.sets! {
+                    if i == 0 {
+                        sets = [WorkoutExerciseSet]()
+                    }
+                    
+                    sets!.append(WorkoutExerciseSet(exerciseId: set.exerciseId, repetitions: set.repetitions, weightKG: set.weightKG, weightLB: set.weightLB, repetitionsType: set.repetitionsType, barbellType: set.barbellType, restIntervalSec: set.restIntervalSec))
+                    
+                    i++
+                }
+            }
+            
+            let exercise = WorkoutExercise(unit: source.unit, extratext: source.extratext, special: source.special, gearBelt: source.gearBelt, gearKneeWraps: source.gearKneeWraps, gearShirt: source.gearShirt, gearSuit: source.gearSuit, gearWristStraps: source.gearWristStraps, gearWristWraps: source.gearWristWraps, sets: sets)
+    
+            WorkoutCache.workout!.exercises!.insert(exercise, atIndex: indexPath.row+1)
+            
+            tableView.reloadData()
+        })
+        
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: {(action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             WorkoutCache.workout!.exercises!.removeAtIndex(indexPath.row)
             
@@ -72,9 +96,10 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
             tableView.reloadData()
         })
         
+        duplicateAction.backgroundColor = UIColor.greenColor()
         deleteAction.backgroundColor = UIColor.redColor()
         
-        return [deleteAction]
+        return [deleteAction,duplicateAction]
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
