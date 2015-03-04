@@ -22,6 +22,14 @@ class ExerciseCache {
         }
     }
     
+    class var sortedExerciseCategories: [ExerciseCategory]? {
+        get {
+            return _cache.exerciseCategories?.sorted({(item1,item2) -> Bool in
+                return item1.category.description < item2.category.description
+            })
+        }
+    }
+    
     class func findByExerciseId(id: UInt) -> Exercise? {
         var result: Exercise?
         
@@ -41,20 +49,17 @@ class ExerciseCache {
         return result
     }
     
-    class func getFirstExercise() -> Exercise? {
-        var result: Exercise?
-        
-        if self.exerciseCategories != nil {
-            for category in self.exerciseCategories! {
-                for (musclegroup,exercises) in category.exercises {
-                    for exercise in exercises {
-                        result = exercise
-                        break
+    class func getFirstExercise() -> Exercise? {        
+        if self.sortedExerciseCategories != nil {
+            for category in self.sortedExerciseCategories! {
+                for musclegroup in category.sortedMusclegroups {
+                    for exercise in category.sortedExercisesByMusclegroup(musclegroup)! {
+                        return exercise
                     }
                 }
             }
         }
         
-        return result
+        return nil
     }
 }

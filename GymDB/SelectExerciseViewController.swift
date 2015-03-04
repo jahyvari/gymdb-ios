@@ -58,13 +58,13 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
             var categorySection = 0
             
             // Find row & section for exercise category and exercise
-            for category in ExerciseCache.exerciseCategories! {
+            for category in ExerciseCache.sortedExerciseCategories! {
                 if category.category == self.selectedCategory! {
                     categoryRow = 0
-                    for (musclegroup,exercises) in category.exercises {
+                    for musclegroup in category.sortedMusclegroups {
                         if musclegroup == self.selectedMusclegroup! {
-                            self.currentExercises = exercises
-                            for exercise in exercises {
+                            self.currentExercises = category.sortedExercisesByMusclegroup(musclegroup)!
+                            for exercise in category.sortedExercisesByMusclegroup(musclegroup)! {
                                 if exercise.id == self.selectedExerciseId! {
                                     break
                                 }
@@ -103,7 +103,7 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
         var result = 1
         
         if tableView.tag == 100 {
-            if let categories = ExerciseCache.exerciseCategories {
+            if let categories = ExerciseCache.sortedExerciseCategories {
                 result = categories.count
             }
         }
@@ -115,7 +115,7 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
         var result: String?
         
         if tableView.tag == 100 {
-            if let categories = ExerciseCache.exerciseCategories {
+            if let categories = ExerciseCache.sortedExerciseCategories {
                 result = categories[section].category.description
             }
         }
@@ -127,8 +127,8 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
         var result = 0
         
         if tableView.tag == 100 {
-            if let categories = ExerciseCache.exerciseCategories {
-                result = categories[section].exercises.count
+            if let categories = ExerciseCache.sortedExerciseCategories {
+                result = categories[section].sortedMusclegroups.count
             }
         } else {
             if let currentExercises = self.currentExercises {
@@ -150,9 +150,9 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
         var cellText = ""
         
         if tableView.tag == 100 {
-            if let categories = ExerciseCache.exerciseCategories {
+            if let categories = ExerciseCache.sortedExerciseCategories {
                 var i = 0
-                for (musclegroup,exercises) in categories[indexPath.section].exercises {
+                for musclegroup in categories[indexPath.section].sortedMusclegroups {
                     if i++ == indexPath.row {
                         cellText = musclegroup.description
                         break
@@ -172,15 +172,15 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView.tag == 100 {
-            if let categories = ExerciseCache.exerciseCategories {
+            if let categories = ExerciseCache.sortedExerciseCategories {
                 let category = categories[indexPath.section]
                 
                 self.selectedCategory = category.category
                 
                 var i = 0
-                for (musclegroup,exercises) in category.exercises {
+                for musclegroup in category.sortedMusclegroups {
                     if i++ == indexPath.row {
-                        self.currentExercises = exercises
+                        self.currentExercises = category.sortedExercisesByMusclegroup(musclegroup)!
                         self.selectedMusclegroup = musclegroup
                         break
                     }
