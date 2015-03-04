@@ -76,6 +76,7 @@ enum ExerciseCategories: String {
     case Machine        = "Machine"
     case Other          = "Other"
     case Ring           = "Ring"
+    case Smith          = "Smith"
     
     static var allValues: [ExerciseCategories] = [
         Barbell,
@@ -85,7 +86,8 @@ enum ExerciseCategories: String {
         Kettlebell,
         Machine,
         Other,
-        Ring
+        Ring,
+        Smith
     ]
     
     static func fromString(categoryName: String) -> ExerciseCategories? {
@@ -117,6 +119,8 @@ enum ExerciseCategories: String {
                     return "Other"
                 case .Ring:
                     return "Ring"
+                case .Smith:
+                    return "Smith"
                 
             }
         }
@@ -160,6 +164,7 @@ enum Musclegroup: String {
     case Biceps     = "Biceps"
     case Calfs      = "Calfs"
     case Chest      = "Chest"
+    case FullBody   = "Full-body"
     case Forearms   = "Forearms"
     case Legs       = "Legs"
     case Shoulders  = "Shoulders"
@@ -172,6 +177,7 @@ enum Musclegroup: String {
         Biceps,
         Calfs,
         Chest,
+        FullBody,
         Forearms,
         Legs,
         Shoulders,
@@ -202,6 +208,8 @@ enum Musclegroup: String {
                     return "Calfs"
                 case .Chest:
                     return "Chest"
+                case .FullBody:
+                    return "Full-body"
                 case .Forearms:
                     return "Forearms"
                 case .Legs:
