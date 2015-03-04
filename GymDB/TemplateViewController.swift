@@ -95,11 +95,14 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
             let set = sets[indexPath.row]
             
             var exerciseName = ""
+            var musclegroupName = ""
             if let exercise = ExerciseCache.findByExerciseId(set.exerciseId) {
                 exerciseName = exercise.name
                 if let barbellType = set.barbellType {
                     exerciseName = exerciseName + " (" + barbellType.description + ")"
                 }
+                
+                musclegroupName = exercise.musglegroup.description+" - "+exercise.exerciseCategory.description
             }
             
             var reps = String(set.repetitions)
@@ -125,6 +128,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             
             cell.setNoLabel.text            = "\(indexPath.row+1)."
+            cell.musclegroupNameLabel.text  = musclegroupName
             cell.exerciseNameLabel.text     = exerciseName
             cell.repsLabel.text             = reps
             cell.weightLabel.text           = NSString(format: "%.2f", weight)+" "+unit.description

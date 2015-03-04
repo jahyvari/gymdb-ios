@@ -10,6 +10,7 @@ import UIKit
 
 class TemplateExerciseSetTableViewCell: UITableViewCell {
     @IBOutlet weak var setNoLabel:              UILabel!
+    @IBOutlet weak var musclegroupNameLabel:    UILabel!
     @IBOutlet weak var exerciseNameLabel:       UILabel!
     @IBOutlet weak var repsLabel:               UILabel!
     @IBOutlet weak var weightLabel:             UILabel!
