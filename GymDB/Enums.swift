@@ -17,8 +17,7 @@ enum BarbellType: String {
     case StandardBar    = "standard_bar"
     case SwissBar       = "swiss_bar"
     case ThickBar       = "thick_bar"
-    
-    case TrapBar        = "trap_bar"
+    case TrapBar        = "trap_bar2"
     
     static var allValues: [BarbellType] = [
         BuffaloBar,
