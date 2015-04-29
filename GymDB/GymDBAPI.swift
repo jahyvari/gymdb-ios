@@ -14,7 +14,7 @@ class GymDBAPI {
         //static var apiURL:          String = "http://api.gymdb.info/request/"
         
         // Test
-        static var apiURL:          String = "http://localhost/gymdb/trunk/API/request/"
+        static var apiURL:          String = "http://localhost/gymdb/API/request/"
         
         static var lastAPIResponse: GymDBAPIResponse?
         static var sessionId:       String?
@@ -201,14 +201,14 @@ class GymDBAPI {
                 let json = NSJSONSerialization.JSONObjectWithData(returnData!, options: .MutableContainers, error: nil) as? NSDictionary
                 
                 if let jsonData = json {
-                    response.code         = jsonData["code"] as Int
+                    response.code         = jsonData["code"] as! Int
                     response.reasonCode   = jsonData["reasonCode"] as? Int
                     response.reasonSource = jsonData["reasonSource"] as? String
                     response.reasonKey    = jsonData["reasonKey"] as? String
                     response.keyDesc      = jsonData["keyDesc"] as? String
                     response.iteration    = jsonData["iteration"] as? [String: Int]
                     response.sourceDesc   = jsonData["sourceDesc"] as? [String: String]
-                    response.text         = jsonData["text"] as String
+                    response.text         = jsonData["text"] as! String
                     response.data         = jsonData["data"]
                     
                     // Clear sessionId if session is timed out
@@ -285,11 +285,11 @@ class GymDBAPI {
                             result = [TrainingProgramScheduleResponse]()
                         }
                         
-                        let hashId              = value["hashid"] as String
-                        let programName         = value["program_name"] as String
-                        let templateHashId      = value["templatehashid"] as String
-                        let templateExtratext   = value["template_extratext"] as String
-                        let workoutDate         = value["workout_date"] as String
+                        let hashId              = value["hashid"] as! String
+                        let programName         = value["program_name"] as! String
+                        let templateHashId      = value["templatehashid"] as! String
+                        let templateExtratext   = value["template_extratext"] as! String
+                        let workoutDate         = value["workout_date"] as! String
                         
                         result!.append(TrainingProgramScheduleResponse(hashId: hashId, programName: programName, templateHashId: templateHashId, templateExtratext: templateExtratext, workoutDate: workoutDate))
                     }
@@ -375,10 +375,10 @@ class GymDBAPI {
                             result = [WorkoutSearchResponse]()
                         }
                         
-                        let hashId      = value["hashid"] as String
-                        let extratext   = value["extratext"] as String
-                        let startTime   = value["starttime"] as String
-                        let durationMin = (value["duration_min"] as String).toInt()!
+                        let hashId      = value["hashid"] as! String
+                        let extratext   = value["extratext"] as! String
+                        let startTime   = value["starttime"] as! String
+                        let durationMin = (value["duration_min"] as! String).toInt()!
                         
                         var exercises: UInt?
                         if let _exercises = value["duration_min"] as? String {

@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
     
     class func showLoginViewIfTimedOut(sender: UIViewController, sessionIsValid: (() -> Void)?) {
         if !GymDBAPI.loged {
-            let view = sender.storyboard!.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+            let view = sender.storyboard!.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
             view.modalPresentation = true
             sender.presentViewController(view, animated: false, completion: nil)
         } else if let sesValid = sessionIsValid {

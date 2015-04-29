@@ -16,6 +16,6 @@ class TemplateRecord: TemplateProtocol {
     }
     
     required init(data: AnyObject) {
-        self.record = data["record"] as String
+        self.record = data["record"] as! String
     }
 }

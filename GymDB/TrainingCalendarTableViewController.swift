@@ -62,7 +62,7 @@ class TrainingCalendarTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("trainingCalendarCell", forIndexPath: indexPath) as TrainingCalendarTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("trainingCalendarCell", forIndexPath: indexPath) as! TrainingCalendarTableViewCell
         let resultRow = self.getResultRow(indexPath)
         
         cell.trainingProgramLabel.text  = resultRow.programName
@@ -76,8 +76,8 @@ class TrainingCalendarTableViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
         alert.addAction(UIAlertAction(title: "Start workout", style: .Default, handler: {(action: UIAlertAction!) in
-            let tabBarController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutTabBarController") as UITabBarController
-            let viewController = tabBarController.viewControllers![0] as WorkoutViewController
+            let tabBarController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutTabBarController") as! UITabBarController
+            let viewController = tabBarController.viewControllers![0] as! WorkoutViewController
             let resultRow = self.getResultRow(indexPath)
             
             viewController.templateHashId           = resultRow.templateHashId
@@ -86,7 +86,7 @@ class TrainingCalendarTableViewController: UITableViewController {
             self.presentViewController(tabBarController, animated: false, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Show template", style: .Default, handler: {(action: UIAlertAction!) in
-            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("templateViewController") as TemplateViewController
+            let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("templateViewController") as! TemplateViewController
             let resultRow = self.getResultRow(indexPath)
             
             viewController.hashId = resultRow.templateHashId
@@ -149,7 +149,7 @@ class TrainingCalendarTableViewController: UITableViewController {
                         scrolled = true
                     }
                     
-                    let cell = self.tableView.cellForRowAtIndexPath(indexPath) as TrainingCalendarTableViewCell
+                    let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! TrainingCalendarTableViewCell
                     cell.backgroundColor = UIColor.colorWithAlphaComponent(UIColor.grayColor())(0.1)
                     cell.todayLabel.hidden = false
                 }

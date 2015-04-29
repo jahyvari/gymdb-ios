@@ -31,9 +31,9 @@ class UserWeight: UserWeightProtocol {
     
     required init(data: AnyObject) {
         self.hashId             = data["hashid"] as? String
-        self.unit               = Unit.fromString(data["unit"] as String)!
-        self.measurementTime    = MeasurementTime.fromString(data["measurement_time"] as String)!
-        self.date               = data["date"] as String
+        self.unit               = Unit.fromString(data["unit"] as! String)!
+        self.measurementTime    = MeasurementTime.fromString(data["measurement_time"] as! String)!
+        self.date               = data["date"] as! String
         
         if let userId = data["userid"] as? String {
             self.userId = UInt(userId.toInt()!)

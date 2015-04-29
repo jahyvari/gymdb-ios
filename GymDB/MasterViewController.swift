@@ -29,8 +29,8 @@ class MasterViewController: UITableViewController {
         var hashId = ""
         
         if hashId != "" && segue.identifier == "showWorkoutViewController" {
-            let tabBarController = segue.destinationViewController as UITabBarController
-            (tabBarController.viewControllers![0] as WorkoutViewController).hashId = hashId
+            let tabBarController = segue.destinationViewController as! UITabBarController
+            (tabBarController.viewControllers![0] as! WorkoutViewController).hashId = hashId
         }
     }
     

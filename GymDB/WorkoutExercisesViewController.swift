@@ -46,7 +46,7 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var exercise = WorkoutCache.workout!.exercises![indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExercisesCell", forIndexPath: indexPath) as WorkoutExercisesTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExercisesCell", forIndexPath: indexPath) as! WorkoutExercisesTableViewCell
         
         let index = indexPath.row+1
         
@@ -124,7 +124,7 @@ class WorkoutExercisesViewController: UIViewController, UITableViewDataSource, U
     }
     
     func showWorkoutExercise(exerciseIndex: Int?) {
-        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseViewController") as WorkoutExerciseViewController
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseViewController") as! WorkoutExerciseViewController
         
         viewController.exerciseIndex = exerciseIndex
         

@@ -28,13 +28,13 @@ class User: UserProtocol {
     }
     
     required init(data: AnyObject) {
-        self.hashid         = data["hashid"] as String
-        self.email          = data["email"] as String
+        self.hashid         = data["hashid"] as! String
+        self.email          = data["email"] as! String
         self.firstname      = data["firstname"] as? String
         self.lastname       = data["lastname"] as? String
-        self.timezoneid     = UInt((data["timezoneid"] as String).toInt()!)
-        self.default_unit   = Unit.fromString(data["default_unit"] as String)!
-        self.timeout_min    = UInt((data["timeout_min"] as String).toInt()!)
+        self.timezoneid     = UInt((data["timezoneid"] as! String).toInt()!)
+        self.default_unit   = Unit.fromString(data["default_unit"] as! String)!
+        self.timeout_min    = UInt((data["timeout_min"] as! String).toInt()!)
     }
     
     func save(inout apiResponse: GymDBAPIResponse?, password: String?, password2: String?) -> Bool {

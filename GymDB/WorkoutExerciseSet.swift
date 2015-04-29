@@ -28,12 +28,12 @@ class WorkoutExerciseSet: WorkoutProtocol {
     }
     
     required init(data: AnyObject) {
-        self.exerciseId         = UInt((data["exerciseid"] as String).toInt()!)
-        self.repetitions        = UInt16((data["repetitions"] as String).toInt()!)
-        self.weightKG           = NSNumberFormatter().numberFromString(data["weight_kg"] as String)!.floatValue
-        self.weightLB           = NSNumberFormatter().numberFromString(data["weight_lb"] as String)!.floatValue
+        self.exerciseId         = UInt((data["exerciseid"] as! String).toInt()!)
+        self.repetitions        = UInt16((data["repetitions"] as! String).toInt()!)
+        self.weightKG           = NSNumberFormatter().numberFromString(data["weight_kg"] as! String)!.floatValue
+        self.weightLB           = NSNumberFormatter().numberFromString(data["weight_lb"] as! String)!.floatValue
         
-        if let repetitionsType = RepetionsType.fromString(data["repetitions_type"] as String) {
+        if let repetitionsType = RepetionsType.fromString(data["repetitions_type"] as! String) {
             self.repetitionsType = repetitionsType
         } else {
             self.repetitionsType = .Normal
@@ -49,10 +49,10 @@ class WorkoutExerciseSet: WorkoutProtocol {
     }
     
     required init(templateData: AnyObject) {
-        self.exerciseId     = UInt((templateData["exerciseid"] as String).toInt()!)
-        self.repetitions    = UInt16((templateData["repetitions"] as String).toInt()!)
-        self.weightKG       = NSNumberFormatter().numberFromString(templateData["weight_kg"] as String)!.floatValue
-        self.weightLB       = NSNumberFormatter().numberFromString(templateData["weight_lb"] as String)!.floatValue
+        self.exerciseId     = UInt((templateData["exerciseid"] as! String).toInt()!)
+        self.repetitions    = UInt16((templateData["repetitions"] as! String).toInt()!)
+        self.weightKG       = NSNumberFormatter().numberFromString(templateData["weight_kg"] as! String)!.floatValue
+        self.weightLB       = NSNumberFormatter().numberFromString(templateData["weight_lb"] as! String)!.floatValue
         
         if let repetitionsEnd = templateData["repetitions_end"] as? String {
             self.repetitions = UInt16(repetitionsEnd.toInt()!)
@@ -65,7 +65,7 @@ class WorkoutExerciseSet: WorkoutProtocol {
             }
         }
         
-        if let repetitionsType = RepetionsType.fromString(templateData["repetitions_type"] as String) {
+        if let repetitionsType = RepetionsType.fromString(templateData["repetitions_type"] as! String) {
             self.repetitionsType = repetitionsType
         } else {
             self.repetitionsType = .Normal

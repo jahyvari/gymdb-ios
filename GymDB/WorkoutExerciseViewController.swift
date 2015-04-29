@@ -134,7 +134,7 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExerciseCell", forIndexPath: indexPath) as WorkoutExerciseTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("workoutExerciseCell", forIndexPath: indexPath) as! WorkoutExerciseTableViewCell
         
         if self.exercise != nil {
             if let set = self.exercise.sets?[indexPath.row] {
@@ -159,7 +159,7 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
                     weight = set.weightLB
                 }
                     
-                cell.weightLabel.text = NSString(format: "%.2f", weight)+" ("+self.exercise.unit.description+")"
+                cell.weightLabel.text = (NSString(format: "%.2f", weight) as String)+" ("+self.exercise.unit.description+")"
             }
         }
         
@@ -274,7 +274,7 @@ class WorkoutExerciseViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func showWorkoutExerciseSet(setIndex: Int?) {
-        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseSetViewController") as WorkoutExerciseSetViewController
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("workoutExerciseSetViewController") as! WorkoutExerciseSetViewController
         
         viewController.exercise = self.exercise
         viewController.setIndex = setIndex

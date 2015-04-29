@@ -92,7 +92,7 @@ class WorkoutListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("workoutListCell", forIndexPath: indexPath) as WorkoutListTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("workoutListCell", forIndexPath: indexPath) as! WorkoutListTableViewCell
         
         cell.extratextLabel.text = self.searchResult[indexPath.row].extratext
         
@@ -107,8 +107,8 @@ class WorkoutListTableViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let hashId = self.searchResult[indexPath.row].hashId
                 
-                let tabBarController = segue.destinationViewController as UITabBarController
-                (tabBarController.viewControllers![0] as WorkoutViewController).hashId = hashId
+                let tabBarController = segue.destinationViewController as! UITabBarController
+                (tabBarController.viewControllers![0] as! WorkoutViewController).hashId = hashId
             }
         }
     }

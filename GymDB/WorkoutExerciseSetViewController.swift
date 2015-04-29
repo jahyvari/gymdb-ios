@@ -120,9 +120,9 @@ class WorkoutExerciseSetViewController: UIViewController {
                     var minutes = floor(tmp / 60)
                     var seconds = tmp % 60
                     
-                    result = NSString(format: "%.0f", minutes) + " min"
+                    result = (NSString(format: "%.0f", minutes) as String) + " min"
                     if seconds > 0.0 {
-                        result = result + " " + NSString(format: "%.0f", seconds) + " sec"
+                        result = result + " " + (NSString(format: "%.0f", seconds) as String) + " sec"
                     }
                 }
             }
@@ -151,7 +151,7 @@ class WorkoutExerciseSetViewController: UIViewController {
         self.weightUnitLabel.text = "("+self.exercise.unit.description+")"
         
         self.repsText.text      = String(self.exerciseSet.repetitions)
-        self.weightText.text    = NSString(format: "%.2f", weight)
+        self.weightText.text    = NSString(format: "%.2f", weight) as String
         
         if let key = find(self.repType, self.exerciseSet.repetitionsType) {
             self.repTypePicker.selectRow(key, inComponent: 0, animated: false)
@@ -200,7 +200,7 @@ class WorkoutExerciseSetViewController: UIViewController {
     }
     
     @IBAction func select() {
-        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("selectExerciseViewController") as SelectExerciseViewController
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("selectExerciseViewController") as! SelectExerciseViewController
         
         viewController.barbellType  = self.exerciseSet.barbellType
         viewController.exerciseId   = self.exerciseSet.exerciseId

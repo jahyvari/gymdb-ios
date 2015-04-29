@@ -89,7 +89,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("templateSetCell", forIndexPath: indexPath) as TemplateExerciseSetTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("templateSetCell", forIndexPath: indexPath) as! TemplateExerciseSetTableViewCell
         
         if let sets = self.getCurrentSets() {
             let set = sets[indexPath.row]
@@ -123,7 +123,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
             
             var oneRepMax = ""
             if let oneRepMaxPercent = set.oneRepMaxPercent {
-                oneRepMax = "(" +  NSString(format: "%.2f", oneRepMaxPercent) + " %)"
+                oneRepMax = "(" +  (NSString(format: "%.2f", oneRepMaxPercent) as String) + " %)"
                 weight = weight * (oneRepMaxPercent/100)
             }
             
@@ -131,7 +131,7 @@ class TemplateViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.musclegroupNameLabel.text  = musclegroupName
             cell.exerciseNameLabel.text     = exerciseName
             cell.repsLabel.text             = reps
-            cell.weightLabel.text           = NSString(format: "%.2f", weight)+" "+unit.description
+            cell.weightLabel.text           = (NSString(format: "%.2f", weight) as String)+" "+unit.description
             cell.restLabel.text             = rest
             cell.repTypeLabel.text          = set.repetitionsType.description
             cell.oneRepMaxPercentLabel.text = oneRepMax

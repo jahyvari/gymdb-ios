@@ -23,7 +23,7 @@ class Template: TemplateProtocol {
     
     required init(data: AnyObject) {
         self.hashId     = data["hashid"] as? String
-        self.extratext  = data["extratext"] as String
+        self.extratext  = data["extratext"] as! String
         
         var i = 0
         

@@ -145,7 +145,7 @@ class SelectExerciseViewController: UIViewController, UITableViewDataSource, UIT
             cellName = "exerciseCell"
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellName, forIndexPath: indexPath) as SelectExerciseTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellName, forIndexPath: indexPath) as! SelectExerciseTableViewCell
         
         var cellText = ""
         

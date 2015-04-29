@@ -244,12 +244,12 @@ class WorkoutViewController: UIViewController {
                 
                 var weightText = ""
                 if weight != nil {
-                    weightText = NSString(format: "%.2f", weight!)
+                    weightText = NSString(format: "%.2f", weight!) as String
                 }
                 
                 var fatPercentText = ""
                 if let fatPercent = workout.userWeight!.fatPercent {
-                    fatPercentText = NSString(format: "%.2f", fatPercent)
+                    fatPercentText = NSString(format: "%.2f", fatPercent) as String
                 }
                 
                 self.userWeightText.text = weightText
@@ -326,7 +326,7 @@ class WorkoutViewController: UIViewController {
     @IBAction func showTemplate() {
         if let workout = WorkoutCache.workout {
             if let templateHashId = workout.templateHashId {
-                let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("templateViewController") as TemplateViewController
+                let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("templateViewConas!oller") as! TemplateViewController
                 
                 viewController.hashId = templateHashId
                 
@@ -349,7 +349,7 @@ class WorkoutViewController: UIViewController {
                         weightFloat = UnitConverter.kgToLB(weight.floatValue)
                     }
                     
-                    self.userWeightText.text = NSString(format: "%.2f", weightFloat)
+                    self.userWeightText.text = NSString(format: "%.2f", weightFloat) as String
                 }
             }
         }

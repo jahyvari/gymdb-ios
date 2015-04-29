@@ -34,7 +34,7 @@ class WorkoutExercise: WorkoutProtocol {
     }
     
     required init(data: AnyObject) {
-        if let unit = Unit.fromString(data["unit"] as String) {
+        if let unit = Unit.fromString(data["unit"] as! String) {
             self.unit = unit
         } else {
             self.unit = .KG
@@ -46,12 +46,12 @@ class WorkoutExercise: WorkoutProtocol {
             self.special = Special.fromString(special)
         }
         
-        self.gearBelt           = UInt8((data["gear_belt"] as String).toInt()!)
-        self.gearKneeWraps      = UInt8((data["gear_knee_wraps"] as String).toInt()!)
-        self.gearShirt          = UInt8((data["gear_shirt"] as String).toInt()!)
-        self.gearSuit           = UInt8((data["gear_suit"] as String).toInt()!)
-        self.gearWristStraps    = UInt8((data["gear_wrist_straps"] as String).toInt()!)
-        self.gearWristWraps     = UInt8((data["gear_wrist_wraps"] as String).toInt()!)
+        self.gearBelt           = UInt8((data["gear_belt"] as! String).toInt()!)
+        self.gearKneeWraps      = UInt8((data["gear_knee_wraps"] as! String).toInt()!)
+        self.gearShirt          = UInt8((data["gear_shirt"] as! String).toInt()!)
+        self.gearSuit           = UInt8((data["gear_suit"] as! String).toInt()!)
+        self.gearWristStraps    = UInt8((data["gear_wrist_straps"] as! String).toInt()!)
+        self.gearWristWraps     = UInt8((data["gear_wrist_wraps"] as! String).toInt()!)
         
         if let sets = data["sets"] as? [AnyObject] {
             var i = 0
@@ -66,7 +66,7 @@ class WorkoutExercise: WorkoutProtocol {
     }
     
     required init(templateData: AnyObject) {
-        if let unit = Unit.fromString(templateData["unit"] as String) {
+        if let unit = Unit.fromString(templateData["unit"] as! String) {
             self.unit = unit
         } else {
             self.unit = .KG
@@ -78,12 +78,12 @@ class WorkoutExercise: WorkoutProtocol {
             self.special = Special.fromString(special)
         }
         
-        self.gearBelt           = UInt8((templateData["gear_belt"] as String).toInt()!)
-        self.gearKneeWraps      = UInt8((templateData["gear_knee_wraps"] as String).toInt()!)
-        self.gearShirt          = UInt8((templateData["gear_shirt"] as String).toInt()!)
-        self.gearSuit           = UInt8((templateData["gear_suit"] as String).toInt()!)
-        self.gearWristStraps    = UInt8((templateData["gear_wrist_straps"] as String).toInt()!)
-        self.gearWristWraps     = UInt8((templateData["gear_wrist_wraps"] as String).toInt()!)
+        self.gearBelt           = UInt8((templateData["gear_belt"] as! String).toInt()!)
+        self.gearKneeWraps      = UInt8((templateData["gear_knee_wraps"] as! String).toInt()!)
+        self.gearShirt          = UInt8((templateData["gear_shirt"] as! String).toInt()!)
+        self.gearSuit           = UInt8((templateData["gear_suit"] as! String).toInt()!)
+        self.gearWristStraps    = UInt8((templateData["gear_wrist_straps"] as! String).toInt()!)
+        self.gearWristWraps     = UInt8((templateData["gear_wrist_wraps"] as! String).toInt()!)
         
         if let sets = templateData["sets"] as? [AnyObject] {
             var i = 0

@@ -39,9 +39,9 @@ class Workout: WorkoutProtocol {
         self.locationHashId         = data["locationhashid"] as? String
         self.trainingProgramHashId  = data["training_program_hashid"] as? String
         self.templateHashId         = data["templatehashid"] as? String
-        self.extratext              = data["extratext"] as String
-        self.startTime              = data["starttime"] as String
-        self.endTime                = data["endtime"] as String
+        self.extratext              = data["extratext"] as! String
+        self.startTime              = data["starttime"] as! String
+        self.endTime                = data["endtime"] as! String
         
         var i = 0
         
@@ -79,7 +79,7 @@ class Workout: WorkoutProtocol {
         let plusOneHour = NSDate.dateByAddingTimeInterval(NSDate())(60*60)
         
         self.templateHashId = templateData["hashid"] as? String
-        self.extratext      = templateData["extratext"] as String
+        self.extratext      = templateData["extratext"] as! String
         self.startTime      = dateFormatter.stringFromDate(now)
         self.endTime        = dateFormatter.stringFromDate(plusOneHour)
         
